@@ -1,0 +1,10 @@
+@use '../abstracts' as *;
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: $bg-color;
+    font-family: 'Pretendard', sans-serif;
+}

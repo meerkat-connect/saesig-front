@@ -1,0 +1,40 @@
+@mixin textSizeAndWeight($size, $weight: 400) {
+    font-size: #{$size}px;
+    font-weight: $weight;
+}
+
+@mixin text-headline {
+    @include textSizeAndWeight(34, 700);
+}
+
+@mixin text-title($type) {
+    @if $type == 'lg' {
+        @include textSizeAndWeight(26, 700);
+    } @else if $type == 'md' {
+        @include textSizeAndWeight(20, 700);
+    } @else if $type == 'sm' {
+        @include textSizeAndWeight(18, 700);
+    } @else if $type == 'xs' {
+        @include textSizeAndWeight(16, 700);
+    }
+}
+
+@mixin text-body($type) {
+    @if $type == 'lg' {
+        @include textSizeAndWeight(16, 500);
+    } @else if $type == 'md' {
+        @include textSizeAndWeight(16, 400);
+    } @else if $type == 'sm' {
+        @include textSizeAndWeight(14, 400);
+    }
+}
+
+@mixin text-caption($type) {
+    @if $type == 'lg' {
+        @include textSizeAndWeight(14, 700);
+    } @else if $type == 'md' {
+        @include textSizeAndWeight(12, 700);
+    } @else if $type == 'sm' {
+        @include textSizeAndWeight(12, 500);
+    }
+}

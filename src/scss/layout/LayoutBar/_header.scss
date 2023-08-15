@@ -1,0 +1,44 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #FFFFFF;
+  }
+  
+.header-container {
+    width: 662px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    @media (max-width: 661px) {
+      width: 100%;
+    }
+}
+  
+.header-title {
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    flex-grow: 1;
+    margin-right: calc(24px + 10px); /* header-back-button의 너비와 오른쪽 간격만큼 이동 */
+}
+  
+.header-back-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-image: url("src/assets/images/24_Large_left.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+}

@@ -1,0 +1,86 @@
+.saesig-round-default-button {
+    margin-right: 3px;
+    padding: 13px 20px 13px 20px;
+    border-radius: 25px;
+    height: 40px;
+    background-color: #F9F7F2;
+    display: inline-block;
+    color: #000000;
+    border: 1px solid #D9D9D9;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    &.active {
+        height: 40px;
+        background-color: #000000;
+        display: inline-block;
+        color: #FFFFFF;;
+    }
+}
+  
+.saesig-round-write-button {
+    padding: 16px 25px 16px 25px; /* 이미지와 텍스트 간격을 조절 */
+    border: 1px solid #D9D9D9;
+    color: #000000;
+    background-color: #F9F7F2;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    text-align: center;
+
+    &.icon {
+        padding: 16px 25px 16px 40px; /* 이미지와 텍스트 간격을 조절 */
+        background-image: url('../../assets/images/pencil_icon.png');
+        background-repeat: no-repeat;
+        background-position: 20px center; /* 이미지 위치 조절 */
+    }
+}
+
+.saesig-tag0{
+    height: 22px;
+    width: auto;
+    display: inline;
+    padding: 2px 8px 2px 8px;
+    border-radius: 25px;
+    font-family: Pretendard-Regular;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    margin-right: 8px;
+
+    &.green {
+        background: #E7F5E4;
+        color: #49B537;
+    }
+
+    &.orange {
+        background: #FF803126;
+        color: #FF8031;
+    }
+
+    &.gray {
+        background: #F1F2F1;
+        color: #ACACAC;
+    }
+}
+  
+.saesig-tag1-orange {
+    height: 22px;
+    width: auto;
+    display: inline;
+    padding: 4px 12px 4px 12px;
+    border-radius: 25px;
+    background: #F9F7F2;
+    font-family: Pretendard-Regular;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    margin-right: 8px;
+    color: #FF8031;
+}

@@ -1,0 +1,63 @@
+.bottom-bar-con {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+  
+.bottom-bar {
+    height: 56px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  
+    @media (min-width: 662px) {
+      width: 662px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    @media (max-width: 661px) {
+      width: 100%;
+    }
+}
+  
+.bottom-bar-item {
+    width: 20%;
+    color: #000000;
+    text-decoration: none;
+
+    span {
+        font-family: Pretendard-Regular;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 17px;
+        text-align: center;
+    }
+
+    &.active span {
+        color: #FF8031;
+    }
+
+    &.active .svg-path {
+        fill: #FF8031; /* 주황색으로 변경하려는 색상으로 대체하세요 */
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        svg {
+            margin-bottom: 4px; /* 필요에 따라 조정 가능 */
+        }
+    }
+}  

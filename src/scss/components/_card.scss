@@ -1,0 +1,65 @@
+.saesig-content-con,
+.saesig-content-con * {
+  box-sizing: border-box;
+}
+
+.saesig-content-con {
+  width: 100%;
+  margin-top: 30px;
+
+  .saesig-content-card-style0 {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #585858;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-top: 10px;
+
+    .saesig-content-card-left-image-con {
+        border-bottom-left-radius: 30px;
+        border-top-left-radius: 30px;
+        display: inline-block;
+        width: 180px;
+        height: 150px;
+
+        .saesig-content-card-left-image {
+            width: inherit;
+            height: inherit;
+            object-fit: cover;
+        }
+    }
+
+    .saesig-content-desc {
+        width: calc(100% - 180px);
+        height: inherit;
+        display: inline-block;
+        background-color: #FFFFFF;
+        vertical-align: top;
+
+        .saesig-content-desc-row{
+            width: 100%;
+            padding: 5px 5px 5px 30px;
+            font-family: Pretendard-Regular;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 26px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+
+            &:first-child {
+                padding-top: 25px;
+            }
+
+            &:last-child {
+                padding-bottom: 25px;
+            }
+
+            > .saesig-content-desc-row-about {
+                margin-right: 20px;
+                margin-left: auto;
+            }
+        }
+    }
+  }
+}

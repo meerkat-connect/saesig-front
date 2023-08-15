@@ -1,0 +1,28 @@
+.saesig-datepicker-con {
+    display: inline-block;
+    width: 180px;
+    position: relative;
+
+    .saesig-datepicker-input {
+        width: 120px;
+        height: 46px;
+        padding : 0px 50px 0px 30px;
+        border-radius: 25px;
+        border: 1px;
+        font-family: Open Sans;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 26px;
+        text-align: left;
+    }
+
+    .saesig-datepicker-label {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        background-image: url("../../assets/images/calendar_today.png");
+    }
+}
