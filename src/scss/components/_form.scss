@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .saesig-datepicker-con {
     display: inline-block;
     width: 180px;
@@ -24,5 +26,44 @@
         width: 24px;
         height: 24px;
         background-image: url("../../assets/images/calendar_today.png");
+    }
+}
+
+input {
+
+    &[type=checkbox] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+
+        + label {
+            position: relative;
+            display: inline-block;
+            padding-left: 28px;
+            @include textSizeAndWeight(14, 500);
+            line-height: 2rem;
+            cursor: pointer;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 20px;
+                height: 20px;
+                border: 1px solid $text-color-gray;
+                border-radius: 50%;
+            }
+        }
+
+        &:checked + label {
+
+            &::before {
+                border-color: $primary-color;
+                background: url("src/assets/icons/check_icon_ffffff.svg") no-repeat center $primary-color;
+                background-size: 10px;
+            }
+        }
     }
 }

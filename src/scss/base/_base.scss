@@ -7,4 +7,28 @@ html {
 body {
     background-color: $bg-color;
     font-family: 'Pretendard', sans-serif;
+    line-height: 1;
+
+    main {
+        width: 100%;
+        height: calc(100vh - $header-height - $menubar-height);
+
+        > .middle-wrap {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .inner {
+        @include inner;
+
+        &.md {
+            max-width: $inner-width-md;
+        }
+
+        &.sm {
+            max-width: $inner-width-sm;
+        }
+    }
 }

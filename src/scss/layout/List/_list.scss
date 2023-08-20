@@ -4,6 +4,7 @@
     width: 100%;
     max-width: 662px;
     margin: 0 auto;
+    padding-top: 60px;
   
     @media (max-width: 661px) {
       width: 100%;
@@ -13,7 +14,6 @@
 .saesig-title-con {
     width: 100%;
     display: block;
-    margin-top: 60px;
     text-align: left;
     font-family: "Pretendard-Regular";
     font-weight: 700;
@@ -26,7 +26,6 @@
 }
 
 .saesig-title {
-    margin-top: 60px;
     text-align: left;
     font-family: "Pretendard-Regular";
     font-weight: 700;

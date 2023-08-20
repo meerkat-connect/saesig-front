@@ -1,8 +1,10 @@
+@use '../../abstracts' as *;
+
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
+    height: $header-height;
     margin: 0 auto;
     width: 100%;
     background-color: #FFFFFF;
@@ -22,7 +24,6 @@
   
 .header-title {
     text-align: center;
-    font-family: "Pretendard-Regular";
     font-weight: 700;
     font-size: 20px;
     line-height: 28px;
