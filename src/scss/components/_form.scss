@@ -66,4 +66,34 @@ input {
             }
         }
     }
+
+    &[type=text], &[type=password] {
+        @include textSizeAndWeight(16, 500);
+        line-height: 2.6rem;
+        width: 100%;
+        padding: 12px 24px;
+        border: 1px solid $line-color-light;
+        border-radius: 25px;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    input::-webkit-autofill, input::-webkit-autofill:hover, input::-webkit-autofill:focus, input::-webkit-autofill:active {
+        -webkit-transition: background-color 9999s ease-out;
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    }
+
+    + .text--caution {
+        @include textSizeAndWeight(14, 500);
+        color: $primary-color;
+        margin-top: 10px;
+        margin-bottom: 14px;
+        padding-left: 24px;
+
+        span {
+            padding-left: 18px;
+            background: url("src/assets/icons/10_caution.svg") no-repeat left center;
+            background-size: 12px;
+        }
+    }
 }

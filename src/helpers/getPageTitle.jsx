@@ -10,6 +10,9 @@ const getPageTitle = pathname => {
         case '/':
             title = '새식일기 퍼블리시 리스트';
             break;
+        case '/login':
+            title = '로그인';
+            break;
         case '/about':
             title = 'About';
             break;

@@ -1,0 +1,23 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+input[type=text], input[type=password] {
+     
+    &::placeholder {
+        opacity: 1;
+        @include placeholder;
+    }
+
+    &::-webkit-input-placeholder {
+        @include placeholder;
+    }
+
+    &::-moz-placeholder {
+        @include placeholder;
+    }
+
+    &::-ms-input-placeholder {
+        @include placeholder;
+    }
+
+}
