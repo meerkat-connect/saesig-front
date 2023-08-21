@@ -76,6 +76,10 @@ input {
         border-radius: 25px;
         appearance: none;
         -webkit-appearance: none;
+
+        &.caution {
+            border-color: $primary-color;
+        }
     }
 
     input::-webkit-autofill, input::-webkit-autofill:hover, input::-webkit-autofill:focus, input::-webkit-autofill:active {
@@ -83,17 +87,34 @@ input {
         -webkit-box-shadow: 0 0 0px 1000px white inset !important;
     }
 
-    + .text--caution {
+    ~ .input__text {
         @include textSizeAndWeight(14, 500);
-        color: $primary-color;
         margin-top: 10px;
         margin-bottom: 14px;
         padding-left: 24px;
 
-        span {
-            padding-left: 18px;
-            background: url("src/assets/icons/10_caution.svg") no-repeat left center;
-            background-size: 12px;
+        &.text--desc {
+            color: $text-color-gray;
+        }
+
+        &.text--caution {
+            color: $primary-color;
+
+            span {
+                padding-left: 18px;
+                background: url("src/assets/icons/10_caution.svg") no-repeat left center;
+                background-size: 12px;
+            }
+        }
+
+        &.text--confirm {
+            color: $text-color-green;
+
+            span {
+                padding-left: 18px;
+                background: url("src/assets/icons/check_icon_49b537.svg") no-repeat left center;
+                background-size: 12px;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../../../scss/pages/Membership/login.scss';
-import logoUrl from '../../../assets/images/saesig_text_logo.svg';
+import logoPath from '../../../assets/images/saesig_text_logo.svg';
 import InfoIcon from '../../../components/Tooltips/InfoIcon';
 
 
@@ -17,7 +17,7 @@ const Login = () => {
     <div className="middle-wrap">
       <div className="inner md">
         <div className="login-top-con">
-          <img src={logoUrl} alt="새식일기 로고" />
+          <img src={logoPath} alt="새식일기 로고" />
           <div className="desc">새로운 식구와 함께하는 일상 기록</div>
         </div>
 
@@ -48,10 +48,10 @@ const Login = () => {
 
           <ul className="btn__group btn__group--text btn__group--center">
             <li>
-              <button type="button" onClick={() => location.href='/find-id'} className='btn btn--text'>아이디 찾기</button>
+              <button type="button" onClick={() => location.href='/find-id'} className='btn btn--text btn--gray'>아이디 찾기</button>
             </li>
             <li>
-              <button type="button" onClick={() => location.href='/find-pw'} className='btn btn--text'>비밀번호 찾기</button>
+              <button type="button" onClick={() => location.href='/find-pw'} className='btn btn--text btn--gray'>비밀번호 찾기</button>
             </li>
           </ul>
         </div>

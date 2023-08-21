@@ -13,6 +13,9 @@ const getPageTitle = pathname => {
         case '/login':
             title = '로그인';
             break;
+        case '/sign-up':
+            title = '회원가입';
+            break;
         case '/about':
             title = 'About';
             break;

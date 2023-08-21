@@ -152,10 +152,6 @@
 .btn {
     @include textSizeAndWeight(14, 500);
 
-    &.btn--text {
-        color: $text-color-gray;
-    }
-
     &.btn--arrow {
         position: relative;
         line-height: 2.4rem;
@@ -185,6 +181,10 @@
         &.btn--lg {
             padding: 17px 30px;
         }
+
+        &.btn--gray {
+            background-color: $disabled-bg-color;
+        }
     }
 
     &.btn--round {
@@ -194,6 +194,14 @@
     &.btn--full {
         width: 100%;
         text-align: center;
+    }
+
+    &.btn--underline {
+        text-decoration: underline;
+    }
+
+    &.btn--text.btn--gray {
+        color: $text-color-gray;
     }
 }
 

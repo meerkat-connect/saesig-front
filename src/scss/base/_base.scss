@@ -5,9 +5,10 @@ html {
 }
 
 body {
-    background-color: $bg-color;
     font-family: 'Pretendard', sans-serif;
     line-height: 1;
+    background: url("src/assets/images/saesig_family_face.svg") no-repeat right -8px center;
+    background-color: $bg-color;
 
     main {
         width: 100%;
@@ -30,5 +31,17 @@ body {
         &.sm {
             max-width: $inner-width-sm;
         }
+    }
+
+    .text--primary {
+        color: $primary-color !important;
+    }
+    
+    .text--secondary {
+        color: $secondary-color !important;
+    }
+
+    .text--green {
+        color: $text-color-green !important;
     }
 }
