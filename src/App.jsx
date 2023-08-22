@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes, Outlet } from 'react-router-dom';
-import Header from './components/LayoutBar/Header';
-import MenuBar from './components/LayoutBar/MenuBar';
-import Home from './pages/Home';
-import Components from './pages/Components';
-import Login from './pages/Membership/Login';
-import AdoptionRecord from './pages/Mypage/AdoptionRecord';
-import SignUp from './pages/Membership/SignUp';
+import Header from '@/components/LayoutBar/Header';
+import MenuBar from '@/components/LayoutBar/MenuBar';
+import Home from '@/pages/Home';
+import Components from '@/pages/Components';
+import Login from '@/pages/Membership/Login';
+import AdoptionRecord from '@/pages/Mypage/AdoptionRecord';
+import SignUp from '@/pages/Membership/SignUp';
 
 const Layout = () => {
   return (
@@ -32,8 +32,8 @@ function App() {
           <Route path="/adoption_record" element={<AdoptionRecord />} />
         </Route>
       </Routes>
-    </React.Fragment >
-  )
+    </React.Fragment>
+  );
 }
 
-export default App
+export default App;
