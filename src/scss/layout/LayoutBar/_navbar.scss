@@ -1,65 +1,47 @@
 @use '../../abstracts' as *;
 
-.bottom-bar-con {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: $menubar-height;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-  
-.bottom-bar {
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $navbar-height;
+  background-color: #ffffff;
+  color: #000;
+
+  &__content {
     height: 100%;
     background-color: #ffffff;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-  
-    @media (min-width: 662px) {
-      width: 662px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  
-    @media (max-width: 661px) {
-      width: 100%;
-    }
-}
-  
-.bottom-bar-item {
-    width: 20%;
-    color: #000000;
-    text-decoration: none;
+    max-width: 700px;
+    margin: 0 auto;
 
-    span {
-        font-family: Pretendard-Regular;
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 17px;
-        text-align: center;
-    }
+    &-menu {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
 
-    &.active span {
-        color: #FF8031;
-    }
-
-    &.active .svg-path {
-        fill: #FF8031; /* 주황색으로 변경하려는 색상으로 대체하세요 */
-    }
-
-    div {
+      & > div {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-
-        svg {
-            margin-bottom: 4px; /* 필요에 따라 조정 가능 */
-        }
+      }
     }
-}  
+
+    &-text {
+      font-family: Pretendard-Regular;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 17px;
+      color: $text-color-gray;
+
+      &.active {
+        color: $text-color-orange;
+      }
+    }
+  }
+}

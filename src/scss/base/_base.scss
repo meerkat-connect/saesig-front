@@ -17,7 +17,7 @@ body {
 
   main {
     width: 100%;
-    height: calc(100vh - $topbar-height - $menubar-height);
+    height: calc(100vh - $topbar-height - $navbar-height);
 
     > .middle-wrap {
       height: 100%;
