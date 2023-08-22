@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes, Outlet } from 'react-router-dom';
-import Header from '@/components/LayoutBar/Header';
-import MenuBar from '@/components/LayoutBar/MenuBar';
+import TopBar from '@/components/LayoutBar/TopBar';
+import NavBar from '@/components/LayoutBar/NavBar';
 import Home from '@/pages/Home';
 import Components from '@/pages/Components';
 import Login from '@/pages/Membership/Login';
@@ -11,11 +11,11 @@ import SignUp from '@/pages/Membership/SignUp';
 const Layout = () => {
   return (
     <>
-      <Header />
+      <TopBar />
       <main>
         <Outlet />
       </main>
-      <MenuBar />
+      <NavBar />
     </>
   );
 };

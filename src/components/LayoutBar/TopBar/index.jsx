@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import getPageTitle from '@/helpers/getPageTitle';
 
-const Header = () => {
+const TopBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const goToPrevPage = () => navigate(-1);
@@ -24,4 +24,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default TopBar;
