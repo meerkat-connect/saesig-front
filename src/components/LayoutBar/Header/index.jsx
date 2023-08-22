@@ -9,11 +9,16 @@ const Header = () => {
 
   const pageTitle = getPageTitle(location.pathname);
 
+  //TODO: pathname에 따른 topbar 유형별 구성
+
   return (
-    <header className="header">
-      <div className="header-container">
-        <button className="header-back-button" onClick={goToPrevPage}></button>
-        <h1 className="header-title">{pageTitle}</h1>
+    <header className="topbar">
+      <div className="topbar__content">
+        <div>
+          <button className="topbar__content-back-button" onClick={goToPrevPage} />
+        </div>
+        <div className="topbar__content-title">{pageTitle}</div>
+        <div />
       </div>
     </header>
   );

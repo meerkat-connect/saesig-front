@@ -1,47 +1,52 @@
 @use '../abstracts' as *;
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-family: 'Pretendard', sans-serif;
-    line-height: 1;
-    background: url("src/assets/images/saesig_family_face.svg") no-repeat right -8px center;
-    background-color: $bg-color;
+  font-family: 'Pretendard', sans-serif;
+  line-height: 1;
+  background: url('src/assets/images/saesig_family_face.svg') no-repeat right -8px center;
+  background-color: $bg-color;
 
-    main {
-        width: 100%;
-        height: calc(100vh - $header-height - $menubar-height);
+  > #root {
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
-        > .middle-wrap {
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
+  main {
+    width: 100%;
+    height: calc(100vh - $topbar-height - $menubar-height);
+
+    > .middle-wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .inner {
+    @include inner;
+
+    &.md {
+      max-width: $inner-width-md;
     }
 
-    .inner {
-        @include inner;
-
-        &.md {
-            max-width: $inner-width-md;
-        }
-
-        &.sm {
-            max-width: $inner-width-sm;
-        }
+    &.sm {
+      max-width: $inner-width-sm;
     }
+  }
 
-    .text--primary {
-        color: $primary-color !important;
-    }
-    
-    .text--secondary {
-        color: $secondary-color !important;
-    }
+  .text--primary {
+    color: $primary-color !important;
+  }
 
-    .text--green {
-        color: $text-color-green !important;
-    }
+  .text--secondary {
+    color: $secondary-color !important;
+  }
+
+  .text--green {
+    color: $text-color-green !important;
+  }
 }
