@@ -1,0 +1,60 @@
+@use '../abstracts' as *;
+
+.signup-top-con {
+  margin-bottom: 60px;
+
+  .title {
+    @include text-title('lg');
+    line-height: 3.6rem;
+  }
+}
+
+.signup-bottom-con {
+  hr {
+    background: $line-color-light;
+    margin: 20px 0;
+  }
+
+  .input-box {
+    margin-bottom: 10px;
+  }
+
+  .easy-login-box {
+    position: relative;
+    margin-bottom: 10px;
+
+    > input[readonly] {
+      border: none;
+      background-color: #fff;
+      cursor: default;
+    }
+
+    > button {
+      position: absolute;
+      top: 50%;
+      right: 24px;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.term-list {
+  margin-bottom: 70px;
+
+  > li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.signup-complete-con {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 60px;
+}

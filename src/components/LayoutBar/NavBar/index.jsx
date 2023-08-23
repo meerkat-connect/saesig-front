@@ -20,10 +20,10 @@ const NavBar = () => {
     <div className="navbar">
       <nav className="navbar__content">
         {navMenus.map((menu) => (
-          <NavLink key={menu.text} to={menu.to} className="navbar__content-menu">
+          <NavLink key={menu.text} to={menu.to} className="navbar__menu">
             <div>
               {location.pathname === menu.to ? menu.activeIcon : menu.inactiveIcon}
-              <span className={classNames(location.pathname === menu.to ? 'active' : '', 'navbar__content-text')}>
+              <span className={classNames(location.pathname === menu.to ? 'active' : '', 'navbar__text')}>
                 {menu.text}
               </span>
             </div>

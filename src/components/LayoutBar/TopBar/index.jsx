@@ -15,9 +15,9 @@ const TopBar = () => {
     <header className="topbar">
       <div className="topbar__content">
         <div>
-          <button className="topbar__content-back-button" onClick={goToPrevPage} />
+          <button className="topbar__back-button" onClick={goToPrevPage} />
         </div>
-        <div className="topbar__content-title">{pageTitle}</div>
+        <div className="topbar__title">{pageTitle}</div>
         <div />
       </div>
     </header>

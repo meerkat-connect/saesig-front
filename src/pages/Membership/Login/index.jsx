@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '@/scss/pages/Membership/login.scss';
+import '@/scss/pages/_login.scss';
 import logoPath from '@/assets/images/saesig_text_logo.svg';
 import InfoIcon from '@/components/Tooltips/InfoIcon';
 

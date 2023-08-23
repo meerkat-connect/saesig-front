@@ -1,5 +1,5 @@
 import React from 'react';
-import '@/scss/pages/Membership/signup.scss';
+import '@/scss/pages/_signup.scss';
 import saesigFamilyPath from '@/assets/images/saesig_family.svg';
 
 const SignUp = () => {
