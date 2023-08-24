@@ -21,16 +21,16 @@ const Login = () => {
 
         <div className="login-form-con">
           <div className="input-box">
-            <input type="text" placeholder="아이디(이메일) 입력" />
+            <input className="input" type="text" placeholder="아이디(이메일) 입력" />
             <div className="text--caution">
               <span>이메일 형식이 올바르지 않습니다</span>
             </div>
           </div>
           <div className="input-box">
-            <input type="password" placeholder="비밀번호 입력" />
+            <input className="input" type="password" placeholder="비밀번호 입력" />
           </div>
           <div className="radio-box">
-            <input type="checkbox" id="staySignedIn" />
+            <input className="input" type="checkbox" id="staySignedIn" />
             <label htmlFor="staySignedIn">로그인 상태 유지</label>
             <InfoIcon
               show={isShow}

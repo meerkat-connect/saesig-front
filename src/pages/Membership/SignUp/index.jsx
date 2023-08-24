@@ -23,7 +23,7 @@ const SignUp = () => {
           </div>
           <div className="signup-bottom-con">
             <div className="radio-box">
-              <input type="checkbox" id="agreeTOSAll" />
+              <input className="input" type="checkbox" id="agreeTOSAll" />
               <label htmlFor="agreeTOSAll">모두동의 (선택 정보 포함)</label>
             </div>
 
@@ -32,7 +32,7 @@ const SignUp = () => {
             <ul className="term-list">
               <li>
                 <div className="radio-box">
-                  <input type="checkbox" id="agreeTOS" />
+                  <input className="input" type="checkbox" id="agreeTOS" />
                   <label htmlFor="agreeTOS">
                     서비스 이용약관 <span className="text--primary">(필수)</span>
                   </label>
@@ -43,7 +43,7 @@ const SignUp = () => {
               </li>
               <li>
                 <div className="radio-box">
-                  <input type="checkbox" id="agreePrivacy" />
+                  <input className="input" type="checkbox" id="agreePrivacy" />
                   <label htmlFor="agreePrivacy">
                     개인정보 수집 및 이용동의 <span className="text--primary">(필수)</span>
                   </label>
@@ -54,7 +54,7 @@ const SignUp = () => {
               </li>
               <li>
                 <div className="radio-box">
-                  <input type="checkbox" id="agreeGeo" />
+                  <input className="input" type="checkbox" id="agreeGeo" />
                   <label htmlFor="agreeGeo">
                     위치 기반 서비스 이용동의 <span className="text--green">(선택)</span>
                   </label>
@@ -65,7 +65,7 @@ const SignUp = () => {
               </li>
               <li>
                 <div className="radio-box">
-                  <input type="checkbox" id="agreeMarketing" />
+                  <input className="input" type="checkbox" id="agreeMarketing" />
                   <label htmlFor="agreeMarketing">
                     마케팅 서비스 이용동의 <span className="text--green">(선택)</span>
                   </label>
@@ -97,7 +97,7 @@ const SignUp = () => {
 
           <div className="signup-bottom-con">
             <div className="input-box">
-              <input type="text" placeholder="아이디(이메일) 입력" />
+              <input className="input" type="text" placeholder="아이디(이메일) 입력" />
               <div className="input__text text--caution">
                 <span>이메일 형식이 올바르지 않습니다.</span>
               </div>
@@ -113,7 +113,7 @@ const SignUp = () => {
             </div>
 
             <div className="easy-login-box">
-              <input type="text" value={'간편로그인: Kakao'} readOnly />
+              <input className="input" type="text" value={'간편로그인: Kakao'} readOnly />
               <button type="button" className="btn btn--text btn--gray btn--underline">
                 간편로그인 화면으로 이동
               </button>
@@ -140,25 +140,25 @@ const SignUp = () => {
 
           <div className="signup-bottom-con">
             <div className="input-box">
-              <input type="password" placeholder="비밀번호 입력" />
+              <input className="input" type="password" placeholder="비밀번호 입력" />
               <div className="input__text text--desc">
                 <span>영문, 숫자, 특수문자(!@#$) 각 1자 이상 포함하여 8~15자 이내</span>
               </div>
               <div className="input__text text--confirm">
                 <span>영문, 숫자, 특수문자(!@#$) 각 1자 이상 포함하여 8~15자 이내</span>
               </div>
-              <input type="password" placeholder="비밀번호 입력" className="caution" />
+              <input type="password" placeholder="비밀번호 입력" className="input caution" />
               <div className="input__text text--caution">
                 <span>영문, 숫자, 특수문자(!@#$) 각 1자 이상 포함하여 8~15자 이내</span>
               </div>
             </div>
 
             <div className="input-box">
-              <input type="password" placeholder="비밀번호 확인" />
+              <input className="input" type="password" placeholder="비밀번호 확인" />
               <div className="input__text text--confirm">
                 <span>비밀번호가 일치합니다.</span>
               </div>
-              <input type="password" placeholder="비밀번호 확인" className="caution" />
+              <input type="password" placeholder="비밀번호 확인" className="input caution" />
               <div className="input__text text--caution">
                 <span>비밀번호가 일치하지 않습니다.</span>
               </div>
@@ -185,14 +185,14 @@ const SignUp = () => {
 
           <div className="signup-bottom-con">
             <div className="input-box">
-              <input type="text" placeholder="닉네임 입력" />
+              <input className="input" type="text" placeholder="닉네임 입력" />
               <div className="input__text text--desc">
                 <span>한글 또는 영문 8자 이내로 입력 (비속어 또는 특수문자는 사용할 수 없습니다)</span>
               </div>
               <div className="input__text text--confirm">
                 <span>사용 가능한 닉네임 입니다</span>
               </div>
-              <input type="password" placeholder="닉네임 입력" className="caution" />
+              <input type="password" placeholder="닉네임 입력" className="input caution" />
               <div className="input__text text--caution">
                 <span>이미 사용중인 닉네임 입니다. 다른 닉네임을 입력해주세요</span>
               </div>
