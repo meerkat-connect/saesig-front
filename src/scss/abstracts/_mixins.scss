@@ -1,57 +1,95 @@
-@use './variables' as *;
+@use '../abstracts/variables' as *;
 
-@mixin textSizeAndWeight($size, $weight: 400) {
-    font-size: calc(#{$size}rem / 10);
-    font-weight: $weight;
+// Text
+@mixin text-700($size: 16, $color: false, $line-height: false) {
+  font-family: $font-family;
+  font-weight: 700;
+  font-style: normal;
+  font-size: $size + px;
+  @if (type-of($color) == color) {
+    color: $color;
+  }
+  @if ($line-height) {
+    line-height: $line-height + px;
+  }
 }
 
-@mixin text-headline {
-    @include textSizeAndWeight(34, 700);
+@mixin text-500($size: 16, $color: false, $line-height: false) {
+  font-family: $font-family;
+  font-weight: 500;
+  font-style: normal;
+  font-size: $size + px;
+  @if (type-of($color) == color) {
+    color: $color;
+  }
+  @if ($line-height) {
+    line-height: $line-height + px;
+  }
 }
 
-@mixin text-title($type) {
-    @if $type == 'lg' {
-        @include textSizeAndWeight(26, 700);
-    } @else if $type == 'md' {
-        @include textSizeAndWeight(20, 700);
-    } @else if $type == 'sm' {
-        @include textSizeAndWeight(18, 700);
-    } @else if $type == 'xs' {
-        @include textSizeAndWeight(16, 700);
-    }
+@mixin text-400($size: 16, $color: false, $line-height: false) {
+  font-family: $font-family;
+  font-weight: 500;
+  font-style: normal;
+  font-size: $size + px;
+  @if (type-of($color) == color) {
+    color: $color;
+  }
+  @if ($line-height) {
+    line-height: $line-height + px;
+  }
 }
 
-@mixin text-body($type) {
-    @if $type == 'lg' {
-        @include textSizeAndWeight(16, 500);
-    } @else if $type == 'md' {
-        @include textSizeAndWeight(16, 400);
-    } @else if $type == 'sm' {
-        @include textSizeAndWeight(14, 400);
-    }
+// Layout
+@mixin flex($justify, $align, $direction: false) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  @if ($direction) {
+    flex-direction: $direction;
+  }
 }
 
-@mixin text-caption($type) {
-    @if $type == 'lg' {
-        @include textSizeAndWeight(14, 700);
-    } @else if $type == 'md' {
-        @include textSizeAndWeight(12, 700);
-    } @else if $type == 'sm' {
-        @include textSizeAndWeight(12, 500);
-    }
+// Utils
+@mixin rounded($round: false) {
+  @if ($round == false) {
+    border-radius: 9999px;
+  }
+  @if (type-of($round) == number) {
+    border-radius: $round + px;
+  }
 }
 
-@mixin inner {
-    max-width: $inner-width;
-    width: 100%;
-    padding-left: $gutter;
-    padding-right: $gutter;
-    margin-left: auto;
-    margin-right: auto;
+@mixin px($px) {
+  padding-left: $px + px;
+  padding-right: $px + px;
 }
 
-@mixin placeholder {
-    @include textSizeAndWeight(16, 500);
-    line-height: 2.6rem;
-    color: $placeholder-color;
+// Transition
+@mixin transition($time) {
+  -webkit-transition: all $time ease-out 0s;
+  -moz-transition: all $time ease-out 0s;
+  -ms-transition: all $time ease-out 0s;
+  -o-transition: all $time ease-out 0s;
+  transition: all $time ease-out 0s;
+}
+
+// Position
+@mixin top-left() {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin top-center() {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin bottom-left() {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }

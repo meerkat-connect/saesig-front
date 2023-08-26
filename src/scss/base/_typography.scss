@@ -1,10 +1,75 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css");
+// 웹 폰트
+// @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.sub-text-gray {
-    font-family: Pretendard-Regular;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 18px;
-    text-align: center;
-    color: #ACACAC;
-  }
+/* pretendard-400 */
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/Pretendard-400-Regular.woff') format('woff2');
+}
+
+/* pretendard-500 */
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/src/assets/fonts/Pretendard-500-Medium.woff') format('woff2');
+}
+
+/* pretendard-700 */
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/src/assets/fonts/Pretendard-700-Bold.woff') format('woff2');
+}
+
+/* poppins-400 */
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard'; // 'Poppins'; 에서 편의상 변경
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/poppins-v20-latin-500.woff2') format('woff2');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+/* poppins-500 */
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard'; // 'Poppins'; 에서 편의상 변경
+  font-style: normal;
+  font-weight: 500;
+  src: url('/src/assets/fonts/poppins-v20-latin-500.woff2') format('woff2');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+/* poppins-700 */
+@font-face {
+  font-display: swap;
+  font-family: 'Pretendard'; // 'Poppins'; 에서 편의상 변경
+  font-style: normal;
+  font-weight: 700;
+  src: url('/src/assets/fonts/poppins-v20-latin-700.woff2') format('woff2');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+/*
+UNICODE RANGE
+전체 : U+0020-007E
+특수문자 : U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E
+영문 : U+0041-005A(대문자), U+0061-007A(소문자)
+숫자 : U+0030-0039
+*/
+
+// 선택(드래그) 허용
+.select-text {
+  user-select: text;
+}
+
+.select-all {
+  user-select: all;
+}

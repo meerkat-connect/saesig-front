@@ -1,0 +1,297 @@
+@use '../abstracts' as *;
+
+.saesig-content-con,
+.saesig-content-con * {
+  box-sizing: border-box;
+}
+
+.saesig-content-con {
+  width: 100%;
+  margin-top: 30px;
+
+  .saesig-content-card-style0 {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #585858;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-top: 10px;
+
+    .saesig-content-card-left-image-con {
+      border-bottom-left-radius: 30px;
+      border-top-left-radius: 30px;
+      display: inline-block;
+      width: 180px;
+      height: 150px;
+
+      .saesig-content-card-left-image {
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+      }
+    }
+
+    .saesig-content-desc {
+      width: calc(100% - 180px);
+      height: inherit;
+      display: inline-block;
+      background-color: #ffffff;
+      vertical-align: top;
+
+      .saesig-content-desc-row {
+        width: 100%;
+        padding: 5px 5px 5px 30px;
+        font-family: Pretendard-Regular;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+
+        &:first-child {
+          padding-top: 25px;
+        }
+
+        &:last-child {
+          padding-bottom: 25px;
+        }
+
+        > .saesig-content-desc-row-about {
+          margin-right: 20px;
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+
+.saesig-round-default-button {
+  margin-right: 3px;
+  padding: 13px 20px 13px 20px;
+  border-radius: 25px;
+  height: 40px;
+  background-color: #f9f7f2;
+  display: inline-block;
+  color: #000000;
+  border: 1px solid #d9d9d9;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+
+  &.active {
+    height: 40px;
+    background-color: #000000;
+    display: inline-block;
+    color: #ffffff;
+  }
+}
+
+.saesig-round-write-button {
+  padding: 16px 25px 16px 25px; /* 이미지와 텍스트 간격을 조절 */
+  border: 1px solid #d9d9d9;
+  color: #000000;
+  background-color: #f9f7f2;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  text-align: center;
+
+  &.icon {
+    padding: 16px 25px 16px 40px; /* 이미지와 텍스트 간격을 조절 */
+    background-image: url('../../assets/images/pencil_icon.png');
+    background-repeat: no-repeat;
+    background-position: 20px center; /* 이미지 위치 조절 */
+  }
+}
+
+.saesig-tag0 {
+  height: 22px;
+  width: auto;
+  display: inline;
+  padding: 2px 8px 2px 8px;
+  border-radius: 25px;
+  font-family: Pretendard-Regular;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  margin-right: 8px;
+
+  &.green {
+    background: #e7f5e4;
+    color: #49b537;
+  }
+
+  &.orange {
+    background: #ff803126;
+    color: #ff8031;
+  }
+
+  &.gray {
+    background: #f1f2f1;
+    color: #acacac;
+  }
+}
+
+.saesig-tag1-orange {
+  height: 22px;
+  width: auto;
+  display: inline;
+  padding: 4px 12px 4px 12px;
+  border-radius: 25px;
+  background: #f9f7f2;
+  font-family: Pretendard-Regular;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  margin-right: 8px;
+  color: #ff8031;
+}
+
+.btn__group {
+  display: flex;
+  align-items: center;
+
+  &.btn__group--center {
+    justify-content: center;
+  }
+
+  &.btn__group--text > li {
+    position: relative;
+    padding-right: 12px;
+    margin-right: 11px;
+
+    &:last-child {
+      padding-right: 0;
+      margin-right: 0;
+
+      &::after {
+        content: none;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-right: 1px solid $text-gray;
+      height: 100%;
+    }
+  }
+
+  &.btn__group--sns > li {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .btn {
+      text-indent: -10000px;
+      width: 48px;
+      height: 48px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      &.btn--kakao {
+        background-image: url('src/assets/icons/social_kakao.svg');
+      }
+
+      &.btn--naver {
+        background-image: url('src/assets/icons/social_naver.svg');
+      }
+
+      &.btn--google {
+        background-image: url('src/assets/icons/social_google.svg');
+      }
+    }
+  }
+}
+
+.btn {
+  @include text-500(14);
+  &.btn--arrow {
+    position: relative;
+    line-height: 2.4rem;
+
+    &.btn--arrow--prev {
+      padding-left: 16px;
+      background: url('src/assets/icons/24_left_arrow.svg') no-repeat left center;
+      background-size: 14px;
+    }
+
+    &.btn--arrow--next {
+      padding-right: 16px;
+      background: url('src/assets/icons/24_right_arrow.svg') no-repeat right center;
+      background-size: 14px;
+    }
+  }
+
+  &.btn--filled {
+    padding: 11px 15px;
+    color: #fff;
+    background-color: $primary;
+
+    &.btn--md {
+      padding: 13px 30px;
+    }
+
+    &.btn--lg {
+      padding: 17px 30px;
+    }
+
+    &.btn--gray {
+      background-color: $disabled;
+    }
+  }
+
+  &.btn--round {
+    border-radius: 25px;
+  }
+
+  &.btn--full {
+    width: 100%;
+    text-align: center;
+  }
+
+  &.btn--underline {
+    text-decoration: underline;
+  }
+
+  &.btn--text.btn--gray {
+    color: $text-gray;
+  }
+}
+
+.info-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url('src/assets/icons/14_info.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+
+  .tooltip {
+    display: none;
+    transform: translateY(-100%);
+    margin-top: -6px;
+    margin-left: 7px;
+  }
+
+  &.active {
+    background-image: url('src/assets/icons/14_info_ff8031.svg');
+
+    .tooltip {
+      display: inline-block;
+    }
+  }
+}

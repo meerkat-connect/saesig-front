@@ -8,12 +8,12 @@ const getPageTitle = (pathname) => {
 
   switch (pathname) {
     case '/':
-      title = '새식일기 퍼블리시 리스트';
+      title = '홈';
       break;
     case '/login':
       title = '로그인';
       break;
-    case '/sign-up':
+    case '/signup':
       title = '회원가입';
       break;
     case '/about':
@@ -22,7 +22,7 @@ const getPageTitle = (pathname) => {
     case '/components':
       title = '퍼블리시 컴포넌트';
       break;
-    case '/family-register':
+    case '/family/register':
       title = '식구 등록';
       break;
     case '/adoption_record':

@@ -1,0 +1,41 @@
+@use '../abstracts' as *;
+
+.progress-bar {
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: $primary;
+  top: calc($topbar-height - 1px);
+  transition: left 0.3s ease-in-out, right 0.3s ease-in-out;
+
+  &--1 {
+    left: -80%;
+  }
+
+  &--2 {
+    left: -60%;
+  }
+
+  &--3 {
+    left: -40%;
+  }
+
+  &--4 {
+    left: -20%;
+  }
+
+  &--5 {
+    right: 0;
+  }
+
+  & > .pagenation {
+    @include text-500(14, $text-white, 20px);
+    position: absolute;
+    right: -45px;
+    top: 10px;
+    display: inline-flex;
+    padding: 4px 12px;
+    background-color: $primary;
+    border-radius: 0 15px 15px 15px;
+  }
+}

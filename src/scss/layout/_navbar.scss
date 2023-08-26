@@ -1,0 +1,36 @@
+@use '../abstracts' as *;
+
+.navbar {
+  @include bottom-left();
+  @include flex(center, center);
+  width: 100%;
+  height: $navbar-height;
+  background-color: $background;
+  z-index: 9999;
+
+  &__wrap {
+    @include flex(space-between, center);
+    max-width: $content-wrap;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  &__menu {
+    @include flex(center, center);
+    flex: 1;
+    text-decoration: none;
+
+    & > div {
+      @include flex(center, center, column);
+    }
+  }
+
+  &__text {
+    @include text-500(12, $text-gray, 17);
+
+    &--active {
+      color: $primary;
+    }
+  }
+}

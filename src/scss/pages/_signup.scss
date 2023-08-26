@@ -1,60 +1,74 @@
 @use '../abstracts' as *;
 
-.signup-top-con {
-  margin-bottom: 60px;
+.signup {
+  @include flex(center, center, column);
+  height: 100%;
+  width: 100%;
 
-  .title {
-    @include text-title('lg');
-    line-height: 3.6rem;
+  &__title {
+    @include flex(start, start, column);
+    @include text-700(26, $text-black, 36);
+    width: 100%;
+  }
+
+  .required::after {
+    content: '(필수)';
+    margin-left: 4px;
+    color: $primary;
+  }
+  .optional::after {
+    content: '(선택)';
+    margin-left: 4px;
+    color: $text-green;
   }
 }
 
-.signup-bottom-con {
-  hr {
-    background: $line-color-light;
-    margin: 20px 0;
-  }
-
-  .input-box {
-    margin-bottom: 10px;
-  }
-
-  .easy-login-box {
-    position: relative;
-    margin-bottom: 10px;
-
-    > input[readonly] {
-      border: none;
-      background-color: #fff;
-      cursor: default;
-    }
-
-    > button {
-      position: absolute;
-      top: 50%;
-      right: 24px;
-      transform: translateY(-50%);
-    }
-  }
+.between {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.term-list {
-  margin-bottom: 70px;
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
 
-  > li {
+  &__window {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 660px;
+    width: 100%;
+    height: 50vh;
+    border-radius: 15px 15px 0 0;
+    background-color: $background;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
+    flex-direction: column;
 
-    &:last-child {
-      margin-bottom: 0;
+    & > .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    & > span {
+      @include text-700(20, $text-black);
+    }
+
+    & > p {
+      @include text-400(14, $text-black, 20);
+      padding: 0 40px;
+      width: 100%;
+      max-height: 350px;
+      overflow-y: scroll;
+
+      b {
+        font-weight: 700;
+      }
     }
   }
-}
-
-.signup-complete-con {
-  text-align: center;
-  padding-top: 20px;
-  margin-bottom: 60px;
 }
