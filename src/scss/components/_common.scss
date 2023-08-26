@@ -211,7 +211,7 @@
   }
 }
 
-.tooltip {
+.ss-notification {
   @include text-500(12, $text-white, 18);
   @include rounded();
   @include transition(0.5s);

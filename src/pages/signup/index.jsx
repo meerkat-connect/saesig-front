@@ -16,7 +16,7 @@ const SignUp = () => {
         </div>
 
         {/* tooltip */}
-        <div className="tooltip">필수 항목을 동의해야 회원가입이 가능합니다</div>
+        <div className="ss-notification">필수 항목을 동의해야 회원가입이 가능합니다</div>
 
         {/* modal */}
         <div className="modal" style={{ display: 'none' }}>
