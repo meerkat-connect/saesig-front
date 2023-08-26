@@ -22,7 +22,7 @@ const getPageTitle = (pathname) => {
     case '/components':
       title = '퍼블리시 컴포넌트';
       break;
-    case '/family/register':
+    case '/register':
       title = '식구 등록';
       break;
     case '/adoption_record':

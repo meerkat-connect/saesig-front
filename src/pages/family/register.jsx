@@ -43,7 +43,7 @@ export default Register;
 const Step0 = () => {
   return (
     <>
-      <div className="register__text-group mb-85">
+      <div className="register__text-group mb-80">
         <span className="register__stage">기본정보</span>
         <p className="register__writing">
           어떤 새로운 식구를
@@ -53,13 +53,13 @@ const Step0 = () => {
       </div>
       <div className="register__container">
         <div className="register__type-selector mr-60">
-          <img src="src/assets/images/saesig_family_saesig_inactive.svg" alt="" />
+          <img src="src/assets/pictograms/saesig_active.svg" alt="" />
           <div className="tag">
             <span>강아지</span>
           </div>
         </div>
         <div className="register__type-selector">
-          <img src="src/assets/images/saesig_family_dal_active.svg" alt="" />
+          <img src="src/assets/pictograms/dal_active.svg" alt="" />
           <div className="tag --active">
             <span>고양이</span>
           </div>
@@ -119,12 +119,12 @@ const Step2 = () => {
       <div className="register__upload-group">
         <div className="register__photo">
           <div className="delete-button" />
-          <img src="src/assets/images/sample/sample1.webp" alt="" />
+          <img src="src/assets/images/samples/sample1.webp" alt="" />
           <div className="thumbnail">대표이미지</div>
         </div>
         <div className="register__photo">
           <div className="delete-button" />
-          <img src="src/assets/images/sample/sample2.jpg" alt="" />
+          <img src="src/assets/images/samples/sample2.jpg" alt="" />
         </div>
         <label className="register__upload-small">
           <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -379,8 +379,8 @@ const Step5 = () => {
       </div>
 
       {/* modal */}
-      <div className="modal --active" onClick={() => onModalClick()}>
-        <div className="modal__window">
+      <div className="r-modal --active" onClick={() => onModalClick()}>
+        <div className="r-modal__window">
           <p className="mt-90">
             지금 작성을 그만두면 내용이 저장되지 않습니다.
             <br />
