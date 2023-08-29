@@ -15,7 +15,7 @@ const Home = () => {
       <div className="saesig-content-con">
         <AdoptionRecordList title={'컴포넌트 모음'} onClick={() => handleCardClick('components')} />
         <AdoptionRecordList title={'로그인'} onClick={() => handleCardClick('login')} />
-        <AdoptionRecordList title={'회원가입'} onClick={() => handleCardClick('signup')} />
+        <AdoptionRecordList title={'회원가입'} onClick={() => handleCardClick('join')} />
         <AdoptionRecordList title={'식구 등록'} onClick={() => handleCardClick('register')} />
         <AdoptionRecordList title={'입양기록'} onClick={() => handleCardClick('adoption_record')} />
       </div>
