@@ -4,9 +4,14 @@
   @include flex(start, center, column);
   width: 100%;
 
+  // TODO: Flex, Grid 관련 Layout으로 이동 및 수정
   &__row-container {
     @include flex(start, center);
     align-self: flex-start;
+  }
+
+  &__row-center {
+    @include flex(center, center);
   }
 
   &__col-container {
@@ -153,6 +158,23 @@
     }
   }
 
+  &__label {
+    @include text-700(14, $text-black);
+    position: relative;
+
+    &--required::after {
+      content: '*';
+      color: $primary;
+    }
+  }
+
+  &__price {
+    @include text-500(14, $text-black);
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+  }
+
   &[type='checkbox'] {
     display: none;
 
@@ -178,9 +200,157 @@
       background: url('src/assets/buttons/checkbox_active.svg') no-repeat center;
     }
   }
+
+  &__file {
+    @include flex(center, center, column);
+    @include rounded(15);
+    width: 100%;
+    border: 1px dashed $text-black;
+
+    & > span {
+      @include text-700(16, $text-black, 22);
+      margin: 6px 0 12px 0;
+    }
+
+    & > p {
+      @include text-500(14, $text-gray, 20);
+    }
+
+    & > input {
+      display: none;
+    }
+  }
+
+  &__image {
+    position: relative;
+    @include flex(center, center, column);
+    @include rounded(15);
+    width: 100%;
+    border: 1px solid $text-black;
+    overflow: hidden;
+
+    & > img {
+      @include center-center();
+      position: absolute;
+      object-fit: fill;
+    }
+
+    & > span {
+      @include flex(center, center);
+      @include text-500(12, $text-white, 18);
+      background-color: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+    }
+  }
+
+  &__delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('src/assets/buttons/delete_default.svg') no-repeat center;
+    cursor: pointer;
+
+    &:hover {
+      background: url('src/assets/buttons/delete_hover.svg') no-repeat center;
+    }
+  }
+
+  &__dropdown {
+    @include flex(start, start, column);
+    position: relative;
+    width: 100%;
+
+    & > input[type='text'] {
+      @include text-500(16, $text-black, 26);
+      order: 1;
+      width: 100%;
+      background: $background;
+      outline: none;
+      padding: 12px 24px;
+      margin-bottom: 4px;
+      border-radius: 25px;
+      border: 1px solid $line-light;
+      cursor: pointer;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 24px;
+      height: 24px;
+      right: 15px;
+      bottom: 18px;
+      pointer-events: none;
+      background-image: url('src/assets/icons/2424/chevron_sm_down.svg');
+    }
+
+    &--active::before {
+      transform: rotate(180deg);
+    }
+
+    & > label {
+      @include text-700(14, $text-black);
+      padding-bottom: 12px;
+    }
+    & input:required + label::after {
+      content: '*';
+      color: #ff8031;
+    }
+
+    // 수정 필요
+    & > input.ss-input__dropdown--age {
+      @include text-500(14, $text-black);
+      text-align: end;
+      padding-right: 0;
+      padding-left: 0;
+      border-radius: 0;
+      position: absolute;
+      border: 0;
+      width: 24px;
+      background: none;
+      right: 52px;
+      bottom: 1px;
+    }
+  }
+  &__options {
+    @include rounded(15);
+    position: absolute;
+    top: 85px;
+    order: 2;
+    z-index: 1;
+    width: 100%;
+    max-height: 200px;
+    background: $background;
+    border: 1px solid $line-strong;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    > div {
+      @include text-500(16, $text-black);
+      padding: 15px 24px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f8f7f7;
+        color: #ff8031;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .info-icon {
+  position: relative;
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -189,16 +359,26 @@
 
   .tooltip {
     @include text-500(12, $text-white, 18);
+    position: absolute;
     display: none;
-    transform: translateY(-100%);
-    margin: -6px 0 0 7px;
     padding: 6px 20px;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
-    white-space: nowrap;
+    white-space: pre;
+    z-index: 11;
 
     &.left-bottom {
       border-bottom-left-radius: 0;
+      transform: translateY(-100%);
+    }
+
+    &.left-top {
+      border-top-left-radius: 0;
+      transform: translateY(100%);
+    }
+    &.left-top-2 {
+      border-top-left-radius: 0;
+      transform: translateY(calc(100% - 18px));
     }
   }
 

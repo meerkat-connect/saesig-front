@@ -21,9 +21,21 @@ main {
   width: 100%;
   height: calc(100% - $topbar-height - $navbar-height);
   margin: 0 auto;
+  // overflow-y: scroll;
+
+  // &::-webkit-scrollbar {
+  //   width: 0.5em;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: transparent;
+  // }
 
   @media #{$sm} {
     padding: 0 20px;
+  }
+
+  @media (max-height: 1080px) {
   }
 }
 

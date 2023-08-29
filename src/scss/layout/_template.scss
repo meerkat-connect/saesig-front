@@ -1,0 +1,68 @@
+// Grid Templates
+@mixin grid-cols($cols) {
+  grid-template-columns: repeat($cols, 1fr);
+}
+@mixin grid-rows($rows) {
+  grid-template-rows: repeat($rows, 1fr);
+}
+@mixin gap($gap) {
+  gap: $gap + px;
+}
+@mixin row-gap($gap) {
+  row-gap: $gap + px;
+}
+@mixin col-gap($gap) {
+  column-gap: $gap + px;
+}
+
+.ss-grid {
+  display: grid;
+  width: 100%;
+
+  @for $i from 1 through 6 {
+    &.cols-#{$i} {
+      @include grid-cols($i);
+    }
+    &.rows-#{$i} {
+      @include grid-rows($i);
+    }
+  }
+
+  @for $i from 1 through 20 {
+    $gap: $i * 2;
+    &.gap-#{$gap} {
+      @include gap($gap);
+    }
+    &.row-gap-#{$gap} {
+      @include row-gap($gap);
+    }
+    &.col-gap-#{$gap} {
+      @include col-gap($gap);
+    }
+  }
+
+  .col-span-2 {
+    grid-column: span 2;
+  }
+}
+
+// Flex Boxes
+.ss-flex {
+  display: flex;
+  &.flex-col {
+    flex-direction: column;
+  }
+  &.justify-center {
+    justify-content: center;
+  }
+  &.justify-between {
+    justify-content: space-between;
+  }
+  &.align-center {
+    align-items: center;
+  }
+  &.self-start {
+    justify-self: flex-start;
+    align-items: flex-start;
+  }
+}

@@ -93,3 +93,91 @@
   bottom: 0;
   left: 0;
 }
+
+@mixin bottom-center() {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin center-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Register Form ONLY
+@mixin svgInputRadio($charactor) {
+  display: none;
+
+  & + label {
+    @include text-500(14, $text-black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 150px;
+      height: 180px;
+      cursor: pointer;
+      @if ($charactor == 'saesig') {
+        background: url('src/assets/pictograms/saesig_inactive.svg') no-repeat center;
+      }
+      @if ($charactor == 'dal') {
+        background: url('src/assets/pictograms/dal_inactive.svg') no-repeat center;
+      }
+    }
+
+    &::after {
+      @if ($charactor == 'saesig') {
+        content: '강아지';
+      }
+      @if ($charactor == 'dal') {
+        content: '고양이';
+      }
+      @include text-700(18, $text-black, 26);
+      margin-top: 10px;
+      padding: 4px 12px;
+    }
+
+    // &:hover::after {
+    //   @include text-700(18, $text-white, 26);
+    //   @include rounded();
+    //   background-color: $primary;
+    //   margin-top: 10px;
+    //   padding: 4px 12px;
+    // }
+
+    &:hover::before {
+      @if ($charactor == 'saesig') {
+        background: url('src/assets/pictograms/saesig_active.svg') no-repeat center;
+      }
+      @if ($charactor == 'dal') {
+        background: url('src/assets/pictograms/dal_active.svg') no-repeat center;
+      }
+    }
+  }
+
+  &:checked + label::after {
+    @include text-700(18, $text-white, 26);
+    @include rounded();
+    background-color: $primary;
+    margin-top: 10px;
+    padding: 4px 12px;
+  }
+
+  &:checked + label::before {
+    @if ($charactor == 'saesig') {
+      background: url('src/assets/pictograms/saesig_active.svg') no-repeat center;
+    }
+    @if ($charactor == 'dal') {
+      background: url('src/assets/pictograms/dal_active.svg') no-repeat center;
+    }
+  }
+}
