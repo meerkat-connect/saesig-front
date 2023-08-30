@@ -74,7 +74,7 @@ const Register = () => {
         {/* before upload */}
         <div className="ss-form">
           <label className="ss-input__file h-300 mb-60">
-            <img src="src/assets/icons/2424/image.svg" alt="사진 올리기" />
+            <img src="/src/assets/icons/2424/image.svg" alt="사진 올리기" />
             <span>이미지를 등록해주세요 (최대 6장)</span>
             <p>
               이미지 파일당 최대 10MB의 용량제한이 있습니다.
@@ -99,36 +99,36 @@ const Register = () => {
               />
             </div>
             <div>
-              <img src="src/assets/icons/2020/mosaic.svg" alt="순서 변경" />
+              <img src="/src/assets/icons/2020/mosaic.svg" alt="순서 변경" />
               <span className="ml-2">순서변경</span>
             </div>
           </div>
           <div className="ss-grid cols-3 rows-2 gap-12 mb-60">
             <div className="ss-input__image">
-              <img src="src/assets/images/samples/sample1.webp" alt="" />
+              <img src="/src/assets/images/samples/sample1.webp" alt="" />
               <div className="ss-input__delete" />
               <span>대표 이미지</span>
             </div>
             <div className="ss-input__image">
-              <img src="src/assets/images/samples/sample2.jpg" alt="" />
+              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
               <div className="ss-input__delete" />
             </div>
             <div className="ss-input__image">
-              <img src="src/assets/images/samples/sample3.jpg" alt="" />
+              <img src="/src/assets/images/samples/sample3.jpg" alt="" />
               <div className="ss-input__delete" />
             </div>
             <label className="ss-input__file h-150">
-              <img src="src/assets/buttons/add.svg" alt="" />
+              <img src="/src/assets/buttons/add.svg" alt="" />
               <p>이미지를 등록해주세요</p>
               <input type="file" accept="image/*" />
             </label>
             <label className="ss-input__file h-150">
-              <img src="src/assets/buttons/add.svg" alt="" />
+              <img src="/src/assets/buttons/add.svg" alt="" />
               <p>이미지를 등록해주세요</p>
               <input type="file" accept="image/*" />
             </label>
             <label className="ss-input__file h-150">
-              <img src="src/assets/buttons/add.svg" alt="" />
+              <img src="/src/assets/buttons/add.svg" alt="" />
               <p>이미지를 등록해주세요</p>
               <input type="file" accept="image/*" />
             </label>
@@ -226,13 +226,13 @@ export default Register;
 //       </div>
 //       <div className="register__container">
 //         <div className="register__type-selector mr-60">
-//           <img src="src/assets/pictograms/saesig_active.svg" alt="" />
+//           <img src="/src/assets/pictograms/saesig_active.svg" alt="" />
 //           <div className="tag">
 //             <span>강아지</span>
 //           </div>
 //         </div>
 //         <div className="register__type-selector">
-//           <img src="src/assets/pictograms/dal_active.svg" alt="" />
+//           <img src="/src/assets/pictograms/dal_active.svg" alt="" />
 //           <div className="tag --active">
 //             <span>고양이</span>
 //           </div>
@@ -292,12 +292,12 @@ export default Register;
 //       <div className="register__upload-group">
 //         <div className="register__photo">
 //           <div className="delete-button" />
-//           <img src="src/assets/images/samples/sample1.webp" alt="" />
+//           <img src="/src/assets/images/samples/sample1.webp" alt="" />
 //           <div className="thumbnail">대표이미지</div>
 //         </div>
 //         <div className="register__photo">
 //           <div className="delete-button" />
-//           <img src="src/assets/images/samples/sample2.jpg" alt="" />
+//           <img src="/src/assets/images/samples/sample2.jpg" alt="" />
 //         </div>
 //         <label className="register__upload-small">
 //           <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">

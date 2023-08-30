@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import getPageTitle from '../../helpers/getPageTitle';
 
@@ -13,10 +14,10 @@ const Topbar = ({ isLogo, isPrevButton = true }) => {
     <header className="topbar">
       <div className="topbar__wrap">
         <div className="topbar__section-left">
-          {isLogo && <img src="src/assets/pictograms/logo_sm.svg" alt="새식일기" />}
+          {isLogo && <img src="/src/assets/pictograms/logo_sm.svg" alt="새식일기" />}
           {isPrevButton && (
             <button onClick={goToPrevPage}>
-              <img src="src/assets/icons/2424/chevron_lg_left.svg" alt="뒤로가기" />
+              <img src="/src/assets/icons/2424/chevron_lg_left.svg" alt="뒤로가기" />
             </button>
           )}
         </div>

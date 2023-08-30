@@ -22,7 +22,7 @@ const SignUp = () => {
         <div className="modal" style={{ display: 'none' }}>
           <div className="modal__window">
             <button className="close">
-              <img src="src/assets/icons/2424/close.svg" alt="닫기" />
+              <img src="/src/assets/icons/2424/close.svg" alt="닫기" />
             </button>
             <span className="modal__title pt-60 pb-40">서비스 이용약관</span>
             <p className="mb-40">
@@ -185,7 +185,7 @@ const SignUp = () => {
           <br />
           새식일기의 가족이 되신 것을 환영합니다 :D
         </div>
-        <img src="src/assets/pictograms/family_all.svg" alt="손인사하는 식구들" />
+        <img src="/src/assets/pictograms/family_all.svg" alt="손인사하는 식구들" />
         <button className="ss-button ss-button--lg w-490 mt-60">새식일기 시작하기</button>
       </div>
     </>
