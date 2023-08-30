@@ -16,6 +16,12 @@ const getPageTitle = (pathname) => {
     case '/signup':
       title = '회원가입';
       break;
+    case '/find-id':
+      title = '아이디 찾기';
+      break;
+    case '/find-password':
+      title = '비밀번호 찾기';
+      break;
     case '/about':
       title = 'About';
       break;

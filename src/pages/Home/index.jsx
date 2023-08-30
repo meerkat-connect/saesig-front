@@ -16,6 +16,8 @@ const Home = () => {
         <AdoptionRecordList title={'컴포넌트 모음'} onClick={() => handleCardClick('components')} />
         <AdoptionRecordList title={'로그인'} onClick={() => handleCardClick('login')} />
         <AdoptionRecordList title={'회원가입'} onClick={() => handleCardClick('join')} />
+        <AdoptionRecordList title={'아이디 찾기'} onClick={() => handleCardClick('find-id')} />
+        <AdoptionRecordList title={'비밀번호 찾기'} onClick={() => handleCardClick('find-password')} />
         <AdoptionRecordList title={'식구 등록'} onClick={() => handleCardClick('register')} />
         <AdoptionRecordList title={'입양기록'} onClick={() => handleCardClick('adoption_record')} />
       </div>

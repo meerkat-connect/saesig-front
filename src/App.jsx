@@ -9,6 +9,8 @@ import SignUp from './pages/accounts/join';
 import NotFound from './pages/error/404';
 import Family from './pages/family';
 import Register from './pages/family/register';
+import FindId from './pages/accounts/find-id';
+import FindPassword from './pages/accounts/find-password';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="join" element={<SignUp />} />
+          <Route path="find-id" element={<FindId />} />
+          <Route path="find-password" element={<FindPassword />} />
           <Route path="family" element={<Family />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<NotFound />} />

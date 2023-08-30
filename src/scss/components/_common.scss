@@ -25,7 +25,7 @@
     @include text-500(14, $text-gray);
 
     align-self: flex-start;
-    margin: 0 0 20px 24px;
+    margin: 10px 0 20px 24px;
 
     > img {
       padding-right: 6px;
@@ -155,6 +155,28 @@
 
     &.--error {
       border: 1px solid $primary;
+    }
+  }
+
+  &__with-button {
+    position: relative;
+    width: 100%;
+
+    > div {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+
+      span {
+        @include text-500(14, $primary);
+        margin-right: 12px;
+      }
+
+      .ss-button {
+        width: 67px;
+      }
     }
   }
 
