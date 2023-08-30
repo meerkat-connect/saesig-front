@@ -43,7 +43,7 @@
 // Layout
 @mixin flex($justify, $align, $direction: false) {
   display: flex;
-  justify-content: $justify;
+  justify-content: safe $justify;
   align-items: $align;
   @if ($direction) {
     flex-direction: $direction;

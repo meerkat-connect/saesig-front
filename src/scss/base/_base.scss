@@ -20,16 +20,14 @@ main {
   max-width: $content-wrap;
   width: 100%;
   height: calc(100% - $topbar-height - $navbar-height);
-  margin: 0 auto;
-  // overflow-y: scroll;
+  margin: auto;
 
-  // &::-webkit-scrollbar {
-  //   width: 0.5em;
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background-color: transparent;
-  // }
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media #{$sm} {
     padding: 0 20px;
