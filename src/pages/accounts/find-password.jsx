@@ -1,7 +1,9 @@
 import React from 'react';
 import '../../scss/pages/_find.scss';
+import { useNavigate } from 'react-router-dom';
 
 const FindPassword = () => {
+  const navigate = useNavigate();
   const goNextStep = (step) => {
     document.querySelector(`#find-password-${step - 1}`).style.display = 'none';
     document.querySelector(`#find-password-${step}`).style.display = 'flex';
@@ -75,7 +77,9 @@ const FindPassword = () => {
           비밀번호 변경이 완료되었습니다 :D
         </div>
         <img src="/src/assets/pictograms/family_all.svg" alt="손인사하는 식구들" />
-        <button className="ss-button ss-button--lg w-490 mt-60">로그인 하기</button>
+        <button className="ss-button ss-button--lg w-490 mt-60" onClick={() => navigate('/login')}>
+          로그인 하기
+        </button>
       </div>
     </>
   );

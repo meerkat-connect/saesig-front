@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InfoIcon from '../../components/common/infoicon';
 import '../../scss/pages/_login.scss';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
 
   const onInfoIconClickHandler = () => {
@@ -37,9 +38,13 @@ const Login = () => {
         <button className="ss-button ss-button--lg">로그인 하기</button>
       </form>
       <div className="ss-group mb-120">
-        <button className="ss-text-button">아이디 찾기</button>
+        <button className="ss-text-button" onClick={() => navigate('/find-id')}>
+          아이디 찾기
+        </button>
         <div className="separator --vertical ml-12 mr-12" />
-        <button className="ss-text-button">비밀번호 찾기</button>
+        <button className="ss-text-button" onClick={() => navigate('/find-password')}>
+          비밀번호 찾기
+        </button>
       </div>
       <div className="ss-group mb-20">
         <button className="mr-20">
@@ -52,11 +57,9 @@ const Login = () => {
           <img src="/src/assets/icons/4848/social_google.svg" alt="구글로 로그인" />
         </button>
       </div>
-      <NavLink to="/signup">
-        <button className="ss-text-button ss-text-button--icon">
-          이메일로 회원가입 <img src="/src/assets/icons/2424/chevron_sm_right.svg" alt="이메일로 회원가입" />
-        </button>
-      </NavLink>
+      <button className="ss-text-button ss-text-button--icon" onClick={() => navigate('/join')}>
+        이메일로 회원가입 <img src="/src/assets/icons/2424/chevron_sm_right.svg" alt="이메일로 회원가입" />
+      </button>
     </div>
   );
 };

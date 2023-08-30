@@ -1,7 +1,9 @@
 import React from 'react';
 import '../../scss/pages/_find.scss';
+import { useNavigate } from 'react-router-dom';
 
 const FindId = () => {
+  const navigate = useNavigate();
   const goNextStep = (step) => {
     document.querySelector(`#find-id-${step - 1}`).style.display = 'none';
     document.querySelector(`#find-id-${step}`).style.display = 'flex';
@@ -44,8 +46,12 @@ const FindId = () => {
             <div className="find__id">MEKC***@gmail.com</div>
             <div className="find__joined">가입일 : 2023.02.25</div>
           </div>
-          <button className="ss-button ss-button--lg mb-10">로그인 하기</button>
-          <button className="ss-button ss-button--lg">비밀번호 찾기</button>
+          <button className="ss-button ss-button--lg mb-10" onClick={() => navigate('/login')}>
+            로그인 하기
+          </button>
+          <button className="ss-button ss-button--lg" onClick={() => navigate('/find-password')}>
+            비밀번호 찾기
+          </button>
         </div>
       </div>
     </>

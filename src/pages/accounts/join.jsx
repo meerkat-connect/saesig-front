@@ -1,7 +1,9 @@
 import React from 'react';
 import '../../scss/pages/_signup.scss';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const goNextStep = (step) => {
     document.querySelector(`#signup-${step - 1}`).style.display = 'none';
     document.querySelector(`#signup-${step}`).style.display = 'flex';
@@ -186,7 +188,9 @@ const SignUp = () => {
           새식일기의 가족이 되신 것을 환영합니다 :D
         </div>
         <img src="/src/assets/pictograms/family_all.svg" alt="손인사하는 식구들" />
-        <button className="ss-button ss-button--lg w-490 mt-60">새식일기 시작하기</button>
+        <button className="ss-button ss-button--lg w-490 mt-60" onClick={() => navigate('/')}>
+          새식일기 시작하기
+        </button>
       </div>
     </>
   );
