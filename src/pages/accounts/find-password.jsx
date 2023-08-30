@@ -60,10 +60,22 @@ const FindPassword = () => {
           <input className="ss-input mb-10" type="password" placeholder="비밀번호 확인" />
           <span className="notification notification--caution">비밀번호가 일치하지 않습니다.</span>
           <span className="notification notification--success">비밀번호가 일치합니다.</span>
-          <button className="ss-button ss-button--lg" disabled>
+          <button className="ss-button ss-button--lg" onClick={() => goNextStep(3)}>
             비밀번호 재설정 완료
           </button>
         </div>
+      </div>
+
+      {/* step 3 */}
+      <div id="find-password-3" className="find" style={{ display: 'none' }}>
+        <div className="progress-bar progress-bar--5"></div>
+        <div className="signup__title w-490 mb-60">
+          새식이 님
+          <br />
+          비밀번호 변경이 완료되었습니다 :D
+        </div>
+        <img src="/src/assets/pictograms/family_all.svg" alt="손인사하는 식구들" />
+        <button className="ss-button ss-button--lg w-490 mt-60">로그인 하기</button>
       </div>
     </>
   );
