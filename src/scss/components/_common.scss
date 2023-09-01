@@ -121,6 +121,13 @@
   &:disabled {
     background-color: $disabled;
   }
+  &--negative {
+    color: $primary;
+    background-color: $popup;
+    &:hover {
+      background-color: $line-light;
+    }
+  }
   &--sm {
     @include px(15);
     height: 36px;
@@ -180,11 +187,105 @@
     }
   }
 
+  &__with-dropdown {
+    @include flex(start, start, column);
+    position: relative;
+    width: 100%;
+
+    div {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 0px;
+      right: 8px;
+      height: 50px;
+      cursor: pointer;
+
+      > input {
+        @include text-500(16, $text-black, 26);
+        width: 40px;
+        height: 50px;
+        text-align: right;
+        margin-right: 44px;
+        border: 0;
+        border-top: 1px solid $line-light;
+        border-bottom: 1px solid $line-light;
+        cursor: pointer;
+      }
+
+      div::after {
+        content: '';
+        width: 24px;
+        height: 24px;
+        background: url(src/assets/icons/2424/chevron_sm_down.svg) no-repeat center;
+        margin: 13px 0;
+      }
+    }
+
+    div.--open {
+      div::after {
+        transform: rotate(180deg);
+      }
+    }
+
+    ul {
+      @include rounded(15);
+      position: absolute;
+      top: 54px;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      max-height: 200px;
+      background: $background;
+      border: 1px solid $line-strong;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      > li {
+        @include text-500(16, $text-black);
+        padding: 15px 24px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f8f7f7;
+          color: #ff8031;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  &__textarea {
+    textarea {
+      @include rounded(15);
+      @include text-500(16, $text-black, 26);
+      border: 1px solid $line-light;
+      width: 100%;
+      padding: 12px 24px;
+
+      &::placeholder {
+        color: $text-gray;
+      }
+
+      &.--error {
+        border: 1px solid $primary;
+      }
+    }
+
+    div {
+      @include text-500(12, $text-gray, 14);
+      text-align: right;
+    }
+  }
+
   &__label {
     @include text-700(14, $text-black);
     position: relative;
 
-    &--required::after {
+    &.--required::after {
       content: '*';
       color: $primary;
     }
@@ -316,31 +417,8 @@
     &--active::before {
       transform: rotate(180deg);
     }
-
-    & > label {
-      @include text-700(14, $text-black);
-      padding-bottom: 12px;
-    }
-    & input:required + label::after {
-      content: '*';
-      color: #ff8031;
-    }
-
-    // 수정 필요
-    & > input.ss-input__dropdown--age {
-      @include text-500(14, $text-black);
-      text-align: end;
-      padding-right: 0;
-      padding-left: 0;
-      border-radius: 0;
-      position: absolute;
-      border: 0;
-      width: 24px;
-      background: none;
-      right: 52px;
-      bottom: 1px;
-    }
   }
+
   &__options {
     @include rounded(15);
     position: absolute;
@@ -421,4 +499,36 @@
   padding: 6px 20px;
   bottom: calc(100vh / 8 + $navbar-height);
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ss-modal {
+  @include flex(center, center);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  &__window {
+    @include flex(start, center, column);
+    @include rounded(15);
+    background-color: $background;
+    width: 100%;
+    padding: 20px;
+
+    img {
+      align-self: flex-end;
+    }
+
+    p {
+      @include text-500(16, $text-black, 26);
+    }
+
+    div {
+      display: flex;
+      width: 100%;
+    }
+  }
 }

@@ -1,8 +1,14 @@
 // Grid Templates
 @mixin grid-cols($cols) {
-  grid-template-columns: repeat($cols, 1fr);
+  grid-template-columns: $cols;
 }
 @mixin grid-rows($rows) {
+  grid-template-rows: $rows;
+}
+@mixin grid-cols-repeat($cols) {
+  grid-template-columns: repeat($cols, 1fr);
+}
+@mixin grid-rows-repeat($rows) {
   grid-template-rows: repeat($rows, 1fr);
 }
 @mixin gap($gap) {
@@ -25,6 +31,15 @@
     }
     &.rows-#{$i} {
       @include grid-rows($i);
+    }
+  }
+
+  @for $i from 1 through 6 {
+    &.cols-repeat-#{$i} {
+      @include grid-cols-repeat($i);
+    }
+    &.rows-repeat-#{$i} {
+      @include grid-rows-repeat($i);
     }
   }
 

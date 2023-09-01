@@ -39,6 +39,54 @@
     position: absolute;
     margin-top: 10px;
   }
+
+  .current-location {
+    @include flex(start, center);
+    @include text-500(14, $text-black);
+    margin-right: auto;
+    margin-top: 10px;
+
+    span {
+      margin-left: 4px;
+    }
+  }
+
+  .vaccine {
+    display: flex;
+    overflow-x: hidden;
+    label {
+      @include text-500(14, $text-black, 20);
+      cursor: pointer;
+      margin-right: 12px;
+      text-align: center;
+
+      input[type='checkbox'] {
+        display: none;
+
+        &:checked ~ span {
+          border: 1px solid $primary;
+          background: $primary;
+          color: $background;
+        }
+
+        &:not(:checked):hover ~ span {
+          border: 1px solid $primary;
+          background: rgba(255, 128, 49, 0.07);
+          color: $primary;
+        }
+      }
+      span {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 124px;
+        height: 64px;
+        border-radius: 9999px;
+        border: 1px dashed #585858;
+      }
+    }
+  }
 }
 
 // .register {
@@ -393,37 +441,6 @@
 
 //   & > div {
 //     margin-right: 10px;
-//   }
-// }
-// .vaccine {
-//   label {
-//     cursor: pointer;
-
-//     input[type='checkbox'] {
-//       display: none;
-
-//       &:checked ~ span {
-//         border: 1px solid #ff8031;
-//         background: #ff8031;
-//         color: #fff;
-//       }
-
-//       &:not(:checked):hover ~ span {
-//         border: 1px solid #ff8031;
-//         background: rgba(255, 128, 49, 0.07);
-//         color: #ff8031;
-//       }
-//     }
-//     span {
-//       position: relative;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       width: 124px;
-//       height: 64px;
-//       border-radius: 9999px;
-//       border: 1px dashed #585858;
-//     }
 //   }
 // }
 
