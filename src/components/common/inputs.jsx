@@ -106,8 +106,8 @@ export const AgeInput = ({ label, options, ...rest }) => {
       {label && <label className={`${required && 'ss-input__label --required'} ss-input__label`}>{label}</label>}
       <div className="ss-input__with-dropdown mt-12" ref={dropdownRef}>
         <input className="ss-input" type="text" required />
-        <div className={`${isOpen && '--open'}`}>
-          <input type="text" value={selectedOption} readOnly onClick={handleInputClick} {...rest} />
+        <div className={`${isOpen && '--open'}`} onClick={handleInputClick}>
+          <input type="text" value={selectedOption} readOnly {...rest} />
           <div />
         </div>
         {isOpen && options && (
