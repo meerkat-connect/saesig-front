@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import '../../scss/pages/_register.scss';
 import InfoIcon from '../../components/common/infoicon';
 import { AgeInput, Dropdown, PriceInput, TextArea, TextInput } from '../../components/common/inputs';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
 
   const onInfoIconClickHandler = () => {
@@ -238,8 +240,8 @@ const Register = () => {
               />
             </div>
           </div>
-          <button className="ss-button ss-button--lg w-490 mt-60" onClick={() => goNextStep(5)}>
-            다음
+          <button className="ss-button ss-button--lg w-490 mt-60" onClick={() => navigate('/')}>
+            식구 등록 완료
           </button>
         </div>
 

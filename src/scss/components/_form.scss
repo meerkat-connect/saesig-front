@@ -1,0 +1,73 @@
+@use '../abstracts' as *;
+
+.ss-form {
+  @include flex(start, center, column);
+  width: 100%;
+
+  // TODO: Flex, Grid 관련 Layout으로 이동 및 수정
+  &__row-container {
+    @include flex(start, center);
+    align-self: flex-start;
+  }
+
+  &__row-center {
+    @include flex(center, center);
+  }
+
+  &__col-container {
+    @include flex(center, start, column);
+    justify-self: self-start;
+    width: 100%;
+  }
+
+  & > .notification {
+    @include flex(start, center);
+    @include text-500(14, $text-gray);
+
+    align-self: flex-start;
+    margin: 10px 0 20px 24px;
+
+    > img {
+      padding-right: 6px;
+    }
+
+    &--caution {
+      color: $primary;
+
+      &::before {
+        content: '';
+        width: 12px;
+        height: 12px;
+        margin-right: 6px;
+        background-image: url('src/assets/icons/1212/caution.svg');
+      }
+    }
+
+    &--success {
+      color: $text-green;
+
+      &::before {
+        content: '';
+        width: 12px;
+        height: 12px;
+        margin-right: 6px;
+        background-image: url('src/assets/icons/1212/check.svg');
+      }
+    }
+  }
+
+  & > .social {
+    @include rounded();
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding: 0 24px;
+    background-color: $background;
+
+    & > span {
+      @include text-500(16, $text-black);
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@use '../abstracts' as *;
+
+.ss-button {
+  @include flex(center, center);
+  @include rounded();
+  @include text-500(14, $text-white);
+  background-color: $primary;
+  width: 100%;
+  &:hover {
+    background-color: $primary-hover;
+  }
+  &:disabled {
+    background-color: $disabled;
+  }
+  &--negative {
+    color: $primary;
+    background-color: $popup;
+    &:hover {
+      background-color: $line-light;
+    }
+  }
+  &--sm {
+    @include px(15);
+    height: 36px;
+  }
+  &--md {
+    @include px(30);
+    height: 40px;
+  }
+  &--lg {
+    @include px(30);
+    height: 48px;
+  }
+
+  &--w-auto {
+    width: auto;
+  }
+}
+
+.ss-text-button {
+  @include text-500(14, $text-gray);
+  display: flex;
+  align-items: center;
+
+  &.--underline {
+    text-decoration: underline;
+  }
+
+  &--icon {
+    color: $text-black;
+  }
+
+  &:hover {
+    color: $text-black;
+    text-decoration: underline;
+  }
+}
+
+.ss-group {
+  @include flex(center, center);
+}
