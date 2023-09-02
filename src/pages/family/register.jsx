@@ -249,7 +249,7 @@ const Register = () => {
           <div className="pagenation">4/4</div>
         </div>
 
-        {/* modal */}
+        {/* modal 1 */}
         {/* <div className="ss-modal">
           <div className="ss-modal__window w-490">
             <img src="/src/assets/icons/2424/close.svg" alt="" />
@@ -263,6 +263,22 @@ const Register = () => {
             </div>
           </div>
         </div> */}
+
+        {/* modal 2 */}
+        <div className="ss-modal">
+          <div className="ss-modal__window w-490">
+            <img className="ss-modal__family" src="/src/assets/pictograms/family_modal.svg" alt="식구등록 완료" />
+            <img className="ss-modal__close" src="/src/assets/icons/2424/close.svg" alt="" />
+            <p className="mt-40 mb-60">
+              식구 등록이 완료되었습니다~!
+              <br />
+              새식일기와 함께 좋은 시간들을 기록해나가요 :)
+            </p>
+            <div>
+              <button className="ss-button ss-button--md w-220">네, 좋아요!</button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

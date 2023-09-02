@@ -13,20 +13,27 @@
   &__window {
     @include flex(start, center, column);
     @include rounded(15);
+    position: relative;
     background-color: $background;
     width: 100%;
     padding: 20px;
 
-    img {
+    img.ss-modal__family {
+      position: absolute;
+      bottom: 210px;
+    }
+
+    img.ss-modal__close {
       align-self: flex-end;
     }
 
     p {
       @include text-500(16, $text-black, 26);
+      text-align: center;
     }
 
     div {
-      display: flex;
+      @include flex(center, center);
       width: 100%;
     }
   }
