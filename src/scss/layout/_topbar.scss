@@ -19,6 +19,7 @@
   }
 
   &__section-left {
+    margin-right: auto;
   }
   &__section-center {
     @include text-700(20, $text-black);
@@ -27,5 +28,15 @@
     transform: translateX(-50%);
   }
   &__section-right {
+    margin-left: auto;
+  }
+
+  &__button-group {
+    @include flex(center, center);
+    button:not(.ss-outline-button) {
+      width: 24px;
+      height: 24px;
+      margin-left: 18px;
+    }
   }
 }

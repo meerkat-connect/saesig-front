@@ -37,6 +37,15 @@
   }
 }
 
+.ss-outline-button {
+  @include flex(center, center);
+  @include rounded();
+  @include text-500(14, $text-black);
+  @include px(25);
+  height: 36px;
+  border: 1px solid $line-strong;
+}
+
 .ss-text-button {
   @include text-500(14, $text-gray);
   display: flex;

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Outlet, useLocation } from 'react-router-dom';
 import Topbar from './topbar';
 import Navbar from './navbar';
@@ -8,7 +10,7 @@ const Layout = () => {
   const hiddenTopbarPaths = [];
   const hideTopbar = hiddenTopbarPaths.includes(location.pathname);
 
-  const hiddenNavbarPaths = ['/signup'];
+  const hiddenNavbarPaths = ['/join', '/find-id', '/find-password'];
   const hideNavbar = hiddenNavbarPaths.includes(location.pathname);
 
   return (

@@ -4,7 +4,7 @@
  * @returns
  */
 const getPageTitle = (pathname) => {
-  let title = 'Default Title';
+  let title;
 
   switch (pathname) {
     case '/':
@@ -13,7 +13,7 @@ const getPageTitle = (pathname) => {
     case '/login':
       title = '로그인';
       break;
-    case '/signup':
+    case '/join':
       title = '회원가입';
       break;
     case '/find-id':
