@@ -7,7 +7,7 @@ const Home = () => {
   const handleCardClick = (url) => navigate(`/${url}`);
 
   return (
-    <div className="saesig-content-wrap">
+    <div className="saesig-content-wrap content">
       <div className="saesig-title-con">
         <img className="saesig-title-icon" />
         <span className="saesig-title">🐶 퍼블리시 리스트</span>

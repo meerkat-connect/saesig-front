@@ -17,7 +17,6 @@ body {
 }
 
 main {
-  max-width: $content-wrap;
   width: 100%;
   height: calc(100% - $topbar-height - $navbar-height);
   margin: auto;

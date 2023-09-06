@@ -42,7 +42,7 @@ const Register = () => {
   return (
     <>
       {/* step 1 */}
-      <div id="register-1" className="register">
+      <div id="register-1" className="register w-660">
         <div className="register__title">기본정보</div>
         <div className="register__title mb-80">
           어떤 새로운 식구를

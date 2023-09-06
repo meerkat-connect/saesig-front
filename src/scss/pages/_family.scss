@@ -1,0 +1,104 @@
+@use '../abstracts' as *;
+
+.family {
+  &-hero {
+    @include flex(start, start, column);
+    width: 100%;
+
+    &__today-info {
+      @include flex(space-between, center);
+      width: 100%;
+
+      > span {
+        @include text-500(14, $text-black);
+        margin-right: auto;
+      }
+      > div {
+        @include flex(flex-end, center);
+        @include text-500(15, $text-black);
+        margin-left: auto;
+        > img:not(:last-child) {
+          margin-right: 2px;
+        }
+        > button {
+          color: $primary;
+          position: relative;
+          text-decoration: none;
+          margin-right: 4px;
+
+          &:hover::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 1px;
+            background-color: $primary;
+          }
+        }
+        > span {
+          margin-right: 2px;
+        }
+      }
+    }
+
+    &__title {
+      @include flex(start, start, column);
+      @include text-700(34, $text-black, 140%);
+      width: 100%;
+      position: relative;
+
+      > div {
+        @include flex(start, center);
+        height: 60px;
+
+        &:first-child::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100vw;
+          margin-left: calc(-50vw + 50%);
+          height: 1px;
+          background-color: $line-light;
+        }
+
+        // 각 div의 하단 border
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100vw;
+          margin-left: calc(-50vw + 50%); // 중앙 정렬
+          height: 1px;
+          background-color: $line-light;
+        }
+
+        &:nth-child(1)::after {
+          margin-bottom: 60px;
+        }
+
+        &:nth-child(2)::after {
+          margin-bottom: 120px;
+        }
+      }
+    }
+  }
+  &-content {
+    width: 100%;
+    &--empty {
+      @include flex(center, center, column);
+      flex-grow: 1;
+      > p {
+        @include text-500(16, $text-gray, 24);
+        text-align: center;
+      }
+      > button {
+        width: fit-content;
+      }
+    }
+  }
+}
