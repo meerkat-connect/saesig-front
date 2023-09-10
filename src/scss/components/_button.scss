@@ -68,3 +68,28 @@
 .ss-group {
   @include flex(center, center);
 }
+
+.ss-button-icon {
+  @include flex(center, center);
+  @include text-500(14, $text-gray, 20);
+  @include rounded();
+  background-color: $background;
+  border: 1px solid $line-light;
+  width: fit-content;
+  padding: 4px 12px;
+  cursor: pointer;
+
+  span {
+    margin-left: 4px;
+  }
+
+  &--primary {
+    border-color: $primary;
+    color: $primary;
+  }
+
+  &:hover {
+    background-color: $primary;
+    color: $text-white;
+  }
+}

@@ -8,6 +8,7 @@ body,
 }
 
 body {
+  overflow-x: hidden;
   background-color: $background-warm;
   @media #{$lg} {
     background: url('src/assets/pictograms/family_faces.svg') no-repeat right center;

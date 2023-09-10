@@ -1,0 +1,23 @@
+@use '../abstracts' as *;
+
+.ss-tag {
+  @include flex(center, center);
+  @include text-500(14, $primary, 20);
+  @include rounded();
+  background-color: $background;
+  width: fit-content;
+  padding: 4px 12px;
+
+  &--warm {
+    background-color: $background-warm;
+  }
+  &--active {
+    color: $text-white;
+    background-color: $primary;
+  }
+  &--delete {
+    padding: 4px 10px 4px 12px;
+    color: $text-white;
+    background-color: $primary;
+  }
+}

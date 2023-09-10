@@ -1,0 +1,40 @@
+@use '../abstracts' as *;
+
+.ss-flyout {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  &__button {
+    color: $text-black;
+
+    &.--active {
+      color: $primary;
+    }
+  }
+  &__menu {
+    position: absolute;
+    top: 24px;
+    left: 8px;
+    border: 1px solid $line-strong;
+    border-radius: 0px 15px 15px 15px;
+    width: max-content;
+    background-color: $background;
+    z-index: 100;
+    padding: 12px 20px;
+  }
+
+  &__item {
+    @include flex(center, center);
+    @include text-500(16, $text-black, 24);
+    height: 24px;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+}
