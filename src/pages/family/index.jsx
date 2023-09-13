@@ -12,7 +12,7 @@ const Family = () => {
   ];
   const navigate = useNavigate();
   return (
-    <div className="content">
+    <div className="ss-wrap">
       <div className="family-hero mt-60">
         <div className="family-hero__today-info mb-20">
           <span>10월 4일</span>
@@ -98,7 +98,7 @@ const Family = () => {
       </section>
       <section className="family-content__main mt-60">
         <div className="pb-16">
-          총 <span>35</span>마리의 식구
+          총&nbsp;<span>35</span>마리의 식구
         </div>
         <div className="family-content__card-grid">
           <div className="family-content__card">
@@ -117,7 +117,7 @@ const Family = () => {
             <div>
               <Slider images={images} />
             </div>
-            <footer>
+            <footer onClick={() => navigate('/family/1')}>
               <div>
                 <div>
                   <span>분양중</span>

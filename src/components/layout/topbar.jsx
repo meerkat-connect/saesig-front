@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import getPageTitle from '../../helpers/getPageTitle';
+import FlyoutMenu from '../common/flyout';
 
 // eslint-disable-next-line react/prop-types
 const Topbar = () => {
@@ -15,6 +16,9 @@ const Topbar = () => {
   const isMain = mainPaths.includes(location.pathname);
   const isPrevButton = prevButtonPaths.includes(location.pathname);
   const isMenu = menuPaths.includes(location.pathname);
+  const isPost =
+    (location.pathname.startsWith('/family/') || location.pathname.startsWith('/diary/')) &&
+    location.pathname.split('/').length === 3;
 
   const pageTitle = getPageTitle(location.pathname);
 
@@ -27,6 +31,17 @@ const Topbar = () => {
             <button onClick={goToPrevPage}>
               <img src="/src/assets/icons/2424/chevron_lg_left.svg" alt="뒤로가기" />
             </button>
+          )}
+          {isPost && (
+            <>
+              <button onClick={goToPrevPage}>
+                <img src="/src/assets/icons/2424/chevron_lg_left.svg" alt="뒤로가기" />
+              </button>
+              <span>
+                {location.pathname.startsWith('/family/') && '식구 찾기'}
+                {location.pathname.startsWith('/diary/') && '새식일기'}
+              </span>
+            </>
           )}
         </div>
         <div className="topbar__section-center">{pageTitle}</div>
@@ -43,7 +58,7 @@ const Topbar = () => {
             </div>
           )}
 
-          {isMenu && (
+          {(isMenu || isPost) && (
             <div className="topbar__button-group">
               <button>
                 <img src="/src/assets/icons/2424/export.svg" alt="" />
@@ -51,9 +66,7 @@ const Topbar = () => {
               <button>
                 <img src="/src/assets/icons/2424/like_outline.svg" alt="" />
               </button>
-              <button>
-                <img src="/src/assets/icons/2424/ellipsis_horizontal.svg" alt="" />
-              </button>
+              <FlyoutMenu />
             </div>
           )}
         </div>

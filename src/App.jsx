@@ -9,6 +9,7 @@ import SignUp from './pages/accounts/join';
 import NotFound from './pages/error/404';
 import Family from './pages/family';
 import Register from './pages/family/register';
+import FamilyPost from './pages/family/post';
 import FindId from './pages/accounts/find-id';
 import FindPassword from './pages/accounts/find-password';
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="find-id" element={<FindId />} />
           <Route path="find-password" element={<FindPassword />} />
           <Route path="family" element={<Family />} />
+          <Route path="family/:id" element={<FamilyPost />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Route>

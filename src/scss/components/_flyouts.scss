@@ -14,13 +14,18 @@
   &__menu {
     position: absolute;
     top: 24px;
-    left: 8px;
+    right: 8px;
     border: 1px solid $line-strong;
-    border-radius: 0px 15px 15px 15px;
+    border-radius: 15px 0px 15px 15px;
     width: max-content;
     background-color: $background;
     z-index: 100;
     padding: 12px 20px;
+
+    &--my-post {
+      top: 40px;
+      right: 0;
+    }
   }
 
   &__item {

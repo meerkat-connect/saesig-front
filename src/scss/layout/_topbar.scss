@@ -20,6 +20,12 @@
 
   &__section-left {
     margin-right: auto;
+    > span {
+      @include text-700(20, $text-black);
+      vertical-align: middle;
+      text-align: center;
+      margin-left: 10px;
+    }
   }
   &__section-center {
     @include text-700(20, $text-black);
@@ -33,7 +39,8 @@
 
   &__button-group {
     @include flex(center, center);
-    button:not(.ss-outline-button) {
+    > button:not(.ss-outline-button),
+    > div {
       width: 24px;
       height: 24px;
       margin-left: 18px;
