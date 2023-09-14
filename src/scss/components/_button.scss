@@ -5,7 +5,7 @@
   @include rounded();
   @include text-500(14, $text-white);
   background-color: $primary;
-  width: 100%;
+  width: auto;
   &:hover {
     background-color: $primary-hover;
   }
@@ -20,7 +20,7 @@
     }
   }
   &--sm {
-    @include px(15);
+    @include px(30);
     height: 36px;
   }
   &--md {

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const FlyoutMenu = ({ isMyPost = true }) => {
+const FlyoutMenu = ({ isOwnPost }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -38,7 +38,7 @@ const FlyoutMenu = ({ isMyPost = true }) => {
         </svg>
       </button>
       {isOpen && (
-        <div className={`${isMyPost && 'ss-flyout__menu--my-post'} ss-flyout__menu`} onClick={handleMenuClick}>
+        <div className={`${isOwnPost && 'ss-flyout__menu--my-post'} ss-flyout__menu`} onClick={handleMenuClick}>
           <button className="ss-flyout__item">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -53,7 +53,7 @@ const FlyoutMenu = ({ isMyPost = true }) => {
 
             <span className="ml-4">공유하기</span>
           </button>
-          {!isMyPost && (
+          {!isOwnPost && (
             <button className="ss-flyout__item">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -65,7 +65,7 @@ const FlyoutMenu = ({ isMyPost = true }) => {
               <span className="ml-4">신고하기</span>
             </button>
           )}
-          {isMyPost && (
+          {isOwnPost && (
             <>
               <button className="ss-flyout__item">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

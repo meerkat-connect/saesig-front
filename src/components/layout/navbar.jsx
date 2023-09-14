@@ -45,28 +45,37 @@ const Navbar = () => {
     },
   ];
 
+  const isRehome = location.pathname.startsWith('/family/') && location.pathname.split('/').length === 3;
+
   return (
     <footer className="navbar">
       <nav className="navbar__wrap">
-        {navMenus.map((menu) => (
-          <NavLink key={menu.text} to={menu.to} className="navbar__menu">
-            <div>
-              {menu.activeUrl.includes(location.pathname) ? (
-                <img src={menu.active} alt={menu.text} />
-              ) : (
-                <img src={menu.inactive} alt={menu.text} />
-              )}
-              <span
-                className={classNames(
-                  menu.activeUrl.includes(location.pathname) ? 'navbar__text--active' : '',
-                  'navbar__text'
+        {!isRehome &&
+          navMenus.map((menu) => (
+            <NavLink key={menu.text} to={menu.to} className="navbar__menu">
+              <div>
+                {menu.activeUrl.includes(location.pathname) ? (
+                  <img src={menu.active} alt={menu.text} />
+                ) : (
+                  <img src={menu.inactive} alt={menu.text} />
                 )}
-              >
-                {menu.text}
-              </span>
-            </div>
-          </NavLink>
-        ))}
+                <span
+                  className={classNames(
+                    menu.activeUrl.includes(location.pathname) ? 'navbar__text--active' : '',
+                    'navbar__text'
+                  )}
+                >
+                  {menu.text}
+                </span>
+              </div>
+            </NavLink>
+          ))}
+        {isRehome && (
+          <div className="navbar__rehome">
+            <span>책임비 50,000원</span>
+            <button className="ss-button ss-button--sm">채팅하기</button>
+          </div>
+        )}
       </nav>
     </footer>
   );

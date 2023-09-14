@@ -66,7 +66,7 @@ const Topbar = () => {
               <button>
                 <img src="/src/assets/icons/2424/like_outline.svg" alt="" />
               </button>
-              <FlyoutMenu />
+              <FlyoutMenu isMyPost />
             </div>
           )}
         </div>

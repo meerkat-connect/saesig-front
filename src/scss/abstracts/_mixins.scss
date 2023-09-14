@@ -29,7 +29,7 @@
 
 @mixin text-400($size: 16, $color: false, $line-height: false) {
   font-family: $font-family;
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-size: $size + px;
   @if (type-of($color) == color) {

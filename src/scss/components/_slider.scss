@@ -3,23 +3,28 @@
 .ss-slider {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  max-height: inherit;
   position: relative;
+  overflow-x: hidden;
 
   &-content {
     display: flex;
+    max-height: inherit;
+    height: 100%;
     transition: transform 0.2s ease-in-out;
   }
 
   &__slide {
     min-width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 
     img {
+      width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
     }
   }
 
@@ -32,5 +37,38 @@
     background-color: #171a1980;
     color: white;
     padding: 2px 12px;
+  }
+
+  &__button {
+    @include center-center();
+    @include flex(space-between, center);
+    width: 100%;
+    padding: 0 20px;
+
+    & > button:first-child {
+      margin-right: auto;
+    }
+  }
+
+  &__indicator {
+    @include bottom-center();
+    bottom: 20px;
+    @include flex(center, center);
+    > div {
+      @include rounded();
+      border: 1px solid $line-strong;
+      width: 10px;
+      height: 10px;
+      background-color: $background;
+      cursor: pointer;
+
+      &:not(:last-child) {
+        margin-right: 6px;
+      }
+
+      &.--active {
+        background-color: $primary;
+      }
+    }
   }
 }

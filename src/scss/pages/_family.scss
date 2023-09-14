@@ -1,5 +1,13 @@
 @use '../abstracts' as *;
 
+.ss-wrap {
+  @include flex(start, center, column);
+  max-width: 660px;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+
 .family {
   &-hero {
     @include flex(start, start, column);

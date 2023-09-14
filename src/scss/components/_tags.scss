@@ -8,16 +8,38 @@
   width: fit-content;
   padding: 4px 12px;
 
-  &--warm {
+  &.--warm {
     background-color: $background-warm;
   }
-  &--active {
+  &.--active {
     color: $text-white;
     background-color: $primary;
   }
-  &--delete {
+  &.--delete {
     padding: 4px 10px 4px 12px;
     color: $text-white;
     background-color: $primary;
+  }
+}
+
+.ss-state-view {
+  display: inline-block;
+  @include text-500(16, $text-black, 18);
+  @include rounded();
+  padding: 10px 20px;
+  border: 1px solid $line-strong;
+
+  &.--positive {
+    color: $secondary;
+    border: 1px solid $secondary;
+  }
+
+  &.--negative {
+    color: $primary;
+    border: 1px solid $primary;
+  }
+
+  &.--light {
+    border: 1px solid $line-light;
   }
 }

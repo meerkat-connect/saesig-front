@@ -33,4 +33,14 @@
       color: $primary;
     }
   }
+
+  &__rehome {
+    @include flex(space-between, center);
+    width: 100%;
+    padding: 0 20px;
+    > span {
+      @include text-700(18, $text-black);
+      margin-right: auto;
+    }
+  }
 }

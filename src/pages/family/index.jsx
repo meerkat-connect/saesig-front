@@ -81,7 +81,7 @@ const Family = () => {
           <button className="ss-tag">
             <span>#강아지</span>
           </button>
-          <button className="ss-tag ss-tag--active">
+          <button className="ss-tag --active">
             <span>#고양이</span>
           </button>
           <button className="ss-tag">
@@ -115,7 +115,7 @@ const Family = () => {
               <FlyoutMenu />
             </header>
             <div>
-              <Slider images={images} />
+              <Slider images={images} hasBadge />
             </div>
             <footer onClick={() => navigate('/family/1')}>
               <div>
@@ -135,13 +135,13 @@ const Family = () => {
                 </p>
               </div>
               <div>
-                <button className="ss-tag ss-tag--warm">
+                <button className="ss-tag --warm">
                   <span>#강아지</span>
                 </button>
-                <button className="ss-tag ss-tag--warm">
+                <button className="ss-tag --warm">
                   <span>#2살</span>
                 </button>
-                <button className="ss-tag ss-tag--warm">
+                <button className="ss-tag --warm">
                   <span>#암컷</span>
                 </button>
               </div>

@@ -1,74 +1,34 @@
 import React, { useState, useRef } from 'react';
 
-const Slider = ({ images, hasBadge, hasButton, hasIndicator }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+const PostRelated = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
   const handlePrevClick = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
     }
   };
 
   const handleNextClick = () => {
-    if (currentSlide < images.length - 1) {
-      setCurrentSlide(currentSlide + 1);
+    if (currentIndex < 2) {
+      setCurrentIndex((prev) => prev + 1);
     }
   };
 
-  const handleIndicatorClick = (i) => {
-    setCurrentSlide(i);
+  const handleIndicatorClick = (index) => {
+    setCurrentIndex(index);
   };
 
-  const handleDragStart = (e) => {
-    e.preventDefault();
-    const startX = e.pageX || e.touches[0].pageX;
-    let offsetX = 0;
-
-    const handleDragMove = (moveEvent) => {
-      const x = moveEvent.pageX || moveEvent.touches[0].pageX;
-      offsetX = x - startX;
-
-      const movePercentage = (offsetX / sliderRef.current.offsetWidth) * 100;
-
-      if (movePercentage > 10 && currentSlide > 0) {
-        setCurrentSlide(currentSlide - 1);
-      } else if (movePercentage < -10 && currentSlide < images.length - 1) {
-        setCurrentSlide(currentSlide + 1);
-      }
-    };
-
-    const handleDragEnd = () => {
-      document.removeEventListener('mousemove', handleDragMove);
-      document.removeEventListener('mouseup', handleDragEnd);
-      document.removeEventListener('touchmove', handleDragMove);
-      document.removeEventListener('touchend', handleDragEnd);
-    };
-
-    document.addEventListener('mousemove', handleDragMove);
-    document.addEventListener('mouseup', handleDragEnd);
-    document.addEventListener('touchmove', handleDragMove, { passive: false });
-    document.addEventListener('touchend', handleDragEnd);
-  };
+  if (sliderRef.current) {
+    sliderRef.current.style.transform = `translateX(-${currentIndex * 33.3333}%)`;
+  }
 
   return (
-    <div className="ss-slider" ref={sliderRef} onMouseDown={handleDragStart} onTouchStart={handleDragStart}>
-      <div className="ss-slider-content" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-        {images.map((image, index) => (
-          <div key={index} className="ss-slider__slide">
-            <img src={image} alt="" />
-          </div>
-        ))}
-      </div>
-
-      {hasBadge && (
-        <div className="ss-slider__badge">
-          {currentSlide + 1}/{images.length}
-        </div>
-      )}
-
-      {hasButton && (
-        <div className="ss-slider__button">
+    <div className="related">
+      <div className="related__header">
+        <h2>비슷한 새식이들</h2>
+        <div>
           <button onClick={handlePrevClick}>
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="15" cy="15" r="14.5" transform="rotate(-180 15 15)" fill="white" stroke="#585858" />
@@ -90,21 +50,46 @@ const Slider = ({ images, hasBadge, hasButton, hasIndicator }) => {
             </svg>
           </button>
         </div>
-      )}
-
-      {hasIndicator && (
-        <div className="ss-slider__indicator">
-          {images.map((_, i) => (
-            <div
-              key={i}
-              className={`${currentSlide === i ? '--active' : ''}`}
-              onClick={() => handleIndicatorClick(i)}
-            />
-          ))}
-        </div>
-      )}
+      </div>
+      <div className="related__slider mt-30" ref={sliderRef}>
+        {[...Array(9)].map((card) => (
+          <div key={card} className="related__card">
+            <img src="/src/assets/images/samples/sample4.webp" alt="" />
+            <div>
+              <span>믹스견</span>
+              <span>남아 / 8개월</span>
+              <div className="ss-author">
+                <div className="ss-author__avatar" />
+                <span className="ss-author__username">username</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8 0L9.65644 1.81807L12 1.0718L12.5255 3.47452L14.9282 4L14.1819 6.34356L16 8L14.1819 9.65644L14.9282 12L12.5255 12.5255L12 14.9282L9.65644 14.1819L8 16L6.34356 14.1819L4 14.9282L3.47452 12.5255L1.0718 12L1.81807 9.65644L0 8L1.81807 6.34356L1.0718 4L3.47452 3.47452L4 1.0718L6.34356 1.81807L8 0Z"
+                    fill="#40BD2B"
+                  />
+                  <g clipPath="url(#clip0_1237_45146)">
+                    <path
+                      d="M6.79996 9.66656L5.41196 8.27856C5.25596 8.12256 5.00396 8.12256 4.84796 8.27856C4.69196 8.43456 4.69196 8.68656 4.84796 8.84256L6.51996 10.5146C6.67596 10.6706 6.92796 10.6706 7.08396 10.5146L11.316 6.28256C11.472 6.12656 11.472 5.87456 11.316 5.71856C11.16 5.56256 10.908 5.56256 10.752 5.71856L6.79996 9.66656Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1237_45146">
+                      <rect width="9.6" height="9.6" fill="white" transform="translate(3.2002 3.19922)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="related__indicator">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className={currentIndex === i ? '--active' : ''} onClick={() => handleIndicatorClick(i)} />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Slider;
+export default PostRelated;

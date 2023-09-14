@@ -65,3 +65,20 @@
   bottom: calc(100vh / 8 + $navbar-height);
   background-color: rgba(0, 0, 0, 0.6);
 }
+
+.ss-author {
+  @include flex(start, center);
+  &__avatar {
+    @include rounded();
+    width: 24px;
+    height: 24px;
+    background: #d9d9d9;
+    margin-right: 6px;
+  }
+  &__username {
+    @include text-500(12, $text-black);
+  }
+  > svg {
+    margin-left: 4px;
+  }
+}

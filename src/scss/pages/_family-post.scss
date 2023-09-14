@@ -1,0 +1,226 @@
+@use '../abstracts' as *;
+
+.post {
+  &__container {
+    @include flex(start, center, column);
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  &__title {
+    width: 100%;
+    text-align: center;
+
+    & .title {
+      & > h1 {
+        @include text-700(34, $text-black, 40);
+        margin: 10px 0;
+      }
+      & > hr {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        background-color: $line-light;
+      }
+      &__rehome-status {
+        @include text-700(16, $primary);
+        @include rounded();
+        display: inline-block;
+        padding: 7px 12px;
+        background: rgba($primary, 0.12);
+      }
+      &__author {
+        display: inline-block;
+      }
+    }
+  }
+  &__summary {
+    & .summary {
+      @include rounded(30);
+      border: 1px solid $line-strong;
+      background-color: $background;
+
+      &__header {
+        @include flex(space-between, center);
+        @include text-500(16, $text-black);
+        height: 60px;
+        padding: 0 30px;
+        border-bottom: 1px solid $line-strong;
+        &-geo {
+          @include flex(start, center);
+          margin-right: auto;
+        }
+      }
+
+      &__slider {
+        max-height: 450px;
+      }
+
+      &__info {
+        @include flex(space-between, center);
+        padding: 0 30px;
+        border-top: 1px solid $line-strong;
+        &-item {
+          @include flex(center, center, column);
+          padding: 32px 0;
+          width: 25%;
+          > h3 {
+            @include text-500(14, $text-gray, 20);
+          }
+          > span {
+            @include text-700(26, $primary, 36);
+          }
+        }
+      }
+    }
+  }
+  &__content {
+    & .content {
+      @include text-400(16, $text-black, 26);
+      @include rounded(30);
+      border: 1px solid $line-strong;
+      padding: 40px 30px;
+      margin-top: -1px;
+      background-color: $background;
+
+      &__counter {
+        display: flex;
+        & > div {
+          @include flex(start, center);
+          @include text-500(14, $text-gray, 20);
+          margin-right: 15px;
+
+          & > svg {
+            margin-right: 4px;
+          }
+        }
+      }
+
+      &__tags {
+        @include flex(start, center);
+        > div:not(:last-child) {
+          margin-right: 6px;
+        }
+      }
+
+      &__pet-status {
+        & .pet-status {
+          &__tab {
+            border-bottom: 2px solid $line-strong;
+            padding-bottom: 12px;
+            margin-right: -30px;
+            margin-bottom: 40px;
+
+            > button {
+              @include text-700(26, $text-gray, 36);
+
+              &.--active {
+                color: $text-black;
+              }
+
+              &:first-child {
+                margin-right: 30px;
+              }
+            }
+          }
+          &__sub-title {
+            margin: 40px 0 12px 0;
+            > span {
+              @include text-700(18, $text-black);
+            }
+          }
+        }
+      }
+    }
+  }
+  &__related {
+    width: 100%;
+
+    .related {
+      overflow-x: hidden;
+      &__header {
+        @include flex(space-between, center);
+        width: 100%;
+        & > h2 {
+          @include text-700(26, $text-black);
+          margin-right: auto;
+        }
+        & > div {
+          @include flex(space-between, center);
+          svg {
+            vertical-align: middle;
+          }
+          > button:first-child {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      &__slider {
+        @include flex(start, center);
+        width: 300%;
+        transition: 0.3s ease;
+      }
+
+      &__card {
+        @include flex(start, center, column);
+        @include rounded(30);
+        width: 100%;
+        max-height: 300px;
+        border: 1px solid $line-strong;
+        overflow: hidden;
+        &:not(:first-child) {
+          margin-left: -1px;
+        }
+
+        & > img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        & > div {
+          @include flex(center, center, column);
+          width: 100%;
+          background-color: $background;
+          height: 120px;
+          border-top: 1px solid $line-strong;
+
+          > span:first-child {
+            @include text-700(14, $text-black, 19.6);
+            margin-bottom: 2px;
+          }
+
+          > span:not(:first-child) {
+            @include text-500(14, $text-gray);
+            margin-bottom: 12px;
+          }
+        }
+      }
+
+      &__indicator {
+        @include flex(center, center);
+        margin-top: 30px;
+
+        > div {
+          @include rounded();
+          border: 1px solid $line-strong;
+          width: 10px;
+          height: 10px;
+          background-color: $background;
+          cursor: pointer;
+
+          &:not(:last-child) {
+            margin-right: 6px;
+          }
+
+          &.--active {
+            background-color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
