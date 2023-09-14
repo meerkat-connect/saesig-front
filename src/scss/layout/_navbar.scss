@@ -42,5 +42,13 @@
       @include text-700(18, $text-black);
       margin-right: auto;
     }
+
+    > button {
+      @include flex(center, center);
+      @include rounded();
+      @include text-500(14, $text-white);
+      background-color: $primary;
+      padding: 13px 30px;
+    }
   }
 }

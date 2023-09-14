@@ -73,7 +73,7 @@ const Navbar = () => {
         {isRehome && (
           <div className="navbar__rehome">
             <span>책임비 50,000원</span>
-            <button className="ss-button ss-button--sm">채팅하기</button>
+            <button>채팅하기</button>
           </div>
         )}
       </nav>
