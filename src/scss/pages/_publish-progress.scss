@@ -1,0 +1,28 @@
+@use '../abstracts' as *;
+
+.publish {
+  @include flex(start, center, column);
+  height: 100%;
+  width: 100%;
+
+  > h1 {
+    @include text-700(26, $text-black);
+  }
+  > h3 {
+    @include text-500(20, $text-black);
+    margin-top: 30px;
+  }
+
+  > ul {
+    margin-top: 12px;
+    li {
+      text-align: center;
+      margin-top: 8px;
+
+      &:hover {
+        color: $primary;
+        cursor: pointer;
+      }
+    }
+  }
+}

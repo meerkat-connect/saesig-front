@@ -1,26 +1,80 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AdoptionRecordList from '../../components/list/AdoptionRecordList';
+import '../../scss/pages/_publish-progress.scss';
 
 const Home = () => {
   const navigate = useNavigate();
-  const handleCardClick = (url) => navigate(`/${url}`);
+
+  const handleSplashTestClick = () => {
+    localStorage.removeItem('splashDisplayed');
+    window.location.reload();
+  };
 
   return (
-    <div className="saesig-content-wrap content">
-      <div className="saesig-title-con">
-        <img className="saesig-title-icon" />
-        <span className="saesig-title">🐶 퍼블리시 리스트</span>
-      </div>
-      <div className="saesig-content-con">
-        <AdoptionRecordList title={'컴포넌트 모음'} onClick={() => handleCardClick('components')} />
-        <AdoptionRecordList title={'로그인'} onClick={() => handleCardClick('login')} />
-        <AdoptionRecordList title={'회원가입'} onClick={() => handleCardClick('join')} />
-        <AdoptionRecordList title={'아이디 찾기'} onClick={() => handleCardClick('find-id')} />
-        <AdoptionRecordList title={'비밀번호 찾기'} onClick={() => handleCardClick('find-password')} />
-        <AdoptionRecordList title={'식구 등록'} onClick={() => handleCardClick('register')} />
-        <AdoptionRecordList title={'입양기록'} onClick={() => handleCardClick('adoption_record')} />
-      </div>
+    <div className="publish">
+      <h1 className="mt-60">퍼블리시 페이지 목록</h1>
+
+      <h3>회원 관련</h3>
+      <ul>
+        <li
+          onClick={() => {
+            navigate('/login');
+          }}
+        >
+          로그인
+        </li>
+        <li
+          onClick={() => {
+            navigate('/join');
+          }}
+        >
+          회원가입
+        </li>
+        <li
+          onClick={() => {
+            navigate('/find-id');
+          }}
+        >
+          아이디 찾기
+        </li>
+        <li
+          onClick={() => {
+            navigate('/find-password');
+          }}
+        >
+          비밀번호 찾기
+        </li>
+      </ul>
+
+      <h3>새로운 식구</h3>
+      <ul>
+        <li
+          onClick={() => {
+            navigate('/register');
+          }}
+        >
+          식구등록
+        </li>
+        <li
+          onClick={() => {
+            navigate('/family');
+          }}
+        >
+          게시물 목록
+        </li>
+        <li
+          onClick={() => {
+            navigate('/family/0');
+          }}
+        >
+          게시물 보기
+        </li>
+      </ul>
+
+      <h3>기타 화면</h3>
+      <ul>
+        <li onClick={handleSplashTestClick}>스플래시 테스트</li>
+      </ul>
     </div>
   );
 };
