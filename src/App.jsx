@@ -12,10 +12,12 @@ import Register from './pages/family/register';
 import FamilyPost from './pages/family/post';
 import FindId from './pages/accounts/find-id';
 import FindPassword from './pages/accounts/find-password';
+import SplashScreen from './pages/home/splash';
 
 function App() {
   return (
     <React.Fragment>
+      <SplashScreen />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

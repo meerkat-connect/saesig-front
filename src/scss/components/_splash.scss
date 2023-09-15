@@ -1,0 +1,47 @@
+@use '../abstracts' as *;
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.ss-splash {
+  @include flex(center, center, column);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: $background-warm;
+  z-index: 10000;
+  animation: fadeOut 0.5s forwards;
+  animation-delay: 1s;
+  &__area {
+    @include flex(center, center, column);
+    position: relative;
+    padding-top: 60px;
+    width: 100%;
+    height: 500px;
+  }
+  &__title {
+    position: relative;
+    > svg {
+      position: absolute;
+      top: -18px;
+    }
+
+    > h1 {
+      @include text-700(24, $text-black);
+      text-align: center;
+      padding-left: 34px;
+      letter-spacing: 28.32px;
+    }
+  }
+  &__subtitle {
+    margin-top: 32px;
+    @include text-400(14, $subtitle);
+    margin-bottom: 60px;
+  }
+}

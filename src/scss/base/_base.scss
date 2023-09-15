@@ -21,19 +21,12 @@ main {
   width: 100%;
   height: calc(100% - $topbar-height - $navbar-height);
   margin: auto;
-
+  padding: 0 20px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  @media #{$sm} {
-    padding: 0 20px;
-  }
-
-  @media (max-height: 1080px) {
   }
 }
 
