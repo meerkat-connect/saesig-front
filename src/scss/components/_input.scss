@@ -144,6 +144,11 @@
       width: 100%;
     }
   }
+
+  &__checkbox {
+    position: absolute;
+    bottom: -30px;
+  }
 }
 
 .ss-age-input {

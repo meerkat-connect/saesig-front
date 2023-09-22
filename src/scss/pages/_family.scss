@@ -216,7 +216,8 @@
     &__floating-button {
       position: fixed;
       bottom: calc($navbar-height + 30px);
-      right: 30px;
+      left: calc(50% + 390px);
+      transform: translateY(-50%);
     }
   }
 }

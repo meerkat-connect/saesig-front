@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export const Dropdown = ({ label, options, ...rest }) => {
+export const Dropdown = ({ options, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const dropdownRef = useRef(null);
@@ -42,32 +42,7 @@ export const Dropdown = ({ label, options, ...rest }) => {
   );
 };
 
-export const PriceInput = ({ ...rest }) => {
-  return (
-    <div className="relative">
-      <div className="relative">
-        <input className="ss-input mt-12" type="text" {...rest} />
-        <span className="ss-input__price">원</span>
-      </div>
-      <div className="free-adoption">
-        <input className="ss-input" type="checkbox" id="freeAdoption" />
-        <label htmlFor="freeAdoption">무료 분양</label>
-      </div>
-    </div>
-  );
-};
-
-export const TextInput = ({ label, ...rest }) => {
-  const required = rest.required || false;
-  return (
-    <div>
-      {label && <label className={`${required && 'ss-input__label --required'} ss-input__label`}>{label}</label>}
-      <input className="ss-input mt-12" type="text" {...rest} />
-    </div>
-  );
-};
-
-export const AgeInput = ({ label, ...rest }) => {
+export const AgeInput = ({ ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [inputValue, setInputValue] = useState('');
@@ -119,6 +94,7 @@ export const AgeInput = ({ label, ...rest }) => {
           value={inputValue}
           disabled={selectedOption === ''}
           required
+          placeholder="나이 입력"
         />
         <div onClick={handleInputClick}>
           <input type="text" value={selectedOption} placeholder="선택" readOnly {...rest} />
@@ -133,18 +109,6 @@ export const AgeInput = ({ label, ...rest }) => {
           </div>
         )}
       </div>
-    </div>
-  );
-};
-
-export const TextArea = ({ label, ...rest }) => {
-  const required = rest.required || false;
-
-  return (
-    <div className="ss-input__textarea">
-      {label && <label className={`${required && 'ss-input__label --required'} ss-input__label`}>{label}</label>}
-      <textarea className="mt-12" cols="30" rows="10" placeholder="내용을 입력해주세요" required></textarea>
-      <div className="pt-10">0/1,000자</div>
     </div>
   );
 };

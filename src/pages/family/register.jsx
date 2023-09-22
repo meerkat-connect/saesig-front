@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../scss/pages/_register.scss';
 import InfoIcon from '../../components/common/infoicon';
-import { AgeInput, Dropdown, PriceInput, TextArea, TextInput } from '../../components/common/inputs';
+import { AgeInput, Dropdown } from '../../components/common/inputs';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -162,37 +162,41 @@ const Register = () => {
           <div className="ss-grid col-gap-10 row-gap-30">
             <div>
               <label className="ss-label --required">품종</label>
-              <Dropdown label="품종" options={breed} placeholder="품종 선택" required />
+              <Dropdown options={breed} placeholder="품종 선택" required />
             </div>
             <div>
               <label className="ss-label --required">성별</label>
-              <Dropdown label="성별" options={breed} placeholder="성별 선택" required />
+              <Dropdown options={breed} placeholder="성별 선택" required />
             </div>
             <div>
               <label className="ss-label --required">나이</label>
-              <AgeInput label="나이" options={age} placeholder="선택" required />
+              <AgeInput options={age} placeholder="선택" required />
             </div>
             <div>
               <label className="ss-label --required">책임비</label>
               <div className="ss-price-input">
                 <input className="ss-input" type="text" placeholder="10,000" maxLength={6} />
                 <span>원</span>
+                <div className="ss-price-input__checkbox">
+                  <input className="ss-input" type="checkbox" name="" id="freeAdoption" />
+                  <label htmlFor="freeAdoption">무료 분양</label>
+                </div>
               </div>
             </div>
             <div className="col-span-2">
               <label className="ss-label --required">제목</label>
-              <input className="ss-input --full" type="text" />
+              <input className="ss-input --full" type="text" placeholder="제목 입력" />
             </div>
             <div className="col-span-2">
               <label className="ss-label --required">소개</label>
               <div className="ss-textarea">
-                <textarea cols="30" rows="10" placeholder="내용을 입력해주세요" required></textarea>
+                <textarea cols="30" rows="10" placeholder="내용 입력" required></textarea>
                 <div className="pt-10">0/1,000자</div>
               </div>
             </div>
             <div>
               <label className="ss-label --required">분양 희망 지역</label>
-              <Dropdown label="분양 희망 지역" options={breed} placeholder="시, 도" required />
+              <Dropdown options={breed} placeholder="시, 도" required />
             </div>
             <div>
               <label className="ss-label">&nbsp;</label>
