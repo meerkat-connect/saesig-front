@@ -73,6 +73,13 @@ const Home = () => {
 
       <h3>기타 화면</h3>
       <ul>
+        <li
+          onClick={() => {
+            navigate('/components');
+          }}
+        >
+          컴포넌트 보기
+        </li>
         <li onClick={handleSplashTestClick}>스플래시 테스트</li>
       </ul>
     </div>

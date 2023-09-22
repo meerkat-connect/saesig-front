@@ -27,15 +27,10 @@ export const Dropdown = ({ label, options, ...rest }) => {
   };
 
   return (
-    <div className={`${isOpen && 'ss-input__label'} ss-input__dropdown`} ref={dropdownRef}>
-      {label ? (
-        <label className="ss-input__label --required mb-12">{label}</label>
-      ) : (
-        <label className="ss-input__label mb-12">&nbsp;</label>
-      )}
+    <div className={`ss-dropdown ${isOpen && '--active'}`} ref={dropdownRef}>
       <input type="text" value={selectedOption} readOnly onClick={handleInputClick} {...rest} />
       {isOpen && options && (
-        <div className="ss-input__options">
+        <div className="ss-dropdown__options">
           {options.map((option, i) => (
             <div key={i} onClick={() => handleOptionClick(option)}>
               {option}
@@ -47,11 +42,9 @@ export const Dropdown = ({ label, options, ...rest }) => {
   );
 };
 
-export const PriceInput = ({ label, ...rest }) => {
-  const required = rest.required || false;
+export const PriceInput = ({ ...rest }) => {
   return (
     <div className="relative">
-      {label && <label className={`${required && 'ss-input__label --required'} ss-input__label`}>{label}</label>}
       <div className="relative">
         <input className="ss-input mt-12" type="text" {...rest} />
         <span className="ss-input__price">원</span>
@@ -74,11 +67,12 @@ export const TextInput = ({ label, ...rest }) => {
   );
 };
 
-export const AgeInput = ({ label, options, ...rest }) => {
+export const AgeInput = ({ label, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const dropdownRef = useRef(null);
-  const required = rest.required || false;
+  const options = ['개월', '년', '모르겠어요'];
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -93,8 +87,22 @@ export const AgeInput = ({ label, options, ...rest }) => {
   }, []);
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
+    if (option !== '모르겠어요') {
+      setSelectedOption(option);
+    } else {
+      setSelectedOption('');
+    }
     setIsOpen(false);
+
+    if (option === '모르겠어요') {
+      setInputValue('모르겠어요');
+    } else {
+      setInputValue('');
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
   };
 
   const handleInputClick = () => {
@@ -103,21 +111,26 @@ export const AgeInput = ({ label, options, ...rest }) => {
 
   return (
     <div>
-      {label && <label className={`${required && 'ss-input__label --required'} ss-input__label`}>{label}</label>}
-      <div className="ss-input__with-dropdown mt-12" ref={dropdownRef}>
-        <input className="ss-input" type="text" required />
-        <div className={`${isOpen && '--open'}`} onClick={handleInputClick}>
-          <input type="text" value={selectedOption} readOnly {...rest} />
-          <div />
+      <div className={`ss-age-input ${isOpen && '--active'}`} ref={dropdownRef}>
+        <input
+          className="ss-input"
+          type="text"
+          onChange={handleInputChange}
+          value={inputValue}
+          disabled={selectedOption === ''}
+          required
+        />
+        <div onClick={handleInputClick}>
+          <input type="text" value={selectedOption} placeholder="선택" readOnly {...rest} />
         </div>
         {isOpen && options && (
-          <ul>
+          <div className="ss-age-input__options">
             {options.map((option, i) => (
-              <li key={i} onClick={() => handleOptionClick(option)}>
+              <div key={i} onClick={() => handleOptionClick(option)}>
                 {option}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>

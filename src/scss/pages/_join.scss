@@ -3,7 +3,9 @@
 .signup {
   @include flex(center, center, column);
   height: 100%;
+  max-width: 490px;
   width: 100%;
+  margin: 0 auto;
 
   &__title {
     @include flex(start, start, column);

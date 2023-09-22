@@ -19,9 +19,9 @@ const Login = () => {
         <span>새로운 식구와 함께하는 일상 기록</span>
       </div>
       <form className="ss-form w-490 mb-30">
-        <input className="ss-input mb-6 --error" type="text" placeholder="아이디(이메일)입력" />
+        <input className="ss-input --full --error mb-6" type="text" placeholder="아이디(이메일)입력" />
         <div className="notification notification--caution">이메일 형식이 올바르지 않습니다.</div>
-        <input className="ss-input" type="password" placeholder="비밀번호 입력" />
+        <input className="ss-input --full" type="password" placeholder="비밀번호 입력" />
         <div className="ss-form__row-container mt-20 mb-30">
           <input className="ss-input" type="checkbox" id="staySignedIn" />
           <label className="mr-8" htmlFor="staySignedIn">
@@ -35,7 +35,7 @@ const Login = () => {
             message="개인정보 보호를 위해 개인 PC에서만 사용해주세요."
           />
         </div>
-        <button className="ss-button ss-button--lg">로그인 하기</button>
+        <button className="ss-button --lg --full">로그인 하기</button>
       </form>
       <div className="ss-group mb-120">
         <button className="ss-text-button" onClick={() => navigate('/find-id')}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../scss/pages/_signup.scss';
+import '../../scss/pages/_join.scss';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
@@ -56,16 +56,16 @@ const SignUp = () => {
               <br />
               2. 본 약관에 명시되지 않은 사항이 관계법령에 규정되어 있을 경우에는 그 규정에 따릅니다.
             </p>
-            <button className="ss-button ss-button--md ss-button--w-auto mb-40">확인</button>
+            <button className="ss-button --md mb-40">확인</button>
           </div>
         </div>
 
-        <div className="signup__title w-490 mb-60">
+        <div className="signup__title mb-60">
           새식일기 서비스 이용약관에
           <br />
           동의해주세요
         </div>
-        <div className="ss-form w-490">
+        <div className="ss-form">
           <ul className="ss-form__col-container mb-60">
             <input className="ss-input" type="checkbox" id="agreeTOSAll" />
             <label htmlFor="agreeTOSAll">모두 동의 (선택 항목 포함)</label>
@@ -99,7 +99,7 @@ const SignUp = () => {
               <button className="ss-text-button --underline">보기</button>
             </li>
           </ul>
-          <button className="ss-button ss-button--lg" onClick={() => goNextStep(2)}>
+          <button className="ss-button --lg --full" onClick={() => goNextStep(2)}>
             동의하고 가입하기
           </button>
         </div>
@@ -110,20 +110,20 @@ const SignUp = () => {
         <div className="progress-bar progress-bar--2">
           <div className="pagenation">2/4</div>
         </div>
-        <div className="signup__title w-490 mb-60">
+        <div className="signup__title mb-60">
           로그인에 사용할
           <br />
           아이디(이메일)를 입력해주세요
         </div>
-        <div className="ss-form w-490">
-          <input className="ss-input mb-10" type="text" placeholder="아이디(이메일) 입력" />
+        <div className="ss-form">
+          <input className="ss-input --full mb-10" type="text" placeholder="아이디(이메일) 입력" />
           <div className="notification notification--caution">이메일 형식이 올바르지 않습니다.</div>
           <div className="notification notification--success">사용 가능한 이메일 입니다.</div>
           <div className="social mb-10">
             <span>간편로그인 : Kakao</span>
             <button className="ss-text-button --underline">간편로그인 화면으로 이동</button>
           </div>
-          <button className="ss-button ss-button--lg" onClick={() => goNextStep(3)}>
+          <button className="ss-button --lg --full" onClick={() => goNextStep(3)}>
             다음
           </button>
         </div>
@@ -134,20 +134,20 @@ const SignUp = () => {
         <div className="progress-bar progress-bar--3">
           <div className="pagenation">3/4</div>
         </div>
-        <div className="signup__title w-490 mb-60">
+        <div className="signup__title mb-60">
           로그인에 사용할
           <br />
           비밀번호를 입력해주세요
         </div>
-        <div className="ss-form w-490">
-          <input className="ss-input --error mb-10" type="password" placeholder="비밀번호 입력" />
+        <div className="ss-form">
+          <input className="ss-input --full --error mb-10" type="password" placeholder="비밀번호 입력" />
           <div className="notification">영문, 숫자, 특수문자(!@#$) 각 1자 이상 포함하여 8~15자 이내</div>
           <div className="notification notification--caution">
             영문, 숫자, 특수문자(!@#$) 각 1자 이상 포함하여 8~15자 이내
           </div>
-          <input className="ss-input mb-10" type="password" placeholder="비밀번호 확인" />
+          <input className="ss-input --full mb-10" type="password" placeholder="비밀번호 확인" />
           <div className="notification notification--success">비밀번호가 일치합니다.</div>
-          <button className="ss-button ss-button--lg" onClick={() => goNextStep(4)}>
+          <button className="ss-button --lg --full" onClick={() => goNextStep(4)}>
             다음
           </button>
         </div>
@@ -158,13 +158,13 @@ const SignUp = () => {
         <div className="progress-bar progress-bar--4">
           <div className="pagenation">4/4</div>
         </div>
-        <div className="signup__title w-490 mb-60">
+        <div className="signup__title mb-60">
           새식일기에서 활동할
           <br />
           닉네임을 입력해주세요
         </div>
-        <div className="ss-form w-490">
-          <input className="ss-input --error mb-10" type="text" placeholder="비밀번호 입력" />
+        <div className="ss-form">
+          <input className="ss-input --full --error mb-10" type="text" placeholder="비밀번호 입력" />
           <div className="notification">한글 또는 영문 8자 이내로 입력 (비속어 또는 특수문자는 사용할 수 없습니다)</div>
           <div className="notification notification--caution">
             이미 사용중인 닉네임 입니다. 다른 닉네임을 입력해주세요
@@ -173,7 +173,7 @@ const SignUp = () => {
             비속어, 특수문자가 포함되어 사용할 수 없는 닉네임 입니다.
           </div>
           <div className="notification notification--success">사용 가능한 닉네임 입니다</div>
-          <button className="ss-button ss-button--lg" onClick={() => goNextStep(5)}>
+          <button className="ss-button --lg --full" onClick={() => goNextStep(5)}>
             다음
           </button>
         </div>
@@ -182,13 +182,13 @@ const SignUp = () => {
       {/* step 5 */}
       <div id="signup-5" className="signup" style={{ display: 'none' }}>
         <div className="progress-bar progress-bar--5"></div>
-        <div className="signup__title w-490 mb-60">
+        <div className="signup__title mb-60">
           새식이 님
           <br />
           새식일기의 가족이 되신 것을 환영합니다 :D
         </div>
         <img src="/src/assets/pictograms/family_all.svg" alt="손인사하는 식구들" />
-        <button className="ss-button ss-button--lg w-490 mt-60" onClick={() => navigate('/')}>
+        <button className="ss-button --lg --full mt-60" onClick={() => navigate('/')}>
           새식일기 시작하기
         </button>
       </div>

@@ -47,7 +47,7 @@ const Family = () => {
           <br />
           새로운 식구를 저희에게 소개시켜주세요
         </p>
-        <button className="ss-button ss-button--lg" onClick={() => navigate('/register')}>
+        <button className="ss-button --lg" onClick={() => navigate('/register')}>
           식구 등록하기
         </button>
       </div> */}
@@ -55,7 +55,7 @@ const Family = () => {
       {/* 콘텐츠 영역 */}
       <section className="family-content__filter mt-20">
         <div>
-          <button className="ss-button-icon ss-button-icon--primary">
+          <button className="ss-icon-button --primary">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"

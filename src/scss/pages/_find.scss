@@ -3,7 +3,8 @@
 .find {
   @include flex(center, center, column);
   height: 100%;
-  width: 100%;
+  max-width: 490px;
+  margin: 0 auto;
 
   &__title {
     @include flex(start, start, column);

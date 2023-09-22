@@ -36,5 +36,9 @@
       @include flex(center, center);
       width: 100%;
     }
+
+    &.--490 {
+      max-width: 490px;
+    }
   }
 }

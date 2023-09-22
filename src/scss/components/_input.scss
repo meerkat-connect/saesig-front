@@ -6,9 +6,8 @@
     @include rounded();
     @include text-500(16, $text-black, 26);
     border: 1px solid $line-light;
-    height: 50px;
-    width: 100%;
-    padding: 0 24px;
+    padding: 12px 24px;
+    display: block;
 
     &::placeholder {
       color: $text-gray;
@@ -17,141 +16,11 @@
     &.--error {
       border: 1px solid $primary;
     }
-  }
 
-  &__with-button {
-    position: relative;
-    width: 100%;
-
-    > div {
-      display: flex;
-      align-items: center;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-
-      span {
-        @include text-500(14, $primary);
-        margin-right: 12px;
-      }
-
-      .ss-button {
-        width: 67px;
-      }
-    }
-  }
-
-  &__with-dropdown {
-    @include flex(start, start, column);
-    position: relative;
-    width: 100%;
-
-    div {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      top: 0px;
-      right: 8px;
-      height: 50px;
-      cursor: pointer;
-
-      > input {
-        @include text-500(16, $text-black, 26);
-        width: 40px;
-        height: 50px;
-        text-align: right;
-        margin-right: 44px;
-        border: 0;
-        border-top: 1px solid $line-light;
-        border-bottom: 1px solid $line-light;
-        cursor: pointer;
-      }
-
-      div::after {
-        content: '';
-        width: 24px;
-        height: 24px;
-        background: url(src/assets/icons/2424/chevron_sm_down.svg) no-repeat center;
-        margin: 13px 0;
-      }
-    }
-
-    div.--open {
-      div::after {
-        transform: rotate(180deg);
-      }
-    }
-
-    ul {
-      @include rounded(15);
-      position: absolute;
-      top: 54px;
-      left: 0;
-      z-index: 1;
+    &.--full {
       width: 100%;
-      max-height: 200px;
-      background: $background;
-      border: 1px solid $line-strong;
-      overflow-x: hidden;
-      overflow-y: auto;
-
-      > li {
-        @include text-500(16, $text-black);
-        padding: 15px 24px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f8f7f7;
-          color: #ff8031;
-        }
-      }
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
     }
   }
-
-  &__textarea {
-    textarea {
-      @include rounded(15);
-      @include text-500(16, $text-black, 26);
-      border: 1px solid $line-light;
-      width: 100%;
-      padding: 12px 24px;
-
-      &::placeholder {
-        color: $text-gray;
-      }
-
-      &.--error {
-        border: 1px solid $primary;
-      }
-    }
-
-    div {
-      @include text-500(12, $text-gray, 14);
-      text-align: right;
-    }
-  }
-
-  &__label {
-    @include text-700(14, $text-black);
-    position: relative;
-
-    &.--required::after {
-      content: '*';
-      color: $primary;
-    }
-  }
-
-  &__price {
-    @include text-500(14, $text-black);
-    position: absolute;
-    right: 20px;
-    bottom: 18px;
-  }
-
   &[type='checkbox'] {
     display: none;
 
@@ -168,115 +37,164 @@
         height: 20px;
         width: 20px;
         background: url('src/assets/buttons/checkbox_inactive.svg') no-repeat center;
-        cursor: pointer;
         margin-right: 6px;
       }
+
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    &:hover + label::before {
+      @include rounded();
+      border: 1px solid $primary;
+      background-color: #ff80311a;
     }
 
     &:checked + label::before {
       background: url('src/assets/buttons/checkbox_active.svg') no-repeat center;
     }
-  }
 
-  &__file {
-    @include flex(center, center, column);
-    @include rounded(15);
+    &:checked:hover + label {
+      color: $text-black;
+    }
+
+    &:checked:hover + label::before {
+      border: 0;
+      background-color: 0;
+    }
+  }
+  &[type='radio'] {
+    display: none;
+
+    & + label {
+      @include text-500(14, $text-black);
+      height: 20px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        background: url('src/assets/buttons/radio_inactive.svg') no-repeat center;
+        margin-right: 6px;
+      }
+    }
+
+    &:checked + label::before {
+      background: url('src/assets/buttons/radio_active.svg') no-repeat center;
+    }
+
+    &:checked:hover + label::before {
+      border: 0;
+      background-color: 0;
+    }
+  }
+}
+
+.ss-button-input {
+  position: relative;
+
+  > input {
     width: 100%;
-    border: 1px dashed $text-black;
-
-    & > span {
-      @include text-700(16, $text-black, 22);
-      margin: 6px 0 12px 0;
-    }
-
-    & > p {
-      @include text-500(14, $text-gray, 20);
-    }
-
-    & > input {
-      display: none;
-    }
   }
 
-  &__image {
-    position: relative;
-    @include flex(center, center, column);
-    @include rounded(15);
-    width: 100%;
-    border: 1px solid $text-black;
-    overflow: hidden;
-
-    & > img {
-      @include center-center();
-      position: absolute;
-      object-fit: fill;
-    }
-
-    & > span {
-      @include flex(center, center);
-      @include text-500(12, $text-white, 18);
-      background-color: rgba(0, 0, 0, 0.6);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 30px;
-    }
-  }
-
-  &__delete {
+  > div {
+    display: flex;
+    align-items: center;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url('src/assets/buttons/delete_default.svg') no-repeat center;
-    cursor: pointer;
+    top: 8px;
+    right: 8px;
 
-    &:hover {
-      background: url('src/assets/buttons/delete_hover.svg') no-repeat center;
+    span {
+      @include text-500(14, $primary);
+      margin-right: 12px;
     }
   }
 
-  &__dropdown {
-    @include flex(start, start, column);
-    position: relative;
+  &.--full {
+    width: 100%;
+  }
+}
+
+.ss-price-input {
+  position: relative;
+
+  > input {
+    width: 100%;
+  }
+
+  > span {
+    @include text-500(14, $text-black);
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 20px;
+  }
+
+  &.--full {
     width: 100%;
 
-    & > input[type='text'] {
-      @include text-500(16, $text-black, 26);
-      order: 1;
+    > input {
       width: 100%;
-      background: $background;
-      outline: none;
-      padding: 12px 24px;
-      margin-bottom: 4px;
-      border-radius: 25px;
-      border: 1px solid $line-light;
-      cursor: pointer;
     }
+  }
+}
 
-    &::before {
-      position: absolute;
-      content: '';
-      width: 24px;
-      height: 24px;
-      right: 15px;
-      bottom: 18px;
-      pointer-events: none;
-      background-image: url('src/assets/icons/2424/chevron_sm_down.svg');
-    }
+.ss-age-input {
+  position: relative;
 
-    &--active::before {
-      transform: rotate(180deg);
-    }
+  & > input[type='text'] {
+    @include text-500(16, $text-black, 26);
+    order: 1;
+    width: 100%;
+    background: $background;
+    outline: none;
+    padding: 12px 24px;
+    margin-bottom: 4px;
+    border-radius: 25px;
+    border: 1px solid $line-light;
+  }
+
+  & > div > input[type='text'] {
+    @include text-500(16, $text-black, 26);
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 77px;
+    padding-right: 50px;
+    text-align: right;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    bottom: 18px;
+    pointer-events: none;
+    background: url('src/assets/icons/2424/chevron_sm_down.svg') center no-repeat;
+  }
+
+  &.--active::before {
+    transform: rotate(180deg);
   }
 
   &__options {
     @include rounded(15);
     position: absolute;
-    top: 85px;
+    top: 56px;
     order: 2;
     z-index: 1;
     width: 100%;
@@ -299,6 +217,204 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+}
+
+.ss-dropdown {
+  @include flex(start, start, column);
+  position: relative;
+
+  & > input[type='text'] {
+    @include text-500(16, $text-black, 26);
+    order: 1;
+    width: 100%;
+    background: $background;
+    outline: none;
+    padding: 12px 24px;
+    margin-bottom: 4px;
+    border-radius: 25px;
+    border: 1px solid $line-light;
+    cursor: pointer;
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    right: 15px;
+    bottom: 18px;
+    pointer-events: none;
+    background-image: url('src/assets/icons/2424/chevron_sm_down.svg');
+  }
+
+  &.--active::before {
+    transform: rotate(180deg);
+  }
+
+  &__options {
+    @include rounded(15);
+    position: absolute;
+    top: 56px;
+    order: 2;
+    z-index: 1;
+    width: 100%;
+    max-height: 200px;
+    background: $background;
+    border: 1px solid $line-strong;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    > div {
+      @include text-500(16, $text-black);
+      padding: 15px 24px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f8f7f7;
+        color: #ff8031;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.ss-textarea {
+  textarea {
+    @include rounded(15);
+    @include text-500(16, $text-black, 26);
+    border: 1px solid $line-light;
+    width: 100%;
+    padding: 12px 24px;
+
+    &::placeholder {
+      color: $text-gray;
+    }
+
+    &.--error {
+      border: 1px solid $primary;
+    }
+
+    &.--full {
+      width: 100%;
+    }
+  }
+
+  div {
+    @include text-500(12, $text-gray, 14);
+    text-align: right;
+  }
+}
+
+.ss-label {
+  @include text-700(14, $text-black);
+  display: block;
+  margin-bottom: 12px;
+
+  &.--required::after {
+    content: '*';
+    color: $primary;
+  }
+}
+
+.ss-description {
+  @include flex(start, center);
+  @include text-500(14, $text-gray);
+
+  align-self: flex-start;
+  margin: 10px 0 0 24px;
+
+  > img {
+    padding-right: 6px;
+  }
+
+  &.--warning {
+    color: $primary;
+
+    &::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      margin-right: 6px;
+      background-image: url('src/assets/icons/1212/caution.svg');
+    }
+  }
+
+  &.--pass {
+    color: $text-green;
+
+    &::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      margin-right: 6px;
+      background-image: url('src/assets/icons/1212/check.svg');
+    }
+  }
+}
+
+.ss-upload {
+  @include flex(center, center, column);
+  @include rounded(15);
+  width: 100%;
+  border: 1px dashed $text-black;
+
+  & > span {
+    @include text-700(16, $text-black, 22);
+    margin: 6px 0 12px 0;
+  }
+
+  & > p {
+    @include text-500(14, $text-gray, 20);
+    text-align: center;
+  }
+
+  & > input {
+    display: none;
+  }
+}
+
+.ss-image {
+  position: relative;
+  @include flex(center, center, column);
+  @include rounded(15);
+  width: 100%;
+  border: 1px solid $text-black;
+  overflow: hidden;
+
+  & > img {
+    @include center-center();
+    position: absolute;
+    object-fit: fill;
+  }
+
+  & > span {
+    @include flex(center, center);
+    @include text-500(12, $text-white, 18);
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+  }
+
+  & > button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('src/assets/buttons/delete_default.svg') no-repeat center;
+    cursor: pointer;
+
+    &:hover {
+      background: url('src/assets/buttons/delete_hover.svg') no-repeat center;
     }
   }
 }

@@ -14,6 +14,9 @@ import FindId from './pages/accounts/find-id';
 import FindPassword from './pages/accounts/find-password';
 import SplashScreen from './pages/home/splash';
 
+// Publish Temporary
+import Components from './pages/temp/components';
+
 function App() {
   return (
     <React.Fragment>
@@ -21,6 +24,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+
+          <Route path="components" element={<Components />} />
           <Route path="login" element={<Login />} />
           <Route path="join" element={<SignUp />} />
           <Route path="find-id" element={<FindId />} />

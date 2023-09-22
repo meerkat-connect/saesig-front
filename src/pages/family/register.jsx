@@ -60,7 +60,7 @@ const Register = () => {
               <label htmlFor="input-dal" />
             </div>
           </div>
-          <button className="ss-button ss-button--lg w-490" onClick={() => goNextStep(2)}>
+          <button className="ss-button --lg --full w-490" onClick={() => goNextStep(2)}>
             다음
           </button>
         </div>
@@ -79,7 +79,7 @@ const Register = () => {
         </div>
         {/* before upload */}
         <div className="ss-form">
-          <label className="ss-input__file h-300 mb-60">
+          <label className="ss-upload h-300 mb-60">
             <img src="/src/assets/icons/2424/image.svg" alt="사진 올리기" />
             <span>이미지를 등록해주세요 (최대 6장)</span>
             <p>
@@ -110,36 +110,36 @@ const Register = () => {
             </div>
           </div>
           <div className="ss-grid cols-repeat-3 rows-repeat-2 gap-12 mb-60">
-            <div className="ss-input__image">
+            <div className="ss-image">
               <img src="/src/assets/images/samples/sample1.webp" alt="" />
-              <div className="ss-input__delete" />
+              <button />
               <span>대표 이미지</span>
             </div>
-            <div className="ss-input__image">
+            <div className="ss-image">
               <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-              <div className="ss-input__delete" />
+              <button />
             </div>
-            <div className="ss-input__image">
+            <div className="ss-image">
               <img src="/src/assets/images/samples/sample3.jpg" alt="" />
-              <div className="ss-input__delete" />
+              <button />
             </div>
-            <label className="ss-input__file h-150">
+            <label className="ss-upload h-150">
               <img src="/src/assets/buttons/add.svg" alt="" />
               <p>이미지를 등록해주세요</p>
               <input type="file" accept="image/*" />
             </label>
-            <label className="ss-input__file h-150">
+            <label className="ss-upload h-150">
               <img src="/src/assets/buttons/add.svg" alt="" />
               <p>이미지를 등록해주세요</p>
               <input type="file" accept="image/*" />
             </label>
-            <label className="ss-input__file h-150">
+            <label className="ss-upload h-150">
               <img src="/src/assets/buttons/add.svg" alt="" />
               <p>이미지를 등록해주세요</p>
               <input type="file" accept="image/*" />
             </label>
           </div>
-          <button className="ss-button ss-button--lg w-490" onClick={() => goNextStep(3)}>
+          <button className="ss-button --lg --full w-490" onClick={() => goNextStep(3)}>
             다음
           </button>
         </div>
@@ -160,24 +160,50 @@ const Register = () => {
 
         <div className="ss-form">
           <div className="ss-grid col-gap-10 row-gap-30">
-            <Dropdown label="품종" options={breed} placeholder="품종 선택" required />
-            <Dropdown label="성별" options={breed} placeholder="성별 선택" required />
-            <AgeInput label="나이" options={age} placeholder="선택" required />
-            <PriceInput label="책임비" placeholder="10,000" required />
-            <div className="col-span-2">
-              <TextInput label="제목" placeholder="제목 입력" required />
+            <div>
+              <label className="ss-label --required">품종</label>
+              <Dropdown label="품종" options={breed} placeholder="품종 선택" required />
+            </div>
+            <div>
+              <label className="ss-label --required">성별</label>
+              <Dropdown label="성별" options={breed} placeholder="성별 선택" required />
+            </div>
+            <div>
+              <label className="ss-label --required">나이</label>
+              <AgeInput label="나이" options={age} placeholder="선택" required />
+            </div>
+            <div>
+              <label className="ss-label --required">책임비</label>
+              <div className="ss-price-input">
+                <input className="ss-input" type="text" placeholder="10,000" maxLength={6} />
+                <span>원</span>
+              </div>
             </div>
             <div className="col-span-2">
-              <TextArea label="소개" placeholder="내용 입력" required />
+              <label className="ss-label --required">제목</label>
+              <input className="ss-input --full" type="text" />
             </div>
-            <Dropdown label="분양 희망 지역" options={breed} placeholder="시, 도" required />
-            <Dropdown options={breed} placeholder="시, 군, 구" required />
+            <div className="col-span-2">
+              <label className="ss-label --required">소개</label>
+              <div className="ss-textarea">
+                <textarea cols="30" rows="10" placeholder="내용을 입력해주세요" required></textarea>
+                <div className="pt-10">0/1,000자</div>
+              </div>
+            </div>
+            <div>
+              <label className="ss-label --required">분양 희망 지역</label>
+              <Dropdown label="분양 희망 지역" options={breed} placeholder="시, 도" required />
+            </div>
+            <div>
+              <label className="ss-label">&nbsp;</label>
+              <Dropdown options={breed} placeholder="시, 군, 구" required />
+            </div>
           </div>
           <button className="current-location">
             <img src="/src/assets/icons/2020/position.svg" alt="" />
             <span>현재 위치 사용</span>
           </button>
-          <button className="ss-button ss-button--lg w-490 mt-60" onClick={() => goNextStep(4)}>
+          <button className="ss-button --lg --full w-490 mt-60" onClick={() => goNextStep(4)}>
             다음
           </button>
         </div>
@@ -198,9 +224,12 @@ const Register = () => {
 
         <div className="ss-form">
           <div className="ss-grid cols-repeat-2 col-gap-10 row-gap-30">
-            <Dropdown label="중성화 여부" options={neuter} placeholder="선택해주세요" required />
+            <div>
+              <label className="ss-label --required">중성화 여부</label>
+              <Dropdown label="중성화 여부" options={neuter} placeholder="선택해주세요" required />
+            </div>
             <div className="col-span-2">
-              <label className="ss-input__label">백신 접종 여부</label>
+              <label className="ss-label">백신 접종 여부</label>
               <div className="vaccine mt-12">
                 <label>
                   <input type="checkbox" />
@@ -233,14 +262,14 @@ const Register = () => {
               </div>
             </div>
             <div className="col-span-2">
-              <TextArea
-                label="기타 질병 및 특이사항"
-                placeholder="꼭 알아야 할 질병 정보 또는 특이사항을 입력해 주세요"
-                required
-              />
+              <label className="ss-label">기타 질병 및 특이사항</label>
+              <div className="ss-textarea">
+                <textarea cols="30" rows="10" placeholder="내용을 입력해주세요" required></textarea>
+                <div className="pt-10">0/1,000자</div>
+              </div>
             </div>
           </div>
-          <button className="ss-button ss-button--lg w-490 mt-60" onClick={() => navigate('/')}>
+          <button className="ss-button --lg --full w-490 mt-60" onClick={() => navigate('/')}>
             식구 등록 완료
           </button>
         </div>
@@ -251,22 +280,22 @@ const Register = () => {
 
         {/* modal 1 */}
         {/* <div className="ss-modal">
-          <div className="ss-modal__window w-490">
+          <div className="ss-modal__window">
             <img src="/src/assets/icons/2424/close.svg" alt="" />
             <p className="mt-40 mb-60">
               지금 작성을 그만두면 내용이 저장되지 않습니다. <br />
               정말 나갈까요?
             </p>
             <div>
-              <button className="ss-button ss-button--md ss-button--negative mr-10">아니요</button>
-              <button className="ss-button ss-button--md">네, 나갈래요</button>
+              <button className="ss-button --md --negative mr-10">아니요</button>
+              <button className="ss-button --md">네, 나갈래요</button>
             </div>
           </div>
         </div> */}
 
         {/* modal 2 */}
-        <div className="ss-modal">
-          <div className="ss-modal__window w-490">
+        {/* <div className="ss-modal">
+          <div className="ss-modal__window --490">
             <img className="ss-modal__family" src="/src/assets/pictograms/family_modal.svg" alt="식구등록 완료" />
             <img className="ss-modal__close" src="/src/assets/icons/2424/close.svg" alt="" />
             <p className="mt-40 mb-60">
@@ -275,10 +304,10 @@ const Register = () => {
               새식일기와 함께 좋은 시간들을 기록해나가요 :)
             </p>
             <div>
-              <button className="ss-button ss-button--md w-220">네, 좋아요!</button>
+              <button className="ss-button --md --full">네, 좋아요!</button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
