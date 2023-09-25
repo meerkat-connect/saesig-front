@@ -6,7 +6,7 @@
   width: 100%;
   height: $navbar-height;
   background-color: $background;
-  z-index: 9999;
+  z-index: 8000;
 
   &__wrap {
     @include flex(space-between, center);

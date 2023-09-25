@@ -263,7 +263,7 @@ const Components = () => {
 
       <section>
         <aside>
-          <h5>Input: Button</h5>
+          <h5>Input: Button + Timer</h5>
           <h6>-</h6>
         </aside>
         <div>
@@ -272,6 +272,21 @@ const Components = () => {
             <div>
               <span>00:00</span>
               <button className="ss-button --sm">재전송</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <aside>
+          <h5>Input: Button</h5>
+          <h6>-</h6>
+        </aside>
+        <div>
+          <div className="ss-button-input">
+            <input className="ss-input" type="text" placeholder="https://sasig.com/list_view001" maxLength={6} />
+            <div>
+              <button className="ss-button --sm">복사</button>
             </div>
           </div>
         </div>

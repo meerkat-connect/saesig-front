@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import getPageTitle from '../../helpers/getPageTitle';
 import FlyoutMenu from '../common/flyout';
+import SearchBar from '../common/search-bar';
 
 // eslint-disable-next-line react/prop-types
 const Topbar = () => {
@@ -48,9 +49,7 @@ const Topbar = () => {
         <div className="topbar__section-right">
           {isMain && (
             <div className="topbar__button-group">
-              <button>
-                <img src="/src/assets/icons/2424/search.svg" alt="" />
-              </button>
+              <SearchBar />
               <button>
                 <img src="/src/assets/icons/2424/alarm_new.svg" alt="" />
               </button>
@@ -66,7 +65,7 @@ const Topbar = () => {
               <button>
                 <img src="/src/assets/icons/2424/like_outline.svg" alt="" />
               </button>
-              <FlyoutMenu isMyPost />
+              <FlyoutMenu isPost />
             </div>
           )}
         </div>

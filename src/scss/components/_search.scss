@@ -1,0 +1,111 @@
+@use '../abstracts' as *;
+
+.ss-search-bar {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  &__flyout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000b2;
+    z-index: 9000;
+
+    & .flyout {
+      &__window {
+        padding: 80px 0 60px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0px 0px 30px 30px;
+        background: #fff;
+        z-index: 9000;
+      }
+
+      &__container {
+        @include flex(start, center, column);
+        position: relative;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      &__group {
+        width: 100%;
+        margin-top: 50px;
+        > div:first-child {
+          @include flex(start, center);
+          > h3 {
+            @include text-700(18, $text-black);
+            display: inline-flex;
+            align-items: center;
+            margin-right: auto;
+            margin-bottom: 20px;
+
+            > span:first-child {
+              color: $primary;
+              margin-right: 4px;
+            }
+
+            > button {
+              display: inline-flex;
+              margin-left: 8px;
+
+              &.--active {
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+        > div:last-child {
+          > label:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ss-search-tag {
+  > div {
+    @include text-500(16, $text-black, 26);
+    @include rounded();
+    display: inline-flex;
+    align-items: center;
+    background-color: $background;
+    border: 1px solid $line-light;
+
+    > span {
+      &:not(:last-child) {
+        padding: 4px 0px 4px 16px;
+      }
+
+      &:last-child {
+        padding: 4px 16px;
+      }
+    }
+
+    > button {
+      padding: 4px 10px 4px 4px;
+    }
+  }
+
+  > input {
+    display: none;
+
+    &:checked + div {
+      background-color: $primary;
+      color: $text-white;
+      border-color: $primary;
+
+      > button {
+        display: inline-flex;
+        color: $text-white;
+      }
+    }
+  }
+}

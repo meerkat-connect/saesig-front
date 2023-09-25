@@ -20,11 +20,49 @@
     width: max-content;
     background-color: $background;
     z-index: 100;
-    padding: 12px 20px;
+    padding: 18px 20px;
 
-    &--my-post {
+    &.--post {
       top: 40px;
       right: 0;
+    }
+
+    & .menu {
+      &__content {
+        padding-bottom: 10px;
+
+        h3 {
+          @include text-700(14px, $text-black);
+        }
+      }
+
+      &__title {
+        @include flex(center, center);
+        @include text-700(18, $text-black);
+        position: relative;
+        margin-bottom: 40px;
+
+        > button {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+
+      &__social-buttons {
+        @include flex(center, start);
+        button {
+          @include flex(center, center, column);
+          @include text-500(12, $text-black);
+          > img {
+            margin-bottom: 5px;
+          }
+
+          &:not(:last-child) {
+            margin-right: 25px;
+          }
+        }
+      }
     }
   }
 

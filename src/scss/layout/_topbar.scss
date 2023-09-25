@@ -6,7 +6,7 @@
   height: $topbar-height;
   background-color: $background;
   border-bottom: 1px solid $line-light;
-  z-index: 9999;
+  z-index: 8000;
 
   &__wrap {
     @include flex(space-between, center);

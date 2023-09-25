@@ -216,8 +216,18 @@
     &__floating-button {
       position: fixed;
       bottom: calc($navbar-height + 30px);
-      left: calc(50% + 390px);
-      transform: translateY(-50%);
+
+      @media #{$sm} {
+        right: 30px;
+      }
+
+      @media #{$md} {
+        right: 30px;
+      }
+
+      @media #{$lg} {
+        left: calc(50% + 390px);
+      }
     }
   }
 }

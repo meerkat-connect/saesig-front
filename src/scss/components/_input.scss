@@ -36,7 +36,7 @@
         display: inline-block;
         height: 20px;
         width: 20px;
-        background: url('src/assets/buttons/checkbox_inactive.svg') no-repeat center;
+        background: url('/src/assets/buttons/checkbox_inactive.svg') no-repeat center;
         margin-right: 6px;
       }
 
@@ -52,7 +52,7 @@
     }
 
     &:checked + label::before {
-      background: url('src/assets/buttons/checkbox_active.svg') no-repeat center;
+      background: url('/src/assets/buttons/checkbox_active.svg') no-repeat center;
     }
 
     &:checked:hover + label {
@@ -79,13 +79,13 @@
         display: inline-block;
         height: 20px;
         width: 20px;
-        background: url('src/assets/buttons/radio_inactive.svg') no-repeat center;
+        background: url('/src/assets/buttons/radio_inactive.svg') no-repeat center;
         margin-right: 6px;
       }
     }
 
     &:checked + label::before {
-      background: url('src/assets/buttons/radio_active.svg') no-repeat center;
+      background: url('/src/assets/buttons/radio_active.svg') no-repeat center;
     }
 
     &:checked:hover + label::before {
@@ -421,5 +421,39 @@
     &:hover {
       background: url('src/assets/buttons/delete_hover.svg') no-repeat center;
     }
+  }
+}
+
+.ss-search-input {
+  position: relative;
+
+  > input {
+    @include rounded();
+    @include text-500(16, $text-black, 26);
+    height: 50px;
+    border: none;
+    padding: 0 24px;
+    display: block;
+    background-color: #f4f5f4;
+    width: 100%;
+
+    &::placeholder {
+      color: $text-gray;
+    }
+  }
+
+  > button {
+    @include rounded();
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    background-color: $primary;
+  }
+
+  &.--full {
+    width: 100%;
   }
 }
