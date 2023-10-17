@@ -17,9 +17,10 @@ const SignUp = () => {
         .then(res => {
           // TEST용 코드
           if(res.data > 0) {
-            alert('중복된 이메일이 존재합니다.')
+            alert('중복된 이메일이 존재합니다.');
           } else {
-            alert('사용 가능한 이메일입니다.')
+            alert('사용 가능한 이메일입니다.');
+            goNextStep(3);
           }
         });
   };
