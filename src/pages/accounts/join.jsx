@@ -1,13 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../scss/pages/_join.scss';
 import { useNavigate } from 'react-router-dom';
+import * as joinApi from '../../api/accounts/join.js'
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState(''); // 상태 초기값은 빈 문자열
+
   const goNextStep = (step) => {
     document.querySelector(`#signup-${step - 1}`).style.display = 'none';
     document.querySelector(`#signup-${step}`).style.display = 'flex';
   };
+
+  const handleEmailDupCheck = () => {
+    joinApi.getEmailDuplicate(email)
+        .then(res => {
+          // TEST용 코드
+          if(res.data > 0) {
+            alert('중복된 이메일이 존재합니다.')
+          } else {
+            alert('사용 가능한 이메일입니다.')
+          }
+        });
+  };
+
 
   return (
     <>
@@ -116,14 +132,14 @@ const SignUp = () => {
           아이디(이메일)를 입력해주세요
         </div>
         <div className="ss-form">
-          <input className="ss-input --full mb-10" type="text" placeholder="아이디(이메일) 입력" />
+          <input className="ss-input --full mb-10" type="text" placeholder="아이디(이메일) 입력" value={email} onChange={(e) => setEmail(e.target.value)}/>
           <div className="notification notification--caution">이메일 형식이 올바르지 않습니다.</div>
           <div className="notification notification--success">사용 가능한 이메일 입니다.</div>
           <div className="social mb-10">
             <span>간편로그인 : Kakao</span>
             <button className="ss-text-button --underline">간편로그인 화면으로 이동</button>
           </div>
-          <button className="ss-button --lg --full" onClick={() => goNextStep(3)}>
+          <button className="ss-button --lg --full" onClick={() => handleEmailDupCheck()}>
             다음
           </button>
         </div>
