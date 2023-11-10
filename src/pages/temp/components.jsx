@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../scss/pages/_publish-progress.scss';
 import { AgeInput, Dropdown } from '../../components/common/inputs';
+import Chats from '../../components/common/chats';
 
 const breed = [
   '골든 리트리버',
@@ -361,6 +362,16 @@ const Components = () => {
           <label htmlFor="ss-radio1"></label>
           <input className="ss-input" type="radio" name="radio" id="ss-radio2" />
           <label htmlFor="ss-radio2"></label>
+        </div>
+      </section>
+
+      <section>
+        <aside>
+          <h5>Chats</h5>
+          <h6>-</h6>
+        </aside>
+        <div>
+          <Chats />
         </div>
       </section>
     </div>

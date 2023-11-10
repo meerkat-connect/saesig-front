@@ -1,0 +1,316 @@
+@use '../abstracts' as *;
+
+@keyframes typing {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.ss-chat {
+  position: relative;
+
+  .chat {
+    &__box {
+      @include flex(start, center, column);
+      position: absolute;
+      bottom: 48px;
+      right: 0;
+      width: 400px;
+      height: 720px;
+      background-color: $background;
+      border: 1px solid $line-strong;
+      border-radius: 30px 30px 0 30px;
+      overflow: hidden; // 요주의
+    }
+
+    &__header {
+      @include flex(space-between, center);
+      @include text-700(20, $text-black, 28);
+      border-bottom: 1px solid $line-strong;
+
+      height: 68px;
+      width: 100%;
+      padding: 20px;
+
+      & > div:first-child {
+        @include flex(start, center);
+        margin-right: auto;
+        > h6:first-child {
+          margin-right: 4px;
+        }
+        & > button {
+          width: 24px;
+          height: 24px;
+          margin-right: 12px;
+        }
+
+        & > img {
+          width: 34px;
+          height: 34px;
+          border-radius: 34px;
+          margin-right: 10px;
+        }
+      }
+
+      & > div:last-child {
+        @include flex(center, center);
+
+        & > button {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    &__list {
+      width: 100%;
+      height: 100%;
+
+      & .list {
+        @include flex(center, start, column);
+        padding-top: 20px;
+
+        &__item {
+          @include flex(space-between, center);
+          width: 100%;
+          height: 80px;
+          padding: 0px 20px;
+          &:hover {
+            background-color: $background-warm;
+          }
+
+          & > .item {
+            &__user {
+              @include flex(start, center);
+              margin-right: auto;
+
+              & > div:first-child {
+                margin-right: 15px;
+                & > img {
+                  @include rounded();
+                  width: 60px;
+                  height: 60px;
+                }
+              }
+
+              & > div:last-child {
+                flex: 1;
+                max-width: 220px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+
+                & > h6 {
+                  @include text-700(14, $text-black, 24);
+                }
+
+                & > span {
+                  @include text-500(14, $text-black, 24);
+                }
+              }
+            }
+
+            &__status {
+              @include flex(space-between, flex-end, column);
+              height: 48px;
+              width: 60px;
+              & > div:first-child {
+                @include rounded();
+                width: 8px;
+                height: 8px;
+                background-color: $primary;
+              }
+
+              & > span {
+                @include text-500(12, $text-gray);
+                padding-top: 18px;
+              }
+            }
+          }
+        }
+      }
+
+      & .nodata {
+        @include flex(center, center);
+        height: 100%;
+
+        & > div {
+          @include flex(center, center, column);
+          span {
+            @include text-500(14, $text-gray, 20);
+            margin-top: 14px;
+          }
+        }
+      }
+    }
+
+    &__content {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      width: 100%;
+      background-color: $background-warm;
+
+      & .content {
+        padding: 0 20px;
+        &__notification {
+          @include flex(space-between, center);
+          @include rounded();
+          padding: 0 25px;
+          position: absolute;
+          background: rgba(0, 0, 0, 0.7);
+          width: 360px;
+          height: 44px;
+          top: 10px;
+
+          & > span {
+            @include text-500(14, $text-white, 20);
+            margin-right: auto;
+          }
+
+          & > button {
+            @include text-500(14, $text-green, 20);
+            text-decoration: underline;
+          }
+        }
+        &__date {
+          @include flex(center, center);
+          @include text-500(12, $text-gray);
+          margin-bottom: 20px;
+          margin-top: 30px;
+        }
+        &__typing {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 74px;
+          height: 40px;
+          background-color: $background;
+          border-radius: 20px 20px 20px 0px;
+          box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+
+          & > div {
+            @include rounded();
+            width: 6px;
+            height: 6px;
+            background-color: $primary;
+            animation: typing 1s infinite ease-in-out;
+            &:nth-child(1) {
+              animation-delay: 0s;
+            }
+            &:nth-child(2) {
+              animation-delay: 0.25s;
+              margin: 0 8px;
+            }
+            &:nth-child(3) {
+              animation-delay: 0.5s;
+            }
+          }
+        }
+        &__bubble {
+          @include flex(start, flex-end);
+          & > .content__message {
+            @include text-500(14, $text-black, 18);
+            padding: 12px 15px;
+            background-color: $background;
+            border-radius: 20px 20px 20px 0px;
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+          }
+          & > .content__avatar {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            & > img {
+              @include rounded();
+            }
+          }
+
+          & > .content__timestamp {
+            @include text-500(12, $text-gray);
+            margin-left: 5px;
+          }
+
+          &.--mine {
+            @include flex(end, flex-end);
+
+            & > .content__message {
+              @include text-500(14, $text-white, 18);
+              background-color: $primary;
+              border-radius: 20px 20px 0px 20px;
+            }
+            & > .content__avatar {
+              display: none;
+            }
+            & > .content__timestamp {
+              display: none;
+            }
+
+            & + .content__bubble.--mine {
+              & > .content__message {
+                border-radius: 20px 0px 20px 20px;
+              }
+            }
+          }
+        }
+      }
+
+      & .nodata {
+        @include flex(center, center);
+        height: 100%;
+
+        & > div {
+          @include flex(center, center, column);
+          p {
+            @include text-500(14, $text-gray, 20);
+            margin-top: 14px;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    &__input {
+      height: 68px;
+      width: 100%;
+      border-top: 1px solid $line-strong;
+      & .input {
+        @include flex(start, center);
+        height: 100%;
+        width: 100%;
+
+        &__expand {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 68px;
+          height: 100%;
+          border-right: 1px solid $line-strong;
+        }
+        &__input {
+          @include flex(start, center);
+          height: 100%;
+          flex: 1;
+          & > input {
+            border: none;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            &::placeholder {
+              @include text-500(16, $text-gray, 26);
+            }
+          }
+        }
+        &__emoji {
+          margin: 0 10px;
+        }
+        &__send {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+}

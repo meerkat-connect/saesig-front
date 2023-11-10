@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import ChatBox from '../common/chats';
 
 function classNames(...classNames) {
   return classNames.join(' ');
@@ -73,7 +74,7 @@ const Navbar = () => {
         {isRehome && (
           <div className="navbar__rehome">
             <span>책임비 50,000원</span>
-            <button>채팅하기</button>
+            <ChatBox />
           </div>
         )}
       </nav>
