@@ -3,7 +3,7 @@
 .publish {
   @include flex(start, center, column);
   height: 1000vh;
-  width: 700px;
+  max-width: 700px;
   margin: 0 auto;
 
   .--bg-white {

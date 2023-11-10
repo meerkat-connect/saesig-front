@@ -162,7 +162,7 @@ const SearchBar = () => {
               <section className="flyout__group">
                 <div>
                   <h3>
-                    <span>태그</span>
+                    <span>상세필터</span>
                     <span>검색</span>
                     <button className={`${isToggle ? '--active' : ''}`} onClick={handleToggleClick}>
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
