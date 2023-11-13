@@ -11,7 +11,7 @@ const Topbar = () => {
   const goToPrevPage = () => navigate(-1);
 
   const prevButtonPaths = ['/login', '/join', '/find-id', '/find-password', '/register'];
-  const mainPaths = ['/', '/family'];
+  const mainPaths = ['/', '/family', '/diary'];
   const menuPaths = [''];
 
   const isMain = mainPaths.includes(location.pathname);
@@ -27,7 +27,11 @@ const Topbar = () => {
     <header className="topbar">
       <div className="topbar__wrap">
         <div className="topbar__section-left">
-          {isMain && <img src="/src/assets/pictograms/logo_sm.svg" alt="새식일기" />}
+          {isMain && (
+            <button onClick={() => navigate('/')}>
+              <img src="/src/assets/pictograms/logo_sm.svg" alt="새식일기" />
+            </button>
+          )}
           {isPrevButton && (
             <button onClick={goToPrevPage}>
               <img src="/src/assets/icons/2424/chevron_lg_left.svg" alt="뒤로가기" />
