@@ -1,0 +1,135 @@
+@use '../abstracts' as *;
+
+.diary {
+  @include flex(start, center, column);
+  max-width: 700px;
+  height: 100%;
+  margin: 0 auto;
+
+  &__nodata {
+    @include flex(center, center);
+    text-align: center;
+    max-width: 100%;
+    height: 100%;
+
+    & > div {
+      @include flex(start, center, column);
+      @include text-500(16, $text-black, 24);
+    }
+  }
+
+  &__content {
+    width: 100%;
+    & > h1 {
+      @include text-700(34, $text-black, 47.6);
+    }
+    & .content {
+      &__filter {
+        @include flex(end, center);
+        border-bottom: 1px solid $line-strong;
+        height: 40px;
+        width: 100%;
+        & > .filter {
+          &__selector {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            &::after {
+              position: absolute;
+              display: inline-block;
+              content: '';
+              background: url('/src/assets/icons/2424/chevron_sm_down.svg') no-repeat center;
+              width: 24px;
+              height: 24px;
+              right: 10px;
+              pointer-events: none;
+            }
+            & > select {
+              @include text-500(14, $text-black, 24);
+              width: 150px;
+              height: 40px;
+              border: none;
+              background: none;
+              appearance: none;
+            }
+            & > svg {
+              position: absolute;
+              bottom: -1px;
+              pointer-events: none;
+
+              &:nth-child(1) {
+                right: 182px;
+                bottom: 0;
+              }
+              &:nth-child(2) {
+                right: 162px;
+              }
+              &:nth-child(3) {
+                right: 0;
+              }
+            }
+          }
+        }
+      }
+
+      &__main {
+        & .main {
+          &__count {
+            @include text-500(14, $text-black, 24);
+            & > span > span {
+              color: $primary;
+            }
+          }
+
+          &__gallery {
+            & > .gallery {
+              &__item {
+                @include flex(start, start, column);
+                @include rounded(15);
+                position: relative;
+                border: 1px solid $line-strong;
+                overflow: hidden;
+                margin-bottom: 20px;
+
+                & > h6 {
+                  @include text-700(18, $text-white, 26);
+                  position: absolute;
+                  bottom: 64px;
+                }
+
+                & > div {
+                  @include flex(space-between, center);
+                  @include text-500(14, $text-black, 20);
+                  width: 100%;
+                  height: 44px;
+                  background-color: $background;
+                  padding: 12px 20px;
+
+                  & > span:first-child {
+                    margin-right: auto;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  & > .floating-button {
+    position: fixed;
+    bottom: calc($navbar-height + 30px);
+
+    @media #{$sm} {
+      right: 30px;
+    }
+
+    @media #{$md} {
+      right: 30px;
+    }
+
+    @media #{$lg} {
+      left: calc(50% + 390px);
+    }
+  }
+}
