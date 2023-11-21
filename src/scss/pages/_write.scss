@@ -1,0 +1,8 @@
+@use '../abstracts' as *;
+
+.write {
+  @include flex(start, center, column);
+  max-width: 700px;
+  height: 100%;
+  margin: 0 auto;
+}

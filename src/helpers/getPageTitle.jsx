@@ -14,6 +14,7 @@ const pageTitles = {
   '/components': '퍼블리시 컴포넌트',
   '/register': '식구 등록',
   '/adoption_record': '분양 기록',
+  '/write': '일기 작성',
 };
 
 const getPageTitle = (pathname) => {

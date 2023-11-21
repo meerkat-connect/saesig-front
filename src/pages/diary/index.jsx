@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../../scss/pages/_diary.scss';
 import Gallery from './_components/gallery';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const Diary = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState(true);
   const galleryData = [
     {
@@ -148,7 +149,7 @@ const Diary = () => {
           </div>
         </div>
       )}
-      <button className="floating-button" onClick={() => Navigate('/write')}>
+      <button className="floating-button" onClick={() => navigate('/write')}>
         <img src="/src/assets/images/buttons/Floating.png" alt="" />
       </button>
     </div>

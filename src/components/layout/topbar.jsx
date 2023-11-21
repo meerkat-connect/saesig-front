@@ -10,7 +10,7 @@ const Topbar = () => {
   const navigate = useNavigate();
   const goToPrevPage = () => navigate(-1);
 
-  const prevButtonPaths = ['/login', '/join', '/find-id', '/find-password', '/register'];
+  const prevButtonPaths = ['/login', '/join', '/find-id', '/find-password', '/register', '/write'];
   const mainPaths = ['/', '/family', '/diary'];
   const menuPaths = [''];
 

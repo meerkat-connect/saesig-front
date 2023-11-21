@@ -14,6 +14,7 @@ import FindId from './pages/accounts/find-id';
 import FindPassword from './pages/accounts/find-password';
 import SplashScreen from './pages/home/splash';
 import Diary from './pages/diary';
+import Write from './pages/diary/write';
 
 // Publish Temporary
 import Components from './pages/temp/components';
@@ -35,6 +36,7 @@ function App() {
           <Route path="family/:id" element={<FamilyPost />} />
           <Route path="register" element={<Register />} />
           <Route path="diary" element={<Diary />} />
+          <Route path="write" element={<Write />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
