@@ -23,7 +23,8 @@ const Topbar = () => {
 
   const pageTitle = getPageTitle(location.pathname);
 
-  // Google tag (gtag.js)
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////// Google tag (gtag.js) ///////////////////////////////////////////////
   const VITE_APP_GA_TRACKING_ID = import.meta.env.VITE_APP_GA_TRACKING_ID
 
   const script = document.createElement("script");
@@ -31,11 +32,13 @@ const Topbar = () => {
   script.async = true;
   document.body.appendChild(script);
 
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', VITE_APP_GA_TRACKING_ID);
+  gtag('config', VITE_APP_GA_TRACKING_ID);
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <header className="topbar">
