@@ -19,13 +19,7 @@ import Write from './pages/diary/write';
 // Publish Temporary
 import Components from './pages/temp/components';
 
-// Google Analytics
-import routeChangeTracker from "./api/cmm/routeChangeTracker.js";
-
 function App() {
-
-  routeChangeTracker();
-
   return (
     <React.Fragment>
       <SplashScreen />
