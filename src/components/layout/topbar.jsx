@@ -23,6 +23,20 @@ const Topbar = () => {
 
   const pageTitle = getPageTitle(location.pathname);
 
+  <!-- Google tag (gtag.js) -->
+  const VITE_APP_GA_TRACKING_ID = import.meta.env.VITE_APP_GA_TRACKING_ID
+
+  const script = document.createElement("script");
+  script.src = "https://www.googletagmanager.com/gtag/js?id=" + VITE_APP_GA_TRACKING_ID;
+  script.async = true;
+  document.body.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', VITE_APP_GA_TRACKING_ID);
+
   return (
     <header className="topbar">
       <div className="topbar__wrap">
