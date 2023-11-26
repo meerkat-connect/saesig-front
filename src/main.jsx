@@ -5,7 +5,7 @@ import App from './App.jsx';
 import './scss/main.scss';
 import ReactGA from "react-ga";
 
-// Google tag (gtag.js)
+// Google Analytics
 const gaTrackingId = import.meta.env.VITE_APP_GA_TRACKING_ID;
 console.log(gaTrackingId)
 ReactGA.initialize(gaTrackingId, { debug: true }); // react-ga 초기화 및 debug 사용
