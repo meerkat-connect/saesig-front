@@ -23,7 +23,7 @@ const Topbar = () => {
 
   const pageTitle = getPageTitle(location.pathname);
 
-  <!-- Google tag (gtag.js) -->
+  // Google tag (gtag.js)
   const VITE_APP_GA_TRACKING_ID = import.meta.env.VITE_APP_GA_TRACKING_ID
 
   const script = document.createElement("script");
