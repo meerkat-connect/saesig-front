@@ -1,18 +1,11 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
-import ReactGA from "react-ga";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // load .env vars
   const env = loadEnv(mode, process.cwd(), '');
-
-  // Google tag (gtag.js)
-  const gaTrackingId = env.REACT_APP_GA_TRACKING_ID;
-  ReactGA.initialize(gaTrackingId, { debug: true }); // react-ga 초기화 및 debug 사용
-  ReactGA.pageview(window.location.pathname); // 추적하려는 page 설정
-
   return {
     plugins: [react()],
     resolve: {
