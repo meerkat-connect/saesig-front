@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import '../../scss/pages/_diary.scss';
 import Gallery from './_components/gallery';
 import { useNavigate } from 'react-router';
+import * as diaryApi from '../../api/diary/diary.js'
 
 const Diary = () => {
+  console.log(diaryApi.getDiaries())
+
   const navigate = useNavigate();
   const [data, setData] = useState(true);
   const galleryData = [
