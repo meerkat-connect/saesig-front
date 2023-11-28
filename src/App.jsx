@@ -21,7 +21,7 @@ import Write from './pages/diary/write';
 import Components from './pages/temp/components';
 function App() {
   React.useEffect(() => {
-    ReactGA.initialize(import.meta.env.VITE_APP_GA_TRACKING_ID, { debug: true })
+    ReactGA.initialize(import.meta.env.VITE_APP_GA_TRACKING_ID, { debug: false })
     ReactGA.set({ page: location.pathname })
     ReactGA.pageview(window.location.pathname) // Record a pageview for the given page
   }, [])
