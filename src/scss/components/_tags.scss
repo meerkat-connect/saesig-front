@@ -22,6 +22,20 @@
   }
 }
 
+.ss-tag-emoji {
+  @include text-500(14, $text-black, 26);
+  @include rounded();
+  padding: 4px 12px;
+  border: 1px solid $line-light;
+  width: fit-content;
+
+  &.--active {
+    background-color: $primary;
+    color: $text-white;
+    border: none;
+  }
+}
+
 .ss-state-view {
   display: inline-block;
   @include text-500(16, $text-black, 18);
