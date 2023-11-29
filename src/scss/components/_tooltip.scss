@@ -1,0 +1,40 @@
+@use '../abstracts' as *;
+
+.ss-tooltip {
+  @include flex(center, center);
+  position: relative;
+  width: 14px;
+  height: 14px;
+
+  > .bubble {
+    @include text-500(12, $text-white, 18);
+    padding: 6px 20px;
+    position: absolute;
+    width: max-content;
+    background: rgba(0, 0, 0, 0.6);
+
+    &.--top-right {
+      top: calc(14px + 8px);
+      left: 7px;
+      border-radius: 0px 15px 15px 15px;
+    }
+
+    &.--bottom-right {
+      bottom: calc(14px + 8px);
+      left: 7px;
+      border-radius: 15px 15px 15px 0px;
+    }
+
+    &.--top-left {
+      top: calc(14px + 8px);
+      right: 7px;
+      border-radius: 15px 0px 15px 15px;
+    }
+
+    &.--bottom-left {
+      bottom: calc(14px + 8px);
+      right: 7px;
+      border-radius: 15px 15px 0px 15px;
+    }
+  }
+}

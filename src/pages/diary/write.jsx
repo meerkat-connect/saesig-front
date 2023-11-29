@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../scss/pages/_write.scss';
+import Tooltip from '../../components/common/tooltip';
 
 const Write = () => {
   const weathers = [
@@ -44,6 +45,7 @@ const Write = () => {
         <div className="write__form">
           <section>
             <span>2023년 05월 17일</span>
+
             <ul>
               {weathers.map((weather) => (
                 <li key={weather.name}>
@@ -86,7 +88,13 @@ const Write = () => {
               <input type="file" accept="image/*" />
             </label>
             {/* 사진 업로드 후 */}
-            <div></div>
+            {/* <div>
+              <Tooltip position={1}>
+                이미지 파일당 최대 10MB의 용량 제한이 있습니다.
+                <br />
+                가로사이즈가 660pixel을 초과하는 경우 자동으로 660pixel로 조정됩니다.
+              </Tooltip>
+            </div> */}
           </section>
           <section>
             {/* 임시 태그 contentEditable */}
