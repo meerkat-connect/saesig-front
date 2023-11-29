@@ -12,6 +12,7 @@
   "dependencies": {
     "@egjs/react-grid": "^1.15.2",
     "axios": "^1.5.1",
+    "clsx": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
