@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
+import { useParams } from "react-router-dom";
 import '../../scss/pages/_family-post.scss';
 import Slider from '../../components/common/slider';
 import PostRelated from '../../components/pages/family/relatedSlider';
+import * as FamilyApi from "../../api/family/family.js";
 
 const FamilyPost = () => {
   const images = [
@@ -14,6 +16,19 @@ const FamilyPost = () => {
   const breedButtonRef = useRef(null);
   const medicalInfoRef = useRef(null);
   const breedInfoRef = useRef(null);
+  const params = useParams();
+
+  const handleDeleteAdopt = () => {
+    FamilyApi.deleteAdopt(params);
+  };
+
+  const handleChangeInterestAdopt = () => {
+    FamilyApi.chageLikeInfo(params);
+  }
+
+  const handleReportAdopt = () => {
+    FamilyApi.reportAdopt(params);
+  }
 
   const showMedicalInfo = () => {
     medicalInfoRef.current.style.display = 'block';
@@ -32,7 +47,7 @@ const FamilyPost = () => {
     <div className="post__container select-text mb-100">
       <section className="post__title">
         <div className="title mt-60">
-          <div className="title__rehome-status mb-20">분양중</div>
+          <div className="title__rehome-status mb-20" onClick={() => handleReportAdopt()}>분양중</div>
           <hr />
           <h1>2살 여아 시베리안 허스키</h1>
           <hr />
@@ -111,7 +126,7 @@ const FamilyPost = () => {
         <div className="content">
           <div className="content__counter">
             <div>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => handleChangeInterestAdopt()}>
                 <path
                   d="M10 17L8.95833 16.0948C7.56944 14.9013 6.42361 13.8788 5.52083 13.0273C4.61806 12.1758 3.90625 11.4181 3.38542 10.7543C2.86458 10.0905 2.50347 9.48372 2.30208 8.93391C2.10069 8.3841 2 7.82088 2 7.24425C2 6.05077 2.42361 5.04502 3.27083 4.22701C4.11806 3.409 5.15972 3 6.39583 3C7.07639 3 7.73611 3.1408 8.375 3.42241C9.01389 3.70402 9.55556 4.09962 10 4.6092C10.4444 4.09962 10.9861 3.70402 11.625 3.42241C12.2639 3.1408 12.9236 3 13.6042 3C14.8403 3 15.8819 3.409 16.7292 4.22701C17.5764 5.04502 18 6.05077 18 7.24425C18 7.82088 17.9028 8.37739 17.7083 8.91379C17.5139 9.45019 17.1562 10.0469 16.6354 10.704C16.1146 11.3611 15.3993 12.1221 14.4896 12.9871C13.5799 13.852 12.4167 14.9013 11 16.1351L10 17Z"
                   fill="#D9D9D9"
@@ -177,7 +192,7 @@ const FamilyPost = () => {
                 <div className="ss-state-view">모르겠어요</div>
                 <div className="pet-status__sub-title">
                   <img src="/src/assets/icons/2424/vaccine.svg" alt="" />
-                  <span>백신접종 여부</span>
+                  <span onClick={() => handleDeleteAdopt()}>백신접종 여부</span>
                 </div>
                 <div className="ss-state-view --light">혼합예방주사(종합백신)</div>
                 <div className="pet-status__sub-title">

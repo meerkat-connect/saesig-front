@@ -3,6 +3,7 @@ import '../../scss/pages/_register.scss';
 import InfoIcon from '../../components/common/infoicon';
 import { AgeInput, Dropdown } from '../../components/common/inputs';
 import { useNavigate } from 'react-router-dom';
+import * as FamilyApi from '../../api/family/family.js'
 
 const Register = () => {
   const navigate = useNavigate();
@@ -39,6 +40,11 @@ const Register = () => {
     document.querySelector(`#register-${step - 1}`).style.display = 'none';
     document.querySelector(`#register-${step}`).style.display = 'flex';
   };
+
+  const handleInsertAdopt = () => {
+    FamilyApi.insertAdopt()
+  };
+
   return (
     <>
       {/* step 1 */}
@@ -273,7 +279,7 @@ const Register = () => {
               </div>
             </div>
           </div>
-          <button className="ss-button --lg --full w-490 mt-60" onClick={() => navigate('/')}>
+          <button className="ss-button --lg --full w-490 mt-60" onClick={() => handleInsertAdopt()}>
             식구 등록 완료
           </button>
         </div>

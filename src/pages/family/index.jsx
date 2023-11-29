@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import '../../scss/pages/_family.scss';
 import FlyoutMenu from '../../components/common/flyout';
 import Slider from '../../components/common/slider';
+import * as FamilyApi from '../../api/family/family.js'
 
 const Family = () => {
+  console.log(FamilyApi.getAdoptList())
   const images = [
     '/src/assets/images/samples/sample1.webp',
     '/src/assets/images/samples/sample2.jpg',
