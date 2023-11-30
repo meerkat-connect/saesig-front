@@ -3,7 +3,8 @@ import '../../scss/pages/_register.scss';
 import InfoIcon from '../../components/common/infoicon';
 import { AgeInput, Dropdown } from '../../components/common/inputs';
 import { useNavigate } from 'react-router-dom';
-import * as FamilyApi from '../../api/family/family.js'
+import * as FamilyApi from '../../api/family/family.js';
+import Modal from '../../components/common/modal.jsx';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Register = () => {
   };
 
   const handleInsertAdopt = () => {
-    FamilyApi.insertAdopt()
+    FamilyApi.insertAdopt();
   };
 
   return (
@@ -289,35 +290,17 @@ const Register = () => {
         </div>
 
         {/* modal 1 */}
-        {/* <div className="ss-modal">
-          <div className="ss-modal__window">
-            <img src="/src/assets/icons/2424/close.svg" alt="" />
-            <p className="mt-40 mb-60">
-              지금 작성을 그만두면 내용이 저장되지 않습니다. <br />
-              정말 나갈까요?
-            </p>
-            <div>
-              <button className="ss-button --md --negative mr-10">아니요</button>
-              <button className="ss-button --md">네, 나갈래요</button>
-            </div>
-          </div>
-        </div> */}
+        {/* <Modal type={'notification'}>
+          분양 진행중인 게시물은 삭제가 불가능합니다. <br />
+          <b>분양 취소 후 삭제를 진행해주세요</b>
+        </Modal> */}
 
         {/* modal 2 */}
-        {/* <div className="ss-modal">
-          <div className="ss-modal__window --490">
-            <img className="ss-modal__family" src="/src/assets/pictograms/family_modal.svg" alt="식구등록 완료" />
-            <img className="ss-modal__close" src="/src/assets/icons/2424/close.svg" alt="" />
-            <p className="mt-40 mb-60">
-              식구 등록이 완료되었습니다~!
-              <br />
-              새식일기와 함께 좋은 시간들을 기록해나가요 :)
-            </p>
-            <div>
-              <button className="ss-button --md --full">네, 좋아요!</button>
-            </div>
-          </div>
-        </div> */}
+        {/* <Modal type={'complete'}>
+        식구 등록이 완료되었습니다~!
+        <br />
+        새식일기와 함께 좋은 시간들을 기록해나가요 :_
+      </Modal> */}
       </div>
     </>
   );

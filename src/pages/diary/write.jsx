@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../scss/pages/_write.scss';
 import Tooltip from '../../components/common/tooltip';
+import Modal from '../../components/common/modal';
 
 const Write = () => {
   const weathers = [
@@ -116,6 +117,11 @@ const Write = () => {
         </div>
         <button className="ss-button --lg w-490 w-full">일기 등록하기</button>
       </div>
+      <Modal type={'normal'}>
+        지금 작성을 그만두면 내용이 저장되지 않습니다.
+        <br />
+        정말 나갈까요?
+      </Modal>
     </div>
   );
 };

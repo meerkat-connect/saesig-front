@@ -9,22 +9,22 @@
   background: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
-  z-index: 8000;
-  &__window {
+  z-index: 9000;
+
+  & > div:first-child {
     @include flex(start, center, column);
     @include rounded(15);
     position: relative;
     background-color: $background;
-    width: 100%;
     padding: 20px;
+  }
+
+  &__normal {
+    width: 490px;
 
     img.ss-modal__family {
       position: absolute;
       bottom: 210px;
-    }
-
-    img.ss-modal__close {
-      align-self: flex-end;
     }
 
     p {
@@ -32,13 +32,105 @@
       text-align: center;
     }
 
-    div {
-      @include flex(center, center);
+    b {
+      color: $primary;
+    }
+  }
+
+  &__imformation {
+    width: 540px;
+
+    h4,
+    p,
+    span {
+      text-align: center;
+    }
+
+    h4 {
+      @include text-700(24, $text-black);
+    }
+
+    p {
+      @include text-500(16, $text-black, 26);
+    }
+
+    span {
+      @include text-700(16, $primary, 26);
+    }
+
+    hr {
+      background-color: $line-light;
+      margin: 20px 0;
+    }
+
+    .geolocation {
+      @include text-500(12, $text-gray, 18);
+      text-align: center;
+    }
+
+    .account-recovery {
+      @include text-700(16, $primary, 24);
+    }
+
+    .account-inactive {
+      width: 100%;
+      text-align: center;
+      & > span {
+        @include text-700(16, $primary, 24);
+      }
+
+      & > div {
+        @include rounded(30);
+        text-align: left;
+        padding: 30px;
+        background: $background-warm;
+
+        h6 {
+          @include text-700(14, $text-black);
+        }
+        p {
+          @include text-500(14, $text-black, 20);
+          text-align: left;
+        }
+
+        .radio-group {
+          @include flex(start, center);
+          > label:not(:last-child) {
+            margin-right: 40px;
+          }
+        }
+      }
+
+      & > p {
+        @include text-500(12, $text-gray, 18);
+        text-align: center;
+      }
+    }
+  }
+
+  &__body {
+    @include flex(center, center, column);
+    margin-top: 5px;
+  }
+
+  &__header {
+    display: inline-flex;
+    width: 100%;
+    > img {
+      margin-left: auto;
+    }
+  }
+
+  &__button-group {
+    @include flex(center, center);
+    width: 100%;
+
+    > button {
       width: 100%;
     }
 
-    &.--490 {
-      max-width: 490px;
+    > .w-245 {
+      width: 245px;
     }
   }
 }
