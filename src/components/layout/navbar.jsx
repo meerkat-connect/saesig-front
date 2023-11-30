@@ -26,7 +26,7 @@ const Navbar = () => {
     {
       to: '/diary',
       text: '일상기록',
-      activeUrl: ['/diary'],
+      activeUrl: ['/diary', '/write'],
       active: '/src/assets/icons/2424/diary_solid.svg',
       inactive: '/src/assets/icons/2424/diary_outline.svg',
     },
