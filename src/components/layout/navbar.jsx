@@ -47,6 +47,9 @@ const Navbar = () => {
   ];
 
   const isRehome = location.pathname.startsWith('/family/') && location.pathname.split('/').length === 3;
+  const isDiaryPost = location.pathname.startsWith('/diary/') && location.pathname.split('/').length === 3;
+
+  if (isDiaryPost) return null;
 
   return (
     <footer className="navbar">

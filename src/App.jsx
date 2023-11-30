@@ -15,16 +15,17 @@ import FindId from './pages/accounts/find-id';
 import FindPassword from './pages/accounts/find-password';
 import SplashScreen from './pages/home/splash';
 import Diary from './pages/diary';
+import DiaryPost from './pages/diary/post';
 import Write from './pages/diary/write';
 
 // Publish Temporary
 import Components from './pages/temp/components';
 function App() {
   React.useEffect(() => {
-    ReactGA.initialize(import.meta.env.VITE_APP_GA_TRACKING_ID, { debug: false })
-    ReactGA.set({ page: location.pathname })
-    ReactGA.pageview(window.location.pathname) // Record a pageview for the given page
-  }, [])
+    ReactGA.initialize(import.meta.env.VITE_APP_GA_TRACKING_ID, { debug: false });
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(window.location.pathname); // Record a pageview for the given page
+  }, []);
 
   return (
     <React.Fragment>
@@ -42,6 +43,7 @@ function App() {
           <Route path="family/:id" element={<FamilyPost />} />
           <Route path="register" element={<Register />} />
           <Route path="diary" element={<Diary />} />
+          <Route path="diary/:id" element={<DiaryPost />} />
           <Route path="write" element={<Write />} />
           <Route path="*" element={<NotFound />} />
         </Route>
