@@ -1,0 +1,50 @@
+@use '../abstracts' as *;
+
+.comment {
+  &-input {
+    @include flex(start, center);
+    @include rounded();
+    width: 100%;
+    height: 68px;
+    padding: 22px 0 22px 30px;
+    border: 1px solid $line-strong;
+    background-color: $background;
+
+    > input[type='text'] {
+      @include text-500(16, $text-black, 24);
+      height: 40px;
+      width: calc(100% - 90px);
+      border: none;
+      margin-right: auto;
+      &::placeholder {
+        @include text-500(16, $text-gray, 24);
+      }
+    }
+
+    > button:last-child {
+      margin-right: 16px;
+    }
+
+    &.--reply {
+      height: 56px;
+      padding: 16px 0 16px 14px;
+      border-color: $line-light;
+
+      > span {
+        @include rounded();
+        @include text-500(14, $text-white, 20);
+        padding: 4px 12px;
+        background-color: $primary;
+      }
+
+      > input[type='text'] {
+        width: calc(100% - 84px - 83px);
+        margin-left: 8px;
+      }
+
+      > button:last-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}

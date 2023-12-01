@@ -20,6 +20,12 @@
     color: $text-white;
     background-color: $primary;
   }
+  &-box {
+    @include flex(start, center);
+    & > *:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
 }
 
 .ss-tag-emoji {
@@ -32,6 +38,12 @@
   &.--active {
     background-color: $primary;
     color: $text-white;
+    border: none;
+  }
+
+  &.--warm {
+    background-color: $background-warm;
+    color: $primary;
     border: none;
   }
 }

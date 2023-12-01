@@ -1,1 +1,103 @@
 @use '../abstracts' as *;
+
+.post {
+  @include flex(start, center, column);
+  max-width: 700px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  &__date {
+    @include flex(space-between, center);
+    width: 100%;
+    margin-top: 66px;
+    > span {
+      @include text-500(16, $text-black, 22.4);
+      margin-right: auto;
+    }
+  }
+
+  &__content {
+    @include rounded(30);
+    border: 1px solid $line-strong;
+    background-color: $background;
+    width: 100%;
+
+    & > section:nth-child(1) {
+      padding: 30px 30px 26px 30px;
+      border-bottom: 1px solid $line-strong;
+
+      > h1 {
+        @include text-700(26, $text-black);
+      }
+    }
+    & > section:nth-child(2) {
+      width: 100%;
+    }
+    & > section:nth-child(3) {
+      padding: 30px 40px 64px 30px;
+      > .post__count {
+        @include flex(start, center);
+        > div {
+          @include flex(start, center);
+          @include text-500(14, $text-gray, 20);
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+          > span {
+            margin-left: 5px;
+          }
+        }
+      }
+      > .post__main-text {
+        @include text-500(16, $text-black, 26);
+      }
+    }
+  }
+
+  &__comment {
+    width: 100%;
+    > .comment {
+      &__header {
+        @include flex(space-between, center);
+        > h4 {
+          @include text-700(24, $text-black);
+          margin-right: auto;
+        }
+        > div {
+          @include flex(start, center);
+          @include text-500(14, $text-black);
+          cursor: pointer;
+
+          > button {
+            @include flex(center, center);
+            &.--open {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.weather {
+  @include flex(start, center);
+  > li {
+    @include flex(center, center);
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+    > div {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      > svg {
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@use '../abstracts' as *;
+
+// Swiper override
+.swiper {
+  width: 100%;
+  height: 450px;
+  &-slide {
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  &-pagination {
+    &-bullet {
+      width: 10px !important;
+      height: 10px !important;
+      background: #fff !important;
+      opacity: 1 !important;
+      border: 1px solid $line-strong;
+      &-active {
+        background: $primary !important;
+      }
+    }
+  }
+  &-button {
+    &-prev {
+      width: 30px !important;
+      left: 20px !important;
+      background: url('/src/assets/icons/3030/swiper_prev.svg') center no-repeat;
+    }
+    &-next {
+      width: 30px !important;
+      right: 20px !important;
+      background: url('/src/assets/icons/3030/swiper_next.svg') center no-repeat;
+    }
+  }
+}
