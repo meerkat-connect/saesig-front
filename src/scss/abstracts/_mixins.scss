@@ -127,10 +127,10 @@
       height: 180px;
       cursor: pointer;
       @if ($charactor == 'saesig') {
-        background: url('src/assets/pictograms/saesig_inactive.svg') no-repeat center;
+        background: url('/src/assets/pictograms/saesig_inactive.svg') no-repeat center;
       }
       @if ($charactor == 'dal') {
-        background: url('src/assets/pictograms/dal_inactive.svg') no-repeat center;
+        background: url('/src/assets/pictograms/dal_inactive.svg') no-repeat center;
       }
     }
 
