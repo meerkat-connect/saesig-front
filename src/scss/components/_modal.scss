@@ -134,3 +134,68 @@
     }
   }
 }
+
+.ss-event {
+  @include flex(center, center, column);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 9000;
+
+  & > div:first-child {
+    @include flex(start, center, column);
+    @include rounded(32);
+    overflow: hidden;
+    position: relative;
+    background-color: $primary;
+    border: 1px solid $line-strong;
+    width: 500px;
+    height: 560px;
+
+    > svg {
+      position: absolute;
+      &.typo {
+        top: 94px;
+      }
+      &.ellipse {
+        bottom: 0;
+      }
+      &.saesig {
+        bottom: 106px;
+      }
+    }
+
+    span {
+      position: absolute;
+      text-align: center;
+    }
+
+    > span:first-child {
+      @include text-700(18, $text-white, 14);
+      top: 60px;
+    }
+    > span:last-child {
+      @include text-500(16, $text-black, 26);
+      bottom: 15px;
+    }
+  }
+
+  & > div:last-child {
+    @include flex(space-between, center);
+    @include rounded();
+    padding: 0 19px;
+    width: 500px;
+    height: 64px;
+    background: $background;
+    border: 1px solid $line-strong;
+    border-top: none;
+
+    > div:first-child {
+      margin-right: auto;
+    }
+  }
+}
