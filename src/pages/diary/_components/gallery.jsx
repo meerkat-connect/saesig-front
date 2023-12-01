@@ -1,7 +1,10 @@
 import React from 'react';
 import { MasonryGrid } from '@egjs/react-grid';
+import { useNavigate } from 'react-router-dom';
 
 export default function Gallery({ galleryData }) {
+  const navigate = useNavigate();
+
   return (
     <MasonryGrid
       className="main__gallery"
@@ -13,7 +16,7 @@ export default function Gallery({ galleryData }) {
       columnSizeRatio={0}
     >
       {galleryData?.map((gallery) => (
-        <div className={'gallery__item'} key={gallery.id}>
+        <div className={'gallery__item'} key={gallery.id} onClick={() => navigate(`${gallery.id}`)}>
           <img src={gallery.image} alt="" loading="lazy" />
           <h6 className="ml-20">{gallery.title}</h6>
           <div>
