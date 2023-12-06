@@ -33,6 +33,7 @@
     }
     & > section:nth-child(2) {
       width: 100%;
+      border-bottom: 1px solid $line-strong;
     }
     & > section:nth-child(3) {
       padding: 30px 40px 64px 30px;
