@@ -1,6 +1,7 @@
 @use '../abstracts' as *;
 
 .comment {
+  width: 100%;
   &-input {
     @include flex(start, center);
     @include rounded();
@@ -45,6 +46,150 @@
       > button:last-child {
         margin-right: 10px;
       }
+    }
+  }
+
+  &:not(:first-child) {
+    > .comment__main {
+      padding-top: 30px;
+    }
+  }
+
+  &__main {
+    width: 100%;
+    padding: 0 30px 0 30px;
+  }
+  &__reply {
+    width: 100%;
+    padding: 0 30px 0 30px;
+  }
+
+  &__inform {
+    @include flex(space-between, center);
+    width: 100%;
+
+    > div:nth-child(1) {
+      @include flex(start, center);
+      margin-right: auto;
+    }
+    > div:nth-child(2) {
+      @include flex(end, center);
+    }
+  }
+
+  &__author {
+    @include flex(start, center);
+    @include text-700(16, $text-black);
+    margin-right: 8px;
+  }
+
+  &__avatar {
+    @include rounded();
+    overflow: hidden;
+    width: 34px;
+    height: 34px;
+    margin-right: 6px;
+  }
+
+  &__writer {
+    @include flex(start, center);
+    @include text-500(14, $text-green);
+    > *:first-child {
+      margin-right: 4px;
+    }
+  }
+
+  &__submenu {
+    @include flex(start, center);
+    @include text-500(14, $text-gray);
+    > button {
+      @include flex(center, center);
+      margin-left: 10px;
+    }
+  }
+
+  &__content {
+    @include text-500(16, $text-black, 26);
+    border-radius: 0px 20px 20px 20px;
+    padding: 8px 20px;
+    background: #f4f4f4;
+    width: fit-content;
+    margin: 10px 0;
+  }
+
+  &__reaction {
+    @include flex(space-between, center);
+    width: 100%;
+  }
+
+  &__like {
+    @include flex(start, center);
+    @include rounded();
+    border: 1px solid $line-light;
+    padding: 2px 8px;
+    > svg {
+      margin-right: 2px;
+      color: #acacac;
+    }
+    > span {
+      @include text-500(14, $text-gray, 20);
+    }
+
+    &.--active {
+      background: $primary;
+      border: none;
+      > svg {
+        color: $text-white;
+      }
+      > span {
+        color: $text-white;
+      }
+    }
+  }
+
+  &__reply-btn {
+    @include flex(start, center);
+    @include rounded();
+    border: 1px solid $line-light;
+    width: 24px;
+    height: 24px;
+    margin-left: 6px;
+    > svg {
+      margin-right: 2px;
+      color: #acacac;
+    }
+    &.--active {
+      background: $primary;
+      border: none;
+      > svg {
+        color: $text-white;
+      }
+    }
+  }
+
+  &__quit-reply-btn {
+    margin-left: auto;
+    @include text-500(14, $primary);
+    text-decoration-line: underline;
+  }
+
+  > .reply__area {
+    padding: 0 30px;
+
+    &.--active {
+      margin-top: 30px;
+      background: $background-warm;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+  &__reply {
+    & .comment__content {
+      background: $background;
+      box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+    }
+    &:not(:first-child) {
+      margin-top: 20px;
     }
   }
 }

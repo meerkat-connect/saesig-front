@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../scss/pages/_diary-post.scss';
 import Navbar from './_components/navbar';
 import Slide from './_components/slide';
 import CommentInput from './_components/commentInput';
+import Comment from './_components/comment';
+import clsx from 'clsx';
 
 const DiaryPost = () => {
   // props 임시 데이터
   const data = {
     date: '2023년 05월 17일',
     weather: 'sun',
+  };
+
+  const [showComments, setShowComments] = useState(true);
+  const handleShowComment = () => {
+    setShowComments(!showComments);
   };
 
   const images = [
@@ -154,11 +161,11 @@ const DiaryPost = () => {
         </section>
       </div>
       <div className="post__comment mt-40">
-        <div className="comment__header">
+        <div className="mb-20">
           <h4>💬 댓글 4</h4>
-          <div>
-            <span className="mr-5">댓글창 닫기</span>
-            <button>
+          <div onClick={() => handleShowComment()}>
+            <span className="mr-5">{showComments ? '댓글창 닫기' : '댓글창 열기'}</span>
+            <button className={clsx(!showComments && '--active')}>
               <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="12" cy="12.5" r="11" fill="#171A19" />
                 <path
@@ -169,10 +176,17 @@ const DiaryPost = () => {
             </button>
           </div>
         </div>
-        <div>
-          <CommentInput />
-        </div>
-        <div>댓글 영역</div>
+        {showComments && (
+          <>
+            <div>
+              <CommentInput />
+            </div>
+            <div>
+              <Comment isReplying isReplyShow />
+              <Comment />
+            </div>
+          </>
+        )}
       </div>
       <Navbar />
     </div>

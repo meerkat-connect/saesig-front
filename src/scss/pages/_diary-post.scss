@@ -58,26 +58,31 @@
 
   &__comment {
     width: 100%;
-    > .comment {
-      &__header {
-        @include flex(space-between, center);
-        > h4 {
-          @include text-700(24, $text-black);
-          margin-right: auto;
-        }
-        > div {
-          @include flex(start, center);
-          @include text-500(14, $text-black);
-          cursor: pointer;
 
-          > button {
-            @include flex(center, center);
-            &.--open {
-              transform: rotate(180deg);
-            }
+    & > div:nth-child(1) {
+      @include flex(space-between, center);
+      > h4 {
+        @include text-700(24, $text-black);
+        margin-right: auto;
+      }
+      > div {
+        @include flex(start, center);
+        @include text-500(14, $text-black);
+        cursor: pointer;
+
+        > button {
+          @include flex(center, center);
+          &.--active {
+            transform: rotate(180deg);
           }
         }
       }
+    }
+    & > div:nth-child(3) {
+      background-color: $background;
+      border-radius: 30px;
+      border: 1px solid $line-strong;
+      padding: 40px 0;
     }
   }
 }

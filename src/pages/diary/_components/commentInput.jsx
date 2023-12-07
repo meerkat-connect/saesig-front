@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 
-const CommentInput = () => {
+const CommentInput = ({ ...rest }) => {
   const [inputText, setInputText] = useState('');
   const handleChange = (e) => {
     setInputText(e.target.value);
   };
 
   return (
-    <form className="comment-input">
+    <form className={clsx('comment-input', rest.className)}>
       {/* <span>새식이</span> */}
       <input value={inputText} onChange={handleChange} type="text" placeholder="username님에게 댓글을 남겨보세요." />
       <button className="mr-10">
