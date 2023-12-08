@@ -43,7 +43,11 @@
 // Layout
 @mixin flex($justify, $align, $direction: false) {
   display: flex;
-  justify-content: safe $justify;
+  @if (str-index($justify, 'start') or str-index($justify, 'center') or str-index($justify, 'end') ) {
+    justify-content: safe $justify;
+  } @else {
+    justify-content: $justify;
+  }
   align-items: $align;
   @if ($direction) {
     flex-direction: $direction;

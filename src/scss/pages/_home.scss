@@ -1,0 +1,226 @@
+@use '../abstracts' as *;
+@use 'common' as *;
+
+$mainVisualBorderWidth : 1px;
+
+.main-section {
+    width: 100%;
+
+    &.family .swiper {
+        height: auto;
+        padding-left: 40px;
+        padding-right: 200px;
+
+        .swiper-slide {
+            max-width: 240px;
+            cursor: pointer;
+
+            .family-content__card {
+                height: auto;
+
+                > div {
+                    width: 100%;
+                    height: auto;
+                    padding-top: 75%;
+                    background-color: #acacac;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+
+                > footer { height: 140px; }
+            }
+        }
+    }
+
+    &.event .swiper {
+        height: auto;
+        overflow: visible;
+
+        &-slide {
+            height: 300px;
+            cursor: pointer;
+        }
+
+        &-pagination {
+            position: relative;
+            bottom: auto;
+            line-height: 0;
+            margin-top: 29px;
+
+            &-bullet {
+                line-height: 0;
+                width: 12px !important;
+                height: 12px !important;
+                border: none !important;
+                background: $disabled !important;
+                --swiper-pagination-bullet-horizontal-gap: 5px;
+                
+
+                &-active {
+                    width: 34px !important;
+                    background: $primary !important;
+                    @include rounded(20);
+                }
+            }
+        }
+    }
+
+    &.diary .swiper {
+        height: auto;
+        padding-left: 40px;
+        padding-right: 40px;
+
+        .swiper-slide {
+            max-width: 300px;
+            cursor: pointer;
+
+            .gallery__item {
+                @include rounded(15);
+                border: 1px solid $line-strong;
+                overflow: hidden;
+
+                .gallery__thumbnail {
+                    width: 100%;
+                    padding-top: 66.6666%;
+                    background-color: #acacac;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+
+                .gallery__info {
+                    @include flex(space-between, center);
+                    @include text-500(14, $text-black, 20);
+                    padding: 12px 20px;
+                    background-color: $background;
+                }
+            }
+        }
+    }
+}
+
+.main-inner {
+    width: 100%;
+    padding: 0 40px;
+}
+
+.main-visual {
+    @include rounded(20);
+    width: calc(100% + $mainVisualBorderWidth * 2);
+    height: 513px;
+    margin-bottom: 65px;
+    border: $mainVisualBorderWidth solid $line-strong;
+    overflow: hidden;
+
+    .swiper {
+        height: 100%;
+
+        &-slide {
+            @include flex(end, start, column);
+            padding: $topMinusVal 50px 43px;
+        }
+
+         &-pagination-fraction {
+            @include flex(space-between, center);
+            @include text-700(16, $text-white, 20);
+            @include rounded(50);
+            top: auto;
+            bottom: 23px;
+            left: auto;
+            right: 30px;
+            width: 59px;
+            padding: 6px 14px;
+            background-color: rgba(0,0,0,0.4);
+
+            > span {
+                width: 10px;
+            }
+         }
+    }
+
+    &__text {
+        @include text-700(34, $text-white, 40);
+
+        &.text-sm {
+            @include text-700(18, $text-white, 25);
+        }
+    }
+}
+
+.section-title-wrap {
+    @include flex(space-between, center);
+}
+
+.section-title {
+    @include text-700(28);
+
+    > span {
+        color: $text-orange;
+    }
+}
+
+.ss-text-icon-button {
+    @include flex(start, center);
+
+    > span {
+        @include text-700(18, $text-gray, 38);
+        margin-right: 2px;
+    }
+}
+
+.community__item {
+    @include flex(start, center);
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+    
+    .community__thumbnail {
+        @include rounded(10);
+        width: 150px;
+        height: 150px;
+        background-color: #acacac;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: 1px solid $line-strong;
+    }
+
+    .community__info {
+        max-width: calc(100% - 150px);
+        padding-left: 30px;
+
+        > span {
+            display: block;
+
+            &:first-child {
+                @include text-700(24, $text-black, 24);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 16px;
+            }
+
+            &:last-child {
+                @include text-400(20, $text-gray, 20);
+            }
+        }
+    }
+}
+
+.info__item {
+    @include flex(center, center);
+    @include rounded(20);
+    min-height: 300px;
+    border: 1px solid $line-strong;
+    cursor: pointer;
+    
+
+    > span {
+        @include text-700(20, $text-black, 20);
+
+    }
+}

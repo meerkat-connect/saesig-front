@@ -17,6 +17,7 @@ import SplashScreen from './pages/home/splash';
 import Diary from './pages/diary';
 import DiaryPost from './pages/diary/post';
 import Write from './pages/diary/write';
+import PublishList from './pages/home/publishList';
 
 // Publish Temporary
 import Components from './pages/temp/components';
@@ -45,6 +46,7 @@ function App() {
           <Route path="diary" element={<Diary />} />
           <Route path="diary/:id" element={<DiaryPost />} />
           <Route path="write" element={<Write />} />
+          <Route path="publish" element={<PublishList />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

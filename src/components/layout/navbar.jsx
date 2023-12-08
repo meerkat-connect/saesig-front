@@ -44,6 +44,13 @@ const Navbar = () => {
       active: '/src/assets/icons/2424/mypage_solid.svg',
       inactive: '/src/assets/icons/2424/mypage_outline.svg',
     },
+    { // ymg - 퍼블리시 메뉴 임시추가
+      to: '/publish',
+      text: '퍼블목록',
+      activeUrl: ['/publish'],
+      active: '/src/assets/icons/2424/mypage_solid.svg',
+      inactive: '/src/assets/icons/2424/mypage_outline.svg',
+    },
   ];
 
   const isRehome = location.pathname.startsWith('/family/') && location.pathname.split('/').length === 3;
