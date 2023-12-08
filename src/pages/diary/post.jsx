@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../../scss/pages/_diary-post.scss';
-import Navbar from './_components/navbar';
 import Slide from './_components/slide';
 import CommentInput from './_components/commentInput';
 import Comment from './_components/comment';
