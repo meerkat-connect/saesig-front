@@ -188,7 +188,6 @@ const DiaryPost = () => {
           </>
         )}
       </div>
-      <Navbar />
     </div>
   );
 };

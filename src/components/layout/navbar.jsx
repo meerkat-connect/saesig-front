@@ -44,7 +44,8 @@ const Navbar = () => {
       active: '/src/assets/icons/2424/mypage_solid.svg',
       inactive: '/src/assets/icons/2424/mypage_outline.svg',
     },
-    { // ymg - 퍼블리시 메뉴 임시추가
+    {
+      // ymg - 퍼블리시 메뉴 임시추가
       to: '/publish',
       text: '퍼블목록',
       activeUrl: ['/publish'],
@@ -54,9 +55,6 @@ const Navbar = () => {
   ];
 
   const isRehome = location.pathname.startsWith('/family/') && location.pathname.split('/').length === 3;
-  const isDiaryPost = location.pathname.startsWith('/diary/') && location.pathname.split('/').length === 3;
-
-  if (isDiaryPost) return null;
 
   return (
     <footer className="navbar">
