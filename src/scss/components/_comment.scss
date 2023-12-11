@@ -120,6 +120,10 @@
   &__reaction {
     @include flex(space-between, center);
     width: 100%;
+
+    > button:last-child {
+      margin-left: auto;
+    }
   }
 
   &__like {
