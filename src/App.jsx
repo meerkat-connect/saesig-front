@@ -18,9 +18,11 @@ import Diary from './pages/diary';
 import DiaryPost from './pages/diary/post';
 import Write from './pages/diary/write';
 import PublishList from './pages/home/publishList';
+import Chats from './pages/chats';
 
 // Publish Temporary
 import Components from './pages/temp/components';
+
 function App() {
   React.useEffect(() => {
     ReactGA.initialize(import.meta.env.VITE_APP_GA_TRACKING_ID, { debug: false });
@@ -46,6 +48,7 @@ function App() {
           <Route path="diary" element={<Diary />} />
           <Route path="diary/:id" element={<DiaryPost />} />
           <Route path="write" element={<Write />} />
+          <Route path="chats" element={<Chats />} />
           <Route path="publish" element={<PublishList />} />
           <Route path="*" element={<NotFound />} />
         </Route>
