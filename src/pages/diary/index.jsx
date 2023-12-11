@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import '../../scss/pages/_diary.scss';
 import Gallery from './_components/gallery';
 import { useNavigate } from 'react-router';
-import * as diaryApi from '../../api/diary/diary.js'
+import * as diaryApi from '../../api/diary/diary.js';
+import SortSelector from './_components/sort-selector.jsx';
 
 const Diary = () => {
-  console.log(diaryApi.getDiaries())
+  console.log(diaryApi.getDiaries());
 
   const navigate = useNavigate();
   const [data, setData] = useState(true);
@@ -60,6 +61,8 @@ const Diary = () => {
       author: '새식이',
     },
   ];
+
+  const options = ['최신순', '조회수', '좋아요'];
 
   return (
     <div className="diary">
@@ -135,11 +138,12 @@ const Diary = () => {
                   strokeLinecap="round"
                 />
               </svg>
-              <select name="diaryFilter" id="diaryFilter" defaultValue="mostRecent">
+              <SortSelector options={options} />
+              {/* <select name="diaryFilter" id="diaryFilter" defaultValue="mostRecent">
                 <option value="mostRecent">최신순</option>
                 <option value="mostViewd">조회수</option>
                 <option value="mostLiked">좋아요</option>
-              </select>
+              </select> */}
             </div>
           </div>
           <div className="content__main mt-20">

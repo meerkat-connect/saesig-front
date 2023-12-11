@@ -44,13 +44,40 @@
               right: 10px;
               pointer-events: none;
             }
-            & > select {
-              @include text-500(14, $text-black, 24);
-              width: 150px;
-              height: 40px;
-              border: none;
-              background: none;
-              appearance: none;
+            & > .diary__sort {
+              > input {
+                @include text-500(14, $text-black, 24);
+                width: 150px;
+                height: 40px;
+                border: none;
+                background: none;
+                appearance: none;
+              }
+              & > .sort__options {
+                position: absolute;
+                order: 2;
+                z-index: 1;
+                width: 180px;
+                left: -30px;
+                background: $background-warm;
+                border: 1px solid $line-strong;
+                overflow-x: hidden;
+                overflow-y: auto;
+                border-radius: 0px 0px 15px 15px;
+                > div {
+                  @include text-400(16, $text-black);
+                  padding: 15px 0 15px 24px;
+                  &:hover {
+                    font-weight: 500;
+                    background-color: $primary;
+                    color: $text-white;
+                  }
+                }
+
+                &::-webkit-scrollbar {
+                  display: none;
+                }
+              }
             }
             & > svg {
               position: absolute;
