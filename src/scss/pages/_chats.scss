@@ -1,0 +1,89 @@
+@use '../abstracts' as *;
+
+.chat {
+  &__page {
+    @include flex(start, start, column);
+    max-width: 700px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    & .nodata {
+      @include flex(center, center, column);
+      flex-grow: 1;
+      > p {
+        @include text-500(16, $text-gray, 24);
+        text-align: center;
+      }
+      > button {
+        width: fit-content;
+      }
+    }
+
+    & .chat-header {
+      @include flex(start, center);
+      @include text-700(34, $text-black);
+      margin: 60px 0;
+      > span {
+        margin-left: 8px;
+        color: $primary;
+      }
+    }
+
+    & .chat-list {
+      width: 100%;
+    }
+    & .chat-item {
+      @include flex(start, center);
+      @include rounded(30);
+      width: 100%;
+      background: $background;
+      padding: 20px 20px 20px 24px;
+      cursor: pointer;
+      > .item-avatar {
+        position: relative;
+        margin-right: 20px;
+        > .image-container {
+          @include rounded();
+          width: 60px;
+          height: 60px;
+          overflow: hidden;
+        }
+        > .item-badge {
+          @include rounded();
+          width: 15px;
+          height: 15px;
+          background-color: $primary;
+          position: absolute;
+          top: -2px;
+          left: 2px;
+        }
+      }
+      .item-content {
+        @include flex(start, start, column);
+        margin-right: auto;
+        > div:first-child {
+          margin-bottom: 11px;
+          @include flex(start, center);
+          & > h6 {
+            @include text-700(20, $text-black, 24);
+            margin-right: 4px;
+          }
+          & > span {
+            @include text-400(14, $primary, 20);
+            margin-right: 4px;
+          }
+        }
+        > div:last-child {
+          @include text-500(16, $text-black, 20);
+        }
+      }
+      .item-menu {
+        @include flex(start, flex-end, column);
+        > div:last-child {
+          @include text-500(12, $text-gray);
+        }
+      }
+    }
+  }
+}
