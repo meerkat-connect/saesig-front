@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import ChatBox from '../common/chats';
 
@@ -56,6 +56,14 @@ const Navbar = () => {
 
   const isRehome = location.pathname.startsWith('/family/') && location.pathname.split('/').length === 3;
 
+  // 채팅 토글 상태 관리
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedChat, setSelectedChat] = useState(null);
+  const handleButtonClick = () => {
+    setIsChatOpen(!isChatOpen);
+    setSelectedChat(null);
+  };
+
   return (
     <footer className="navbar">
       <nav className="navbar__wrap">
@@ -82,7 +90,15 @@ const Navbar = () => {
         {isRehome && (
           <div className="navbar__rehome">
             <span>책임비 50,000원</span>
-            <ChatBox />
+            <button className="ss-button --md ignore-click-outside" onClick={handleButtonClick}>
+              채팅하기
+            </button>
+            <ChatBox
+              isChatOpen={isChatOpen}
+              selectedChat={selectedChat}
+              setIsChatOpen={setIsChatOpen}
+              setSelectedChat={setSelectedChat}
+            />
           </div>
         )}
       </nav>

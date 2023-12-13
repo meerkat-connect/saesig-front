@@ -11,20 +11,18 @@
 }
 
 .ss-chat {
-  position: relative;
-
   .chat {
     &__box {
       @include flex(start, center, column);
       position: absolute;
-      bottom: 48px;
-      right: 0;
+      bottom: $navbar-height;
+      right: calc(50% - 330px);
       width: 400px;
       height: 720px;
       background-color: $background;
       border: 1px solid $line-strong;
       border-radius: 30px 30px 0 30px;
-      overflow: hidden; // 요주의
+      overflow: hidden;
     }
 
     &__header {

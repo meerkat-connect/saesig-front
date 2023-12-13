@@ -3,7 +3,13 @@ import sample2 from '/src/assets/images/samples/sample2.jpg';
 import sample5 from '/src/assets/images/samples/sample5.jpg';
 import sample7 from '/src/assets/images/samples/sample7.webp';
 
-const ChatBox = () => {
+const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) => {
+  const handleCloseClick = () => {
+    setIsChatOpen(false);
+    setSelectedChat(null);
+  };
+
+  // 임시 데이터
   const data = {
     chatList: [
       {
@@ -58,7 +64,6 @@ const ChatBox = () => {
 
   // 채팅 상태
   const [chatList, setChatList] = useState(data.chatList);
-  const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState(data.messages);
 
   const handleChatClick = (id) => {
@@ -66,24 +71,21 @@ const ChatBox = () => {
     setSelectedChat(chat);
   };
 
-  // 채팅 토글 기능
-  const [isOpen, setIsOpen] = useState(false);
-  const chatRef = useRef(null);
-  const handleButtonClick = () => {
-    setIsOpen(!isOpen);
-  };
-  const handleCloseClick = () => {
-    setIsOpen(false);
-    setSelectedChat(null);
-  };
+  // 채팅 내부 동작
   const handleBackClick = () => {
     setSelectedChat(null);
   };
+  const chatRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
+      // '.ignore-click-outside' 클래스를 가진 외부요소를 외부클릭으로 간주하지 않음(채팅 토글 버튼 등)
+      if (e.target.closest('.ignore-click-outside')) {
+        return;
+      }
+
       if (chatRef.current && !chatRef.current.contains(e.target)) {
-        setIsOpen(false);
+        setIsChatOpen(false);
         setSelectedChat(null);
       }
     };
@@ -93,15 +95,11 @@ const ChatBox = () => {
     };
   }, []);
 
+  console.log(isChatOpen);
+
   return (
     <div className="ss-chat" ref={chatRef}>
-      {/* 버튼 영역 */}
-      <button className="ss-button --md" onClick={handleButtonClick}>
-        채팅하기
-      </button>
-
-      {/* 채팅 영역 */}
-      {isOpen && (
+      {isChatOpen && (
         <div className="chat__box">
           <ChatHeader
             chatList={chatList}
