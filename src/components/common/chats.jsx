@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import sample2 from '/src/assets/images/samples/sample2.jpg';
-import sample5 from '/src/assets/images/samples/sample5.jpg';
-import sample7 from '/src/assets/images/samples/sample7.webp';
 
-const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) => {
+const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, chatId, setChatId }) => {
   const handleCloseClick = () => {
     setIsChatOpen(false);
     setSelectedChat(null);
@@ -14,7 +11,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) =
     chatList: [
       {
         id: 1,
-        avatar: sample2,
+        avatar: '/src/assets/images/samples/sample2.jpg',
         username: 'MEKC123',
         latestContent: '지금 분양 가능할까요?',
         latestTimestamp: '2023-09-23T12:34:56Z',
@@ -23,7 +20,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) =
       },
       {
         id: 2,
-        avatar: sample5,
+        avatar: '/src/assets/images/samples/sample5.jpg',
         username: '달이',
         latestContent: '네 알겠습니다 감사합니다~',
         latestTimestamp: '2023-09-22T12:34:56Z',
@@ -32,7 +29,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) =
       },
       {
         id: 3,
-        avatar: sample7,
+        avatar: '/src/assets/images/samples/sample7.webp',
         username: '새식이',
         latestContent: '주변 지역에 살고있는데 강아지를 만나볼 수 있을까요?',
         latestTimestamp: '2023-09-22T12:34:56Z',
@@ -71,6 +68,10 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) =
     setSelectedChat(chat);
   };
 
+  useEffect(() => {
+    handleChatClick(chatId);
+  }, [chatId]);
+
   // 채팅 내부 동작
   const handleBackClick = () => {
     setSelectedChat(null);
@@ -86,7 +87,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) =
 
       if (chatRef.current && !chatRef.current.contains(e.target)) {
         setIsChatOpen(false);
-        setSelectedChat(null);
+        setChatId();
       }
     };
     document.addEventListener('click', handleClickOutside, true);
@@ -94,8 +95,6 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat }) =
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
-
-  console.log(isChatOpen);
 
   return (
     <div className="ss-chat" ref={chatRef}>

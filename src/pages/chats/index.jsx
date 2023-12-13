@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../scss/pages/_chats.scss';
-import { useNavigate } from 'react-router-dom';
+import ChatBox from '../../components/common/chats';
+// import { useNavigate } from 'react-router-dom';
 
 const Chats = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  // 채팅 토글 상태 관리
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedChat, setSelectedChat] = useState(null);
+  const [chatId, setChatId] = useState();
+
+  const handleChatClick = (id) => {
+    setChatId(id);
+    setIsChatOpen(!isChatOpen);
+  };
 
   return (
     <div className="chat__page">
@@ -23,7 +34,7 @@ const Chats = () => {
       </div>
 
       <div className="chat-list">
-        <div className="chat-item">
+        <div className="chat-item" onClick={() => handleChatClick(1)}>
           <div className="item-avatar">
             <div className="image-container">
               <img src="/src/assets/images/samples/sample6.jpg" alt="" />
@@ -60,6 +71,14 @@ const Chats = () => {
           </div>
         </div>
       </div>
+      <ChatBox
+        isChatOpen={isChatOpen}
+        selectedChat={selectedChat}
+        setIsChatOpen={setIsChatOpen}
+        setSelectedChat={setSelectedChat}
+        chatId={chatId}
+        setChatId={setChatId}
+      />
     </div>
   );
 };
