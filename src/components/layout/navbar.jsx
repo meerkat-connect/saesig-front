@@ -40,7 +40,7 @@ const Navbar = () => {
     {
       to: '/mypage',
       text: '마이페이지',
-      activeUrl: ['/mypage'],
+      activeUrl: ['/mypage', '/settings'],
       active: '/src/assets/icons/2424/mypage_solid.svg',
       inactive: '/src/assets/icons/2424/mypage_outline.svg',
     },
