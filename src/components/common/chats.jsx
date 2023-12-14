@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
 
 const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, chatId, setChatId }) => {
+  const pathname = useLocation().pathname;
+
   const handleCloseClick = () => {
     setIsChatOpen(false);
     setSelectedChat(null);
@@ -105,6 +109,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
             selectedChat={selectedChat}
             handleCloseClick={handleCloseClick}
             handleBackClick={handleBackClick}
+            pathname={pathname}
           />
           {selectedChat ? (
             <>
@@ -120,7 +125,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
   );
 };
 
-const ChatHeader = ({ chatList, selectedChat, handleCloseClick, handleBackClick }) => {
+const ChatHeader = ({ chatList, selectedChat, handleCloseClick, handleBackClick, pathname }) => {
   return (
     <div className="chat__header">
       {!selectedChat && (
@@ -144,16 +149,29 @@ const ChatHeader = ({ chatList, selectedChat, handleCloseClick, handleBackClick 
       {selectedChat && (
         <>
           <div>
-            <button onClick={handleBackClick}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M16.7539 4.43461L9.02884 12.1597L16.7539 19.8848C17.082 20.2128 17.082 20.745 16.7539 21.0732C16.4257 21.4014 15.8936 21.4014 15.5655 21.0732L7.24614 12.7539C7.08854 12.5962 7 12.3826 7 12.1597C7 11.9367 7.08854 11.723 7.24614 11.5654L15.5655 3.24614C15.6065 3.20512 15.6506 3.16922 15.6972 3.13845C16.0234 2.92308 16.4667 2.95898 16.7539 3.24614C17.082 3.57433 17.082 4.10643 16.7539 4.43461Z"
-                  fill="#ACACAC"
-                />
-              </svg>
-            </button>
+            {pathname === '/chats' ? (
+              <button onClick={handleCloseClick}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.7539 4.43461L9.02884 12.1597L16.7539 19.8848C17.082 20.2128 17.082 20.745 16.7539 21.0732C16.4257 21.4014 15.8936 21.4014 15.5655 21.0732L7.24614 12.7539C7.08854 12.5962 7 12.3826 7 12.1597C7 11.9367 7.08854 11.723 7.24614 11.5654L15.5655 3.24614C15.6065 3.20512 15.6506 3.16922 15.6972 3.13845C16.0234 2.92308 16.4667 2.95898 16.7539 3.24614C17.082 3.57433 17.082 4.10643 16.7539 4.43461Z"
+                    fill="#ACACAC"
+                  />
+                </svg>
+              </button>
+            ) : (
+              <button onClick={handleBackClick}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.7539 4.43461L9.02884 12.1597L16.7539 19.8848C17.082 20.2128 17.082 20.745 16.7539 21.0732C16.4257 21.4014 15.8936 21.4014 15.5655 21.0732L7.24614 12.7539C7.08854 12.5962 7 12.3826 7 12.1597C7 11.9367 7.08854 11.723 7.24614 11.5654L15.5655 3.24614C15.6065 3.20512 15.6506 3.16922 15.6972 3.13845C16.0234 2.92308 16.4667 2.95898 16.7539 3.24614C17.082 3.57433 17.082 4.10643 16.7539 4.43461Z"
+                    fill="#ACACAC"
+                  />
+                </svg>
+              </button>
+            )}
+
             <img src={`${selectedChat.avatar}`} alt="" />
             <h6>{selectedChat.username}</h6>
+            <span className={clsx(pathname !== '/chats' && 'hidden', 'pet-inform')}>· 보더콜리 / 여아 / 5개월</span>
           </div>
           <div>
             <button className="mr-10">
@@ -164,7 +182,7 @@ const ChatHeader = ({ chatList, selectedChat, handleCloseClick, handleBackClick 
                 />
               </svg>
             </button>
-            <button onClick={handleCloseClick}>
+            <button className={clsx(pathname === '/chats' && 'hidden')} onClick={handleCloseClick}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M18.3007 5.7107C17.9107 5.3207 17.2807 5.3207 16.8907 5.7107L12.0007 10.5907L7.1107 5.7007C6.7207 5.3107 6.0907 5.3107 5.7007 5.7007C5.3107 6.0907 5.3107 6.7207 5.7007 7.1107L10.5907 12.0007L5.7007 16.8907C5.3107 17.2807 5.3107 17.9107 5.7007 18.3007C6.0907 18.6907 6.7207 18.6907 7.1107 18.3007L12.0007 13.4107L16.8907 18.3007C17.2807 18.6907 17.9107 18.6907 18.3007 18.3007C18.6907 17.9107 18.6907 17.2807 18.3007 16.8907L13.4107 12.0007L18.3007 7.1107C18.6807 6.7307 18.6807 6.0907 18.3007 5.7107Z"

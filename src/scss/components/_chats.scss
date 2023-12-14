@@ -40,6 +40,11 @@
         > h6:first-child {
           margin-right: 4px;
         }
+        z & > .pet-inform {
+          @include text-500(14, $primary, 24);
+          margin-left: 6px;
+        }
+
         & > button {
           width: 24px;
           height: 24px;
@@ -104,10 +109,6 @@
 
                 & > h6 {
                   @include text-700(14, $text-black, 24);
-                }
-
-                & > span {
-                  @include text-500(14, $text-black, 24);
                 }
               }
             }
@@ -310,5 +311,8 @@
         }
       }
     }
+  }
+  & .hidden {
+    display: none;
   }
 }
