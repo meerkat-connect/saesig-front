@@ -148,23 +148,28 @@
     }
 
     &__content {
-      position: relative;
       flex: 1;
       height: 100%;
       width: 100%;
       background-color: $background-warm;
 
+      overflow-y: auto;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      scroll-behavior: smooth;
+
       & .content {
-        padding: 0 20px;
+        padding: 0 20px 20px 20px;
         &__notification {
           @include flex(space-between, center);
           @include rounded();
-          padding: 0 25px;
+          padding: 12px 25px;
           position: absolute;
           background: rgba(0, 0, 0, 0.7);
-          width: 360px;
-          height: 44px;
-          top: 10px;
+          width: calc(100% - 40px);
+          top: 78px;
 
           & > span {
             @include text-500(14, $text-white, 20);

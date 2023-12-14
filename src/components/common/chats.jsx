@@ -282,15 +282,25 @@ const ChatList = ({ chatList, handleChatClick }) => {
 };
 
 const ChatContent = ({ messages }) => {
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = contentRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
-    <div className="chat__content">
+    <div className="chat__content" ref={contentRef}>
       {messages.length > 0 ? (
         <div className="content">
           <div className="content__notification">
             <span>입양에 대한 결정이 확실하신가요?</span>
             <button>입양요청 취소</button>
           </div>
-          {/* <div className="content__notification">반려동물을 만나본 뒤 메뉴에서 입양확정 버튼을 눌러주세요</div> */}
+          {/* <div className="content__notification">
+            <span>반려동물을 만나본 뒤 메뉴에서 입양확정 버튼을 눌러주세요</span>
+          </div> */}
           <div className="content__date">2023.03.20</div>
           <div className="content__bubble mb-30">
             <div className="content__avatar">
@@ -314,6 +324,27 @@ const ChatContent = ({ messages }) => {
             <div className="content__timestamp">오후 03:20</div>
           </div>
           <div className="content__bubble  mb-30">
+            <div className="content__avatar">
+              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
+            </div>
+            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
+            <div className="content__timestamp">오후 03:20</div>
+          </div>
+          <div className="content__bubble --mine mb-30">
+            <div className="content__avatar">
+              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
+            </div>
+            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
+            <div className="content__timestamp">오후 03:20</div>
+          </div>
+          <div className="content__bubble  mb-30">
+            <div className="content__avatar">
+              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
+            </div>
+            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
+            <div className="content__timestamp">오후 03:20</div>
+          </div>
+          <div className="content__bubble --mine mb-6">
             <div className="content__avatar">
               <img src="/src/assets/images/samples/sample2.jpg" alt="" />
             </div>
