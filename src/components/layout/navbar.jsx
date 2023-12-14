@@ -55,6 +55,10 @@ const Navbar = () => {
   ];
 
   const isRehome = location.pathname.startsWith('/family/') && location.pathname.split('/').length === 3;
+  const isActive = (menu) => {
+    const baseRoute = '/' + location.pathname.split('/')[1];
+    return menu.activeUrl.includes(location.pathname) || menu.activeUrl.includes(baseRoute);
+  };
 
   // 채팅 토글 상태 관리
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -71,17 +75,12 @@ const Navbar = () => {
           navMenus.map((menu) => (
             <NavLink key={menu.text} to={menu.to} className="navbar__menu">
               <div>
-                {menu.activeUrl.includes(location.pathname) ? (
+                {isActive(menu) ? (
                   <img src={menu.active} alt={menu.text} />
                 ) : (
                   <img src={menu.inactive} alt={menu.text} />
                 )}
-                <span
-                  className={classNames(
-                    menu.activeUrl.includes(location.pathname) ? 'navbar__text--active' : '',
-                    'navbar__text'
-                  )}
-                >
+                <span className={classNames(isActive(menu) ? 'navbar__text--active' : '', 'navbar__text')}>
                   {menu.text}
                 </span>
               </div>
