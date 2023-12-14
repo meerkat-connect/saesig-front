@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../scss/pages/_publish-progress.scss';
 
@@ -71,6 +71,49 @@ const publishList = () => {
         </li>
       </ul>
 
+      <h3>일상기록</h3>
+      <ul>
+        <li
+          onClick={() => {
+            navigate('/diary');
+          }}
+        >
+          일기 목록
+        </li>
+        <li
+          onClick={() => {
+            navigate('/write');
+          }}
+        >
+          일기 작성
+        </li>
+        <li
+          onClick={() => {
+            navigate('/diary/0');
+          }}
+        >
+          게시물 보기
+        </li>
+      </ul>
+
+      <h3>설정/관리</h3>
+      <ul>
+        <li
+          onClick={() => {
+            navigate('/settings');
+          }}
+        >
+          설정 메뉴
+        </li>
+        <li
+          onClick={() => {
+            navigate('/settings/deactivate');
+          }}
+        >
+          회원탈퇴
+        </li>
+      </ul>
+
       <h3>기타 화면</h3>
       <ul>
         <li
@@ -84,6 +127,6 @@ const publishList = () => {
       </ul>
     </div>
   );
-}
+};
 
-export default publishList
+export default publishList;

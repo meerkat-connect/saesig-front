@@ -364,16 +364,6 @@ const Components = () => {
           <label htmlFor="ss-radio2"></label>
         </div>
       </section>
-
-      <section>
-        <aside>
-          <h5>Chats</h5>
-          <h6>-</h6>
-        </aside>
-        <div>
-          <Chats />
-        </div>
-      </section>
     </div>
   );
 };
