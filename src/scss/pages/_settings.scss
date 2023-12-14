@@ -1,1 +1,54 @@
 @use '../abstracts' as *;
+
+.settings {
+  @include flex(start, start, column);
+  height: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+
+  & > section {
+    width: 100%;
+    > h4 {
+      @include text-500(14, $text-gray);
+      margin-top: 30px;
+      margin-bottom: 16px;
+    }
+    > ul {
+      @include rounded(30);
+      background-color: $background;
+      padding: 4px 30px;
+      > li {
+        @include flex(start, center);
+        padding: 16px 0;
+        cursor: pointer;
+        &:not(:last-child) {
+          border-bottom: 1px solid $line-light;
+        }
+        > span {
+          @include text-500(16, $text-black);
+          margin: 0 auto 0 10px;
+        }
+      }
+    }
+
+    & > button {
+      text-align: center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .logout {
+      @include text-500(14, $text-black);
+      @include rounded();
+      border: 1px solid $line-strong;
+      width: 400px;
+      height: 48px;
+    }
+
+    .deactivate {
+      @include text-500(14, $text-gray);
+      text-decoration: underline;
+    }
+  }
+}

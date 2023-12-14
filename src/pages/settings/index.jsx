@@ -175,8 +175,12 @@ const Settings = () => {
           </li>
         </ul>
       </section>
-      <button>로그아웃</button>
-      <button onClick={() => navigate('deactivate')}>회원탈퇴</button>
+      <section>
+        <button className="logout mt-60">로그아웃</button>
+        <button className="deactivate mt-40 mb-40" onClick={() => navigate('deactivate')}>
+          회원탈퇴
+        </button>
+      </section>
     </div>
   );
 };
