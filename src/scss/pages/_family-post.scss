@@ -79,7 +79,6 @@
     & .content {
       @include text-400(16, $text-black, 26);
       @include rounded(30);
-      border: 1px solid $line-strong;
       padding: 40px 30px;
       margin-top: -1px;
       background-color: $background;
