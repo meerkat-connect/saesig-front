@@ -15,6 +15,8 @@ const pageTitles = {
   '/register': '식구 등록',
   '/adoption_record': '분양 기록',
   '/write': '일기 작성',
+  '/settings': '설정/관리',
+  '/settings/deactivate': '회원탈퇴',
 };
 
 const getPageTitle = (pathname) => {

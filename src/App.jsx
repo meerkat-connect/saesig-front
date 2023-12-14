@@ -19,9 +19,11 @@ import DiaryPost from './pages/diary/post';
 import Write from './pages/diary/write';
 import PublishList from './pages/home/publishList';
 import Chats from './pages/chats';
+import Settings from './pages/settings';
 
 // Publish Temporary
 import Components from './pages/temp/components';
+import Deactivate from './pages/settings/deactivate';
 
 function App() {
   React.useEffect(() => {
@@ -36,7 +38,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-
           <Route path="components" element={<Components />} />
           <Route path="login" element={<Login />} />
           <Route path="join" element={<SignUp />} />
@@ -49,6 +50,8 @@ function App() {
           <Route path="diary/:id" element={<DiaryPost />} />
           <Route path="write" element={<Write />} />
           <Route path="chats" element={<Chats />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="settings/deactivate" element={<Deactivate />} />
           <Route path="publish" element={<PublishList />} />
           <Route path="*" element={<NotFound />} />
         </Route>
