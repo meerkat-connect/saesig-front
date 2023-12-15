@@ -46,7 +46,7 @@
       height: 48px;
     }
 
-    .deactivate {
+    .deactivate-button {
       @include text-500(14, $text-gray);
       text-decoration: underline;
     }
