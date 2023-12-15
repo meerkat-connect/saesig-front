@@ -54,6 +54,22 @@
     border-color: $line-light;
     color: $text-gray;
   }
+  &.--sm {
+    @include px(15);
+    height: 36px;
+  }
+  &.--md {
+    @include px(30);
+    height: 40px;
+  }
+  &.--lg {
+    @include px(30);
+    height: 48px;
+  }
+
+  &.--full {
+    width: 100%;
+  }
 }
 
 .ss-text-button {
