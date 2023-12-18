@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useLocation } from 'react-router-dom';
+import {useWebSocket} from "../../WebSocketContext.jsx";
+import PropTypes from 'prop-types';
 
 const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, chatId, setChatId }) => {
   const pathname = useLocation().pathname;
@@ -10,8 +12,54 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
     setSelectedChat(null);
   };
 
+  const { socket } = useWebSocket();
+
+  useEffect(() => {
+    const handleIncomingMessage = (event) => {
+      // 메시지 도착 시 실행되는 로직
+      let newMessage = JSON.parse(event.data);
+      let isMine = true;
+      if (newMessage.memberId == 1){
+        isMine = true;
+      }else{
+        isMine = false;
+      }
+      let isRead = false;
+      let newMessageObj = {
+        id: data.messages.length+1,
+        senderId: newMessage["memberId"],
+        receiverId: newMessage["receiverId"],
+        content: newMessage["text"],
+        timestamp: newMessage["sendTime"]["date"]["year"]+"-"+newMessage["sendTime"]["date"]["month"]+"-"+newMessage["sendTime"]["date"]["day"]+"T"+newMessage["sendTime"]["time"]["hour"]+":"+newMessage["sendTime"]["time"]["minute"]+":"+newMessage["sendTime"]["time"]["second"]+'Z',
+        isRead: isRead,
+        isMine: isMine,
+        type: newMessage["type"],
+      };
+      console.log('newMessageLog:'+newMessageObj)
+      if (newMessage["type"] == "message"){
+        setMessages((prevMessages) => {
+          const updatedMessages = [...prevMessages, newMessageObj];
+          return updatedMessages;
+        });
+        setOnMessages(false);
+      }else if (newMessage["type"] == "onMessage"){
+        setOnMessages(true);
+      }else if (newMessage["type"] == "outMessage"){
+        setOnMessages(false);
+      }
+    };
+
+    // onmessage 이벤트에 핸들러 함수 추가
+    socket.addEventListener('message', handleIncomingMessage);
+
+    return () => {
+      // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+      socket.removeEventListener('message', handleIncomingMessage);
+    };
+  }, [socket]);
+
   // 임시 데이터
-  const data = {
+  let data = {
     chatList: [
       {
         id: 1,
@@ -61,11 +109,13 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
         isMine: true,
       },
     ],
+    onMessage: false,
   };
 
   // 채팅 상태
-  const [chatList, setChatList] = useState(data.chatList);
   const [messages, setMessages] = useState(data.messages);
+  const [onMessage, setOnMessages] = useState(data.onMessage);
+  const [chatList, setChatList] = useState(data.chatList);
 
   const handleChatClick = (id) => {
     const chat = chatList.find((chat) => chat.id === id);
@@ -113,7 +163,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
           />
           {selectedChat ? (
             <>
-              <ChatContent messages={messages} />
+              <ChatContent messages={messages} onMessage={onMessage} />
               <ChatInput />
             </>
           ) : (
@@ -281,8 +331,19 @@ const ChatList = ({ chatList, handleChatClick }) => {
   );
 };
 
-const ChatContent = ({ messages }) => {
+const ChatContent = ({ messages,onMessage }) => {
   const contentRef = useRef(null);
+
+  ChatContent.propTypes = {
+    messages: PropTypes.arrayOf(
+        PropTypes.shape({
+          content: PropTypes.string.isRequired,
+          isMine: PropTypes.bool.isRequired,
+          timestamp: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    onMessage: PropTypes.bool,
+  };
 
   useEffect(() => {
     if (contentRef.current) {
@@ -302,72 +363,27 @@ const ChatContent = ({ messages }) => {
             <span>반려동물을 만나본 뒤 메뉴에서 입양확정 버튼을 눌러주세요</span>
           </div> */}
           <div className="content__date">2023.03.20</div>
-          <div className="content__bubble mb-30">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble --mine mb-6">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble --mine mb-30">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble  mb-30">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble --mine mb-30">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble  mb-30">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble --mine mb-6">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble --mine mb-30">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__message">안녕하세요 혹시 지금 분양가능할까요?</div>
-            <div className="content__timestamp">오후 03:20</div>
-          </div>
-          <div className="content__bubble">
-            <div className="content__avatar">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-            </div>
-            <div className="content__typing">
-              <div />
-              <div />
-              <div />
-            </div>
-          </div>
+          {messages.map((message, index) => (
+              <div key={index} className={`content__bubble ${message.isMine ? '--mine' : ''} mb-30`}>
+                <div className="content__avatar">
+                  <img src="/src/assets/images/samples/sample2.jpg" alt="" />
+                </div>
+                <div className="content__message">{message.content}</div>
+                <div className="content__timestamp">{message.timestamp}</div>
+              </div>
+            ))}
+          {onMessage ? (
+              <div className="content__bubble">
+                <div className="content__avatar">
+                  <img src="/src/assets/images/samples/sample2.jpg" alt="" />
+                </div>
+                <div className="content__typing">
+                  <div />
+                  <div />
+                  <div />
+                </div>
+              </div>
+          ):null }
         </div>
       ) : (
         <div className="nodata">
@@ -415,6 +431,32 @@ const ChatContent = ({ messages }) => {
 };
 
 const ChatInput = () => {
+  const { socket } = useWebSocket();
+  const [chatInputValue, setChatInputValue] = useState('');
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      // Enter 키가 눌렸을 때 수행할 동작
+      let msg = {
+        type : 'message',
+        text : chatInputValue,
+        chatId : 4172718,
+        memberId : 1,
+        receiverId : 4
+      };
+      socket.send(JSON.stringify(msg));
+    }
+  };
+  const handleButtonClick = () => {
+    let msg = {
+      type : 'message',
+      text : chatInputValue,
+      chatId : 4172718,
+      memberId : 1,
+      receiverId : 4
+    };
+    socket.send(JSON.stringify(msg));
+  };
+
   return (
     <div className="chat__input">
       <div className="input">
@@ -429,7 +471,14 @@ const ChatInput = () => {
           </button>
         </div>
         <div className="input__input">
-          <input type="text" placeholder="새식이님에게 보내기" />
+          <input
+              type="text"
+              placeholder="새식이님에게 보내기"
+              value={chatInputValue}
+              onChange={(e) => setChatInputValue(e.target.value)}
+              onKeyPress={handleKeyPress}
+              id="chatInput"
+          />
           <button className="input__emoji">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -452,7 +501,7 @@ const ChatInput = () => {
               />
             </svg>
           </button>
-          <button className="input__send">
+          <button className="input__send active" onClick={handleButtonClick}>
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="18" cy="18" r="18" fill="#D9D9D9" />
               <path

@@ -25,6 +25,8 @@ import Settings from './pages/settings';
 import Components from './pages/temp/components';
 import Deactivate from './pages/settings/deactivate';
 
+import { WebSocketProvider } from './WebSocketContext.jsx';
+
 function App() {
   React.useEffect(() => {
     ReactGA.initialize(import.meta.env.VITE_APP_GA_TRACKING_ID, { debug: false });
@@ -35,6 +37,7 @@ function App() {
   return (
     <React.Fragment>
       <SplashScreen />
+      <WebSocketProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -56,6 +59,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+    </WebSocketProvider>
     </React.Fragment>
   );
 }

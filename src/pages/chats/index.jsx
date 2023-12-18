@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../scss/pages/_chats.scss';
 import ChatBox from '../../components/common/chats';
+import { useWebSocket } from '../../WebSocketContext';
 // import { useNavigate } from 'react-router-dom';
 
 const Chats = () => {
+  const { socket } = useWebSocket();
+
+  useEffect(() => {
+    const handleIncomingMessage = (event) => {
+      // 메시지 도착 시 실행되는 로직
+      const newMessage = event.data;
+      console.log('New message:', newMessage);
+
+      // 여기서 상태를 업데이트하거나 다른 작업 수행
+    };
+
+    // onmessage 이벤트에 핸들러 함수 추가
+    socket.addEventListener('message', handleIncomingMessage);
+
+    return () => {
+      // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+      socket.removeEventListener('message', handleIncomingMessage);
+    };
+  }, [socket]);
   // const navigate = useNavigate();
 
   // 채팅 토글 상태 관리
