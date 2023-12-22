@@ -48,7 +48,7 @@ const Home = () => {
           >
             <SwiperSlide>
               <div className="family-content__card">
-                <div style={{backgroundImage: `url('/src/assets/images/samples/sample1.webp')`}}></div>
+                <div style={{backgroundImage: `url('/src/assets/images/samples/sample8.jpg')`}}></div>
                 <footer onClick={() => navigate('/family/1')}>
                   <div>
                     <div>
@@ -58,7 +58,7 @@ const Home = () => {
                   </div>
                   <div>
                     <p>
-                      1살 남아 골든리트리버
+                      5개월 귀욤이 말티즈
                       <br />
                       분양 합니다.
                     </p>
