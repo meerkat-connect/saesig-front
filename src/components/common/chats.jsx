@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useLocation } from 'react-router-dom';
 import {useWebSocket} from "../../WebSocketContext.jsx";
-import PropTypes from 'prop-types';
+import PropTypes, {number} from 'prop-types';
+import * as ChatApi from '../../api/chat/chat.js'
 
 const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, chatId, setChatId }) => {
   const pathname = useLocation().pathname;
@@ -12,30 +13,29 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
     setSelectedChat(null);
   };
 
-  const { socket } = useWebSocket();
+  const { socket, updateWebSocket } = useWebSocket();
 
   useEffect(() => {
     const handleIncomingMessage = (event) => {
       // 메시지 도착 시 실행되는 로직
       let newMessage = JSON.parse(event.data);
       let isMine = true;
-      if (newMessage.memberId == 1){
+      if (newMessage.memberId == socket.memberId){
         isMine = true;
       }else{
         isMine = false;
       }
       let isRead = false;
       let newMessageObj = {
-        id: data.messages.length+1,
+        chatId: newMessage["chatId"],
         senderId: newMessage["memberId"],
         receiverId: newMessage["receiverId"],
-        content: newMessage["text"],
+        text: newMessage["text"],
         timestamp: newMessage["sendTime"]["date"]["year"]+"-"+newMessage["sendTime"]["date"]["month"]+"-"+newMessage["sendTime"]["date"]["day"]+"T"+newMessage["sendTime"]["time"]["hour"]+":"+newMessage["sendTime"]["time"]["minute"]+":"+newMessage["sendTime"]["time"]["second"]+'Z',
         isRead: isRead,
         isMine: isMine,
         type: newMessage["type"],
       };
-      console.log('newMessageLog:'+newMessageObj)
       if (newMessage["type"] == "message"){
         setMessages((prevMessages) => {
           const updatedMessages = [...prevMessages, newMessageObj];
@@ -49,76 +49,48 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
       }
     };
 
-    // onmessage 이벤트에 핸들러 함수 추가
-    socket.addEventListener('message', handleIncomingMessage);
+    if (socket != null){
+      // onmessage 이벤트에 핸들러 함수 추가
+      socket.addEventListener('message', handleIncomingMessage);
 
-    return () => {
-      // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
-      socket.removeEventListener('message', handleIncomingMessage);
-    };
+      return () => {
+        // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+        socket.removeEventListener('message', handleIncomingMessage);
+      };
+    }
+
   }, [socket]);
 
   // 임시 데이터
   let data = {
     chatList: [
-      {
-        id: 1,
-        avatar: '/src/assets/images/samples/sample2.jpg',
-        username: 'MEKC123',
-        latestContent: '지금 분양 가능할까요?',
-        latestTimestamp: '2023-09-23T12:34:56Z',
-        isRead: false,
-        isReserved: false,
-      },
-      {
-        id: 2,
-        avatar: '/src/assets/images/samples/sample5.jpg',
-        username: '달이',
-        latestContent: '네 알겠습니다 감사합니다~',
-        latestTimestamp: '2023-09-22T12:34:56Z',
-        isRead: true,
-        isReserved: false,
-      },
-      {
-        id: 3,
-        avatar: '/src/assets/images/samples/sample7.webp',
-        username: '새식이',
-        latestContent: '주변 지역에 살고있는데 강아지를 만나볼 수 있을까요?',
-        latestTimestamp: '2023-09-22T12:34:56Z',
-        isRead: true,
-        isReserved: true,
-      },
     ],
     messages: [
-      {
-        id: 1,
-        senderId: 123,
-        receiverId: 456,
-        content: '안녕하세요.\n혹시 지금 분양 가능할까요?',
-        timestamp: '2023-09-23T12:00:00Z',
-        isRead: false,
-        isMine: false,
-      },
-      {
-        id: 2,
-        senderId: 456,
-        receiverId: 123,
-        content: '네 가능합니다~',
-        timestamp: '2023-09-23T12:01:00Z',
-        isRead: false,
-        isMine: true,
-      },
     ],
     onMessage: false,
   };
+
+
 
   // 채팅 상태
   const [messages, setMessages] = useState(data.messages);
   const [onMessage, setOnMessages] = useState(data.onMessage);
   const [chatList, setChatList] = useState(data.chatList);
 
-  const handleChatClick = (id) => {
-    const chat = chatList.find((chat) => chat.id === id);
+  const handleChatClick = (chatId) => {
+    updateWebSocket(1);
+    if (chatId){
+      getChatData(chatId);
+    }
+    async function getChatData(chatId) {
+      try {
+        let ChatData = await ChatApi.getChatDataList(chatId);
+        setMessages(ChatData);
+      } catch (error) {
+        console.error("채팅 목록을 가져오는 동안 오류 발생:", error);
+      }
+    }
+    const chat = chatList.find((chat) => chat.chatId === chatId);
     setSelectedChat(chat);
   };
 
@@ -133,6 +105,15 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
   const chatRef = useRef(null);
 
   useEffect(() => {
+    async function someAsyncFunction() {
+      try {
+        let A = await ChatApi.getChatList();
+        setChatList(A);
+      } catch (error) {
+        console.error("채팅 목록을 가져오는 동안 오류 발생:", error);
+      }
+    }
+    someAsyncFunction()
     const handleClickOutside = (e) => {
       // '.ignore-click-outside' 클래스를 가진 외부요소를 외부클릭으로 간주하지 않음(채팅 토글 버튼 등)
       if (e.target.closest('.ignore-click-outside')) {
@@ -219,8 +200,8 @@ const ChatHeader = ({ chatList, selectedChat, handleCloseClick, handleBackClick,
               </button>
             )}
 
-            <img src={`${selectedChat.avatar}`} alt="" />
-            <h6>{selectedChat.username}</h6>
+            <img src={`/src/assets/images/samples/sample5.jpg`} alt="" />
+            <h6>{selectedChat.title}</h6>
             <span className={clsx(pathname !== '/chats' && 'hidden', 'pet-inform')}>· 보더콜리 / 여아 / 5개월</span>
           </div>
           <div>
@@ -271,25 +252,25 @@ const ChatList = ({ chatList, handleChatClick }) => {
   return (
     <div className="chat__list">
       {chatList.length > 0 ? (
-        <ul className="list">
-          {chatList.map((chat) => (
-            <li className="list__item" key={chat.id} onClick={() => handleChatClick(chat.id)}>
-              <div className="item__user">
-                <div>
-                  <img src={`${chat.avatar}`} alt="" />
-                </div>
-                <div>
-                  <h6>{chat.username}</h6>
-                  <span>{chat.latestContent}</span>
-                </div>
-              </div>
-              <div className="item__status">
-                <div />
-                <span>{timeStamp(chat.latestTimestamp)}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
+          <ul className="list">
+            {chatList.map((chat, index) => (
+                <li className="list__item" key={chat.chatId} onClick={() => handleChatClick(chat.chatId)}>
+                  <div className="item__user">
+                    <div>
+                      <img src={`/src/assets/images/samples/sample5.jpg`} alt="" />
+                    </div>
+                    <div>
+                      <h6>{chat.title}</h6>
+                      <span>{chat.lastMsg}</span>
+                    </div>
+                  </div>
+                  <div className="item__status">
+                    {chat.unreadCnt > 0 && <div />}
+                    <span>{timeStamp(chat.createdAt)}</span>
+                  </div>
+                </li>
+            ))}
+          </ul>
       ) : (
         <div className="nodata">
           <div>
@@ -337,9 +318,9 @@ const ChatContent = ({ messages,onMessage }) => {
   ChatContent.propTypes = {
     messages: PropTypes.arrayOf(
         PropTypes.shape({
-          content: PropTypes.string.isRequired,
-          isMine: PropTypes.bool.isRequired,
-          timestamp: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired,
+          senderId: PropTypes.number.isRequired,
+          regDate: PropTypes.string.isRequired,
         })
     ).isRequired,
     onMessage: PropTypes.bool,
@@ -364,12 +345,12 @@ const ChatContent = ({ messages,onMessage }) => {
           </div> */}
           <div className="content__date">2023.03.20</div>
           {messages.map((message, index) => (
-              <div key={index} className={`content__bubble ${message.isMine ? '--mine' : ''} mb-30`}>
+              <div key={index} className={`content__bubble ${message.senderId == 1 ? '--mine' : ''} mb-30`}>
                 <div className="content__avatar">
                   <img src="/src/assets/images/samples/sample2.jpg" alt="" />
                 </div>
-                <div className="content__message">{message.content}</div>
-                <div className="content__timestamp">{message.timestamp}</div>
+                <div className="content__message">{message.text}</div>
+                <div className="content__timestamp">{message.regDate}</div>
               </div>
             ))}
           {onMessage ? (
@@ -434,14 +415,15 @@ const ChatInput = () => {
   const { socket } = useWebSocket();
   const [chatInputValue, setChatInputValue] = useState('');
   const handleKeyPress = (event) => {
+    console.log('A')
     if (event.key === 'Enter') {
       // Enter 키가 눌렸을 때 수행할 동작
       let msg = {
         type : 'message',
         text : chatInputValue,
-        chatId : 4172718,
-        memberId : 1,
-        receiverId : 4
+        chatId : 114,
+        memberId : socket.memberId,
+        receiverId : 3
       };
       socket.send(JSON.stringify(msg));
     }

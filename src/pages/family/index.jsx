@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../scss/pages/_family.scss';
 import FlyoutMenu from '../../components/common/flyout';
@@ -6,12 +6,27 @@ import Slider from '../../components/common/slider';
 import * as FamilyApi from '../../api/family/family.js'
 
 const Family = () => {
-  console.log(FamilyApi.getAdoptList())
+  const [listData, setlistData] = useState([]);
   const images = [
     '/src/assets/images/samples/sample1.webp',
     '/src/assets/images/samples/sample2.jpg',
     '/src/assets/images/samples/sample3.jpg',
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await FamilyApi.getAdoptList();
+        console.log(result.data)
+        setlistData(result.data);
+        console.log('Updated listData:', listData);
+      } catch (error) {
+        alert('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // fetchData 함수를 호출하여 데이터를 가져옵니다.
+  }, []);
   const navigate = useNavigate();
   return (
     <>
@@ -41,19 +56,6 @@ const Family = () => {
             </div>
           </div>
         </div>
-
-        {/* 게시물 없음 */}
-        {/* <div className="family-content--empty">
-        <img src="/src/assets/pictograms/logo_pictogram.svg" alt="" />
-        <p className="mt-20 mb-40">
-          등록된 식구가 없습니다
-          <br />
-          새로운 식구를 저희에게 소개시켜주세요
-        </p>
-        <button className="ss-button --lg" onClick={() => navigate('/register')}>
-          식구 등록하기
-        </button>
-      </div> */}
 
         {/* 콘텐츠 영역 */}
         <section className="family-content__filter mt-20">
@@ -103,8 +105,10 @@ const Family = () => {
           <div className="pb-16">
             총&nbsp;<span>35</span>마리의 식구
           </div>
+          {listData.length > 0 ? (
           <div className="family-content__card-grid">
-            <div className="family-content__card">
+            {listData.map((item) => (
+            <div className="family-content__card" key={item.id}>
               <header>
                 <div>
                   <svg
@@ -126,10 +130,10 @@ const Family = () => {
               <div>
                 <Slider images={images} hasBadge />
               </div>
-              <footer onClick={() => navigate('/family/1')}>
+              <footer onClick={() => navigate('/family/'+item.id)}>
                 <div>
                   <div>
-                    <span>분양중</span>
+                    <span>{item.status.value}</span>
                     <span>1시간 전</span>
                   </div>
                   <button>
@@ -138,9 +142,7 @@ const Family = () => {
                 </div>
                 <div>
                   <p>
-                    2살 여아 요크셔테리어
-                    <br />
-                    무료분양 합니다.
+                    {item.title}
                   </p>
                 </div>
                 <div>
@@ -156,7 +158,21 @@ const Family = () => {
                 </div>
               </footer>
             </div>
+                ))}
           </div>
+              ) : (
+              <div className="family-content--empty">
+              <img src="/src/assets/pictograms/logo_pictogram.svg" alt="" />
+              <p className="mt-20 mb-40">
+              등록된 식구가 없습니다
+              <br />
+              새로운 식구를 저희에게 소개시켜주세요
+              </p>
+              <button className="ss-button --lg" onClick={() => navigate('/register')}>
+              식구 등록하기
+              </button>
+            </div>
+              )}
           <button className="family-content__floating-button" onClick={() => navigate('/register')}>
             <img src="/src/assets/images/buttons/Floating.png" alt="" />
           </button>

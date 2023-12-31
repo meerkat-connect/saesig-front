@@ -4,12 +4,15 @@ import React, { createContext, useContext, useState } from 'react';
 const WebSocketContext = createContext();
 
 export function WebSocketProvider({ children }) {
-    const [socket, setSocket] = useState(new WebSocket('ws://127.0.0.1:8080/ws/chat?mode=chatList&chatId=0&memberId=1'));
+    const [socket, setSocket] = useState(null);
 
-    const updateWebSocket = () => {
+    const updateWebSocket = (memberId) => {
         // 로그인 시점에 호출되어야 하는 함수
-        const newSocket = new WebSocket('ws://127.0.0.1:8080/ws/chat?mode=chatList&chatId=0&memberId=1');
-        setSocket(newSocket);
+        if (memberId != undefined && memberId != null && memberId != ''){
+            const newSocket = new WebSocket('ws://127.0.0.1:8080/ws/chat?mode=chatList&chatId=0');
+            newSocket.memberId = memberId;
+            setSocket(newSocket);
+        }
     };
 
     return (

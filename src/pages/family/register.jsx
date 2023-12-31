@@ -9,38 +9,79 @@ import Modal from '../../components/common/modal.jsx';
 const Register = () => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
+  const [selectedBreed, setSelectedBreed] = useState('');
 
   const onInfoIconClickHandler = () => {
     if (isShow) setIsShow(false);
     else setIsShow(true);
   };
 
-  const breed = [
-    '골든 리트리버',
-    '치와와',
-    '불독',
-    '시베리안 허스키',
-    '보더 콜리',
-    '빠삐용',
-    '요크셔 테리어',
-    '닥스훈트',
-    '푸들',
-    '불마스티프',
-    '로트와일러',
-    '프렌치 불도그',
-    '잭 러셀 테리어',
-    '세인트 버나드',
-    '비글',
+  const breedOptions  = [
+    { id : 0, name : '골든 리트리버'},
+    { id : 1, name : '치와와'},
+    { id : 2, name : '불독'},
+    { id : 3, name : '시베리안 허스키'},
+    { id : 4, name : '보더 콜리'},
+    { id : 5, name : '빠삐용'},
+    { id : 6, name : '요크셔 테리어'},
+    { id : 7, name : '닥스훈트'},
+    { id : 8, name : '푸들'},
+    { id : 9, name : '불마스티프'},
+    { id : 1, name : '로트와일러'},
+    { id : 1, name : '프렌치 불도그'},
+    { id : 1, name : '잭 러셀 테리어'},
+    { id : 1, name : '세인트 버나드'},
+    { id : 1, name : '비글'},
   ];
+
+  const handleBreedChange = (event) => {
+    setSelectedBreed(event.target.value);
+  };
+
+  let data = {
+    title : '',
+    content : '',
+    gender : '',
+    age : '',
+    ageCategory : '',
+    isCastrated : '',
+    responsibilityCost : '',
+    etcContent : '',
+    animalDivision1Id : '',
+    animalDivision2Id : '',
+    sido : '',
+    sigungu : '',
+    vaccineList :[]
+  }
+
+  const [inputValues, setInputValues] = useState(data);
 
   const age = ['모르겠어요', '개월', '년'];
 
   const neuter = ['중성화', '안 함'];
 
   const goNextStep = (step) => {
+    setInsertData(step)
     document.querySelector(`#register-${step - 1}`).style.display = 'none';
     document.querySelector(`#register-${step}`).style.display = 'flex';
   };
+
+  const setInsertData = (step) =>{
+    if (step == 2){
+      setInputValues((prevInputValues) => ({
+        ...prevInputValues,
+        animalDivision1Id: document.querySelector('input[name="animalDivision1Id"]:checked').value,
+      }));
+    }else if (step == 3){
+
+    }else if (step == 4){
+      setInputValues((prevInputValues) => ({
+        ...prevInputValues,
+        animalDivision1Id: document.querySelector('input[name="animalDivision1Id"]:checked').value,
+
+      }));
+    }
+  }
 
   const handleInsertAdopt = () => {
     FamilyApi.insertAdopt();
@@ -59,11 +100,11 @@ const Register = () => {
         <div className="ss-form">
           <div className="ss-form__row-center mb-70">
             <div className="mr-60">
-              <input id="input-saesig" name="radio" className="register__saesig" type="radio" />
+              <input id="input-saesig" name="animalDivision1Id" className="register__saesig" type="radio" value="1" />
               <label htmlFor="input-saesig" />
             </div>
             <div>
-              <input id="input-dal" name="radio" className="register__dal" type="radio" />
+              <input id="input-dal" name="animalDivision1Id" className="register__dal" type="radio" value="2" />
               <label htmlFor="input-dal" />
             </div>
           </div>
@@ -169,11 +210,25 @@ const Register = () => {
           <div className="ss-grid col-gap-10 row-gap-30">
             <div>
               <label className="ss-label --required">품종</label>
-              <Dropdown options={breed} placeholder="품종 선택" required />
+              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
+                <option value="">품종을 선택하세요</option>
+                {breedOptions.map((breed) => (
+                    <option key={breed.id} value={breed.name}>
+                      {breed.name}
+                    </option>
+                ))}
+              </select>
             </div>
             <div>
               <label className="ss-label --required">성별</label>
-              <Dropdown options={breed} placeholder="성별 선택" required />
+              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
+                <option value="">품종을 선택하세요</option>
+                {breedOptions.map((breed) => (
+                    <option key={breed.id} value={breed.name}>
+                      {breed.name}
+                    </option>
+                ))}
+              </select>
             </div>
             <div>
               <label className="ss-label --required">나이</label>
@@ -203,11 +258,25 @@ const Register = () => {
             </div>
             <div>
               <label className="ss-label --required">분양 희망 지역</label>
-              <Dropdown options={breed} placeholder="시, 도" required />
+              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
+                <option value="">품종을 선택하세요</option>
+                {breedOptions.map((breed) => (
+                    <option key={breed.id} value={breed.name}>
+                      {breed.name}
+                    </option>
+                ))}
+              </select>
             </div>
             <div>
               <label className="ss-label">&nbsp;</label>
-              <Dropdown options={breed} placeholder="시, 군, 구" required />
+              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
+                <option value="">품종을 선택하세요</option>
+                {breedOptions.map((breed) => (
+                    <option key={breed.id} value={breed.name}>
+                      {breed.name}
+                    </option>
+                ))}
+              </select>
             </div>
           </div>
           <button className="current-location">

@@ -16,13 +16,15 @@ const Chats = () => {
       // 여기서 상태를 업데이트하거나 다른 작업 수행
     };
 
-    // onmessage 이벤트에 핸들러 함수 추가
-    socket.addEventListener('message', handleIncomingMessage);
+    if (socket != null){
+      socket.addEventListener('message', handleIncomingMessage);
 
-    return () => {
-      // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
-      socket.removeEventListener('message', handleIncomingMessage);
-    };
+      return () => {
+        // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+        socket.removeEventListener('message', handleIncomingMessage);
+      };
+    }
+    // onmessage 이벤트에 핸들러 함수 추가
   }, [socket]);
   // const navigate = useNavigate();
 

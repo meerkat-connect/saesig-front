@@ -31,15 +31,15 @@ export const Dropdown = ({ options, ...rest }) => {
       <input type="text" value={selectedOption} readOnly onClick={handleInputClick} {...rest} />
       {isOpen && options && (
         <div className="ss-dropdown__options">
-          {options.map((option, i) => (
-            <div key={i} onClick={() => handleOptionClick(option)}>
-              {option}
+          {options.map((option) => (
+            <div key={option.id} onClick={() => handleOptionClick(option.id)}>
+              {option.name}
             </div>
           ))}
         </div>
       )}
     </div>
-  );
+);
 };
 
 export const AgeInput = ({ ...rest }) => {
