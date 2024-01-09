@@ -1,0 +1,16 @@
+@use '../abstracts' as *;
+
+.landing {
+  width: 100%;
+}
+
+.outer {
+  height: max-content;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: max-content;
+  overflow-y: hidden;
+}

@@ -15,6 +15,14 @@ body {
     background-position: right -8px center;
     background-color: $background-warm;
   }
+
+  &.no-background {
+    height: max-content;
+
+    @media #{$lg} {
+      background-image: none;
+    }
+  }
 }
 
 main {
