@@ -1,7 +1,18 @@
 @use '../abstracts' as *;
 
+/* 
+normal: 1x
+md: ≈ 0.75x
+sm: ≈ 0.5x
+*/
+::-webkit-scrollbar {
+  display: none;
+}
 .landing {
   width: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .outer {
@@ -12,5 +23,106 @@
   position: relative;
   width: 100%;
   height: max-content;
-  overflow-y: hidden;
+}
+
+.section-1 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+
+  .bubble {
+    font-size: 1.375rem;
+    color: $text-white;
+    line-height: 140%;
+    font-weight: 700;
+    width: fit-content;
+    padding: 1rem 2rem;
+    border-radius: 999px 999px 999px 0px;
+    background: $text-black;
+    margin-bottom: 3.75rem;
+  }
+
+  .box {
+    width: calc(100vw * (1378 / 1920));
+    height: calc(100vw * (482 / 1920));
+    position: relative;
+  }
+
+  .logo {
+    width: calc(100vw * (1378 / 1920));
+    height: calc(100vw * (310 / 1920));
+    top: 0;
+    position: absolute;
+  }
+
+  .family {
+    width: calc(100vw * (440 / 1920));
+    height: calc(100vw * (308 / 1920));
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .button {
+    @include rounded();
+    display: flex;
+    align-items: center;
+    color: $text-white;
+    width: fit-content;
+    background: $primary;
+    font-size: 1.5rem;
+    padding: 1.25rem 2.5rem;
+    margin-top: 5rem;
+
+    svg {
+      width: 1.875rem;
+      height: 1.875rem;
+      margin-left: 0.25rem;
+    }
+  }
+
+  @media #{$md} {
+    .bubble {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      margin-bottom: 2.8125rem;
+    }
+
+    .button {
+      font-size: 1.125rem;
+      padding: 0.9375rem 1.875rem;
+      margin-top: 3.75rem;
+
+      svg {
+        width: 1.40625rem;
+        height: 1.40625rem;
+        margin-left: 0.1875rem;
+      }
+    }
+  }
+
+  @media #{$sm} {
+    .bubble {
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.875rem;
+    }
+
+    .button {
+      font-size: 0.75rem;
+      padding: 0.625rem 1.25rem;
+      margin-top: 2.5rem;
+
+      svg {
+        width: 0.9375rem;
+        height: 0.9375rem;
+        margin-left: 0.125rem;
+      }
+    }
+  }
 }
