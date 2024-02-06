@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import InfoIcon from '../../components/common/infoicon';
+
 import '../../scss/pages/_login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, isSubmitted, errors }
+  } = useForm();
+  const onSubmit = async (data) => {
+    await new Promise((r) => setTimeout(r, 1_000));
+    alert(JSON.stringify(data));
+  }
 
   const onInfoIconClickHandler = () => {
     if (isShow) setIsShow(false);
@@ -18,10 +29,29 @@ const Login = () => {
         <img className="pb-12" src="/src/assets/pictograms/logo_lg.svg" alt="새식일기" />
         <span>새로운 식구와 함께하는 일상 기록</span>
       </div>
-      <form className="ss-form w-490 mb-30">
-        <input className="ss-input --full --error mb-6" type="text" placeholder="아이디(이메일)입력" />
-        <div className="notification notification--caution">이메일 형식이 올바르지 않습니다.</div>
-        <input className="ss-input --full" type="password" placeholder="비밀번호 입력" />
+      <form className="ss-form w-490 mb-30" onSubmit={handleSubmit(onSubmit)}>
+        <input
+            className="ss-input --full --error mb-6"
+            type="text"
+            placeholder="아이디(이메일)를 입력해 주세요."
+            id="email"
+            name="email"
+            {...register("email", {
+              required:'아이디(이메일)를 입력해 주세요.'
+            })}
+        />
+        {errors.email && <div className="notification notification--caution">{errors.email.message}</div>}
+        <input className="ss-input --full"
+               type="password"
+               id="password"
+               name="password"
+               placeholder="비밀번호를 입력해 주세요."
+               {...register("password",  {
+                 required:"비밀번호를 입력해 주세요."
+               })}
+        />
+        {errors.password && <div className="notification notification--caution">{errors.password.message}</div>}
+
         <div className="ss-form__row-container mt-20 mb-30">
           <input className="ss-input" type="checkbox" id="staySignedIn" />
           <label className="mr-8" htmlFor="staySignedIn">
@@ -35,7 +65,7 @@ const Login = () => {
             message="개인정보 보호를 위해 개인 PC에서만 사용해주세요."
           />
         </div>
-        <button className="ss-button --lg --full">로그인 하기</button>
+        <button type="submit" className="ss-button --lg --full" disabled={isSubmitting}>로그인 하기</button>
       </form>
       <div className="ss-group mb-120">
         <button className="ss-text-button" onClick={() => navigate('/find-id')}>
