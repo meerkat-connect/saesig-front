@@ -6,11 +6,42 @@ import * as joinApi from '../../api/accounts/join.js'
 const SignUp = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState(''); // 상태 초기값은 빈 문자열
+  const [agreements, setAgreements] = useState({
+    agreeTOS: false
+    , agreePrivacy: false
+    , agreeGeo: false
+    , agreeMarketing: false
+  });
 
   const goNextStep = (step) => {
     document.querySelector(`#signup-${step - 1}`).style.display = 'none';
     document.querySelector(`#signup-${step}`).style.display = 'flex';
   };
+
+  const handleCheckboxChange = (event) => {
+    const {name, checked} = event.target;
+    console.log(agreements)
+    setAgreements({
+      ...agreements,
+      [name] : checked,
+    })
+
+  }
+
+  const isAllRequiredAgreed = () => {
+    return agreements.agreeTOS && agreements.agreePrivacy;
+  }
+
+  const handleAgreeSubmit = () => {
+      if(isAllRequiredAgreed()) {
+        alert(' 필수 항목 모두 동의');
+        // 다음 step으로 이동
+      } else {
+        alert(' 필수 항목 모두 동의x');
+
+      }
+  }
+
 
   const handleEmailDupCheck = () => {
     joinApi.getEmailDuplicate(email)
@@ -35,7 +66,7 @@ const SignUp = () => {
         </div>
 
         {/* tooltip */}
-        <div className="ss-notification">필수 항목을 동의해야 회원가입이 가능합니다</div>
+        {!isAllRequiredAgreed() && <div className="ss-notification">필수 항목을 동의해야 회원가입이 가능합니다</div>}
 
         {/* modal */}
         <div className="modal" style={{ display: 'none' }}>
@@ -88,28 +119,54 @@ const SignUp = () => {
             <label htmlFor="agreeTOSAll">모두 동의 (선택 항목 포함)</label>
             <div className="separator --horizontal mt-20 mb-20" />
             <li className="between">
-              <input className="ss-input" type="checkbox" id="agreeTOS" />
+              <input
+                  className="ss-input"
+                  type="checkbox"
+                  id="agreeTOS"
+                  name="agreeTOS"
+                  checked={agreements.agreeTOS}
+                  onChange={handleCheckboxChange}
+              />
               <label className="required mb-12" htmlFor="agreeTOS">
                 서비스 이용약관
               </label>
               <button className="ss-text-button --underline">보기</button>
             </li>
             <li className="between">
-              <input className="ss-input" type="checkbox" id="agreePrivacy" />
+              <input
+                  className="ss-input"
+                   type="checkbox"
+                   id="agreePrivacy"
+                   name="agreePrivacy"
+                   checked={agreements.agreePrivacy}
+                   onChange={handleCheckboxChange}
+              />
               <label className="required mb-12" htmlFor="agreePrivacy">
                 개인정보 수집 및 이용동의
               </label>
               <button className="ss-text-button --underline">보기</button>
             </li>
             <li className="between">
-              <input className="ss-input" type="checkbox" id="agreeGeo" />
+              <input className="ss-input"
+                     type="checkbox"
+                     id="agreeGeo"
+                     name="agreeGeo"
+                     checked={agreements.agreeGeo}
+                     onChange={handleCheckboxChange}
+              />
               <label className="optional mb-12" htmlFor="agreeGeo">
                 위치 기반 서비스 이용동의
               </label>
               <button className="ss-text-button --underline">보기</button>
             </li>
             <li className="between">
-              <input className="ss-input" type="checkbox" id="agreeMarketing" />
+              <input className="ss-input"
+                     type="checkbox"
+                     id="agreeMarketing"
+                     name="agreeMarketing"
+                     checked={agreements.agreeMarketing}
+                     onChange={handleCheckboxChange}
+              />
               <label className="optional mb-12" htmlFor="agreeMarketing">
                 마케팅 서비스 이용동의
               </label>
