@@ -19,23 +19,22 @@ function getAdoptList() {
     return backendApi.get(api_path + "/adopt/selectAdoptList", {params : searchData});
 }
 
-function insertAdopt() {
-    const postData = {
-        title : "test",
-        content : "test",
-        gender : "MAN",
-        age : 13,
-        ageCategory : "ASD",
-        isCastrated : "N",
-        responsibilityCost : 580000,
-        etcContent : "test",
-        animalDivision1Id : 1,
-        animalDivision2Id : 1,
-        sido : "test",
-        sigungu : "test",
-        vaccineList : [1,2,3]
+function getBreedOptions(animalDivision1Id){
+    const param = {
+        animalDivision1Id : animalDivision1Id
     }
-    return backendApi.post(api_path + "/adopt/insertAdopt", postData);
+    return backendApi.get(api_path + "/adopt/getBreedOptions", {params : param});
+}
+
+function getVaccineList(animalDivision1Id){
+    const param = {
+        animalDivision1Id : animalDivision1Id
+    }
+    return backendApi.get(api_path + "/adopt/getVaccineList", {params : param});
+}
+
+function insertAdopt(data) {
+    return backendApi.post(api_path + "/adopt/insertAdopt", data);
 }
 
 
@@ -63,10 +62,20 @@ function reportAdopt(data){
     return backendApi.post(api_path+"/adopt/reportAdoptPost", postData)
 }
 
+function getAdoptViewData(id) {
+    const searchData = {
+     id : id
+    }
+    return backendApi.get(api_path + "/adopt/selectAdoptView", {params: searchData});
+}
+
 export {
     getAdoptList,
     insertAdopt,
     deleteAdopt,
     chageLikeInfo,
     reportAdopt,
+    getBreedOptions,
+    getVaccineList,
+    getAdoptViewData,
 }

@@ -1,11 +1,14 @@
-import React, { useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useParams } from "react-router-dom";
 import '../../scss/pages/_family-post.scss';
 import Slider from '../../components/common/slider';
 import PostRelated from '../../components/pages/family/relatedSlider';
 import * as FamilyApi from "../../api/family/family.js";
+import * as ChatApi from '../../api/chat/chat.js'
+import {useWebSocket} from "../../WebSocketContext.jsx";
 
 const FamilyPost = () => {
+  const [viewData, setViewData] = useState([]);
   const images = [
     '/src/assets/images/samples/sample1.webp',
     '/src/assets/images/samples/sample2.jpg',
@@ -22,8 +25,28 @@ const FamilyPost = () => {
     FamilyApi.deleteAdopt(params);
   };
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await FamilyApi.getAdoptViewData(params.id);
+        console.log(result.data)
+        setViewData(result.data);
+        console.log('Updated viewData:', viewData);
+      } catch (error) {
+        alert('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // fetchData 함수를 호출하여 데이터를 가져옵니다.
+  }, []);
+
+
+  const { updateWebSocket } = useWebSocket();
+
   const handleChangeInterestAdopt = () => {
     FamilyApi.chageLikeInfo(params);
+    updateWebSocket(1);
   }
 
   const handleReportAdopt = () => {
@@ -47,16 +70,16 @@ const FamilyPost = () => {
     <div className="post__container select-text mb-100">
       <section className="post__title">
         <div className="title mt-60">
-          <div className="title__rehome-status mb-20" onClick={() => handleReportAdopt()}>분양중</div>
+          <div className="title__rehome-status mb-20" onClick={() => handleReportAdopt()}></div>
           <hr />
-          <h1>2살 여아 시베리안 허스키</h1>
+          <h1>{viewData.title}</h1>
           <hr />
-          <h1>무료분양 합니다</h1>
+          {/*<h1>무료분양 합니다</h1>*/}
           <hr />
           <div className="title__author mt-20">
             <div className="ss-author">
               <div className="ss-author__avatar" />
-              <span className="ss-author__username">username</span>
+              <span className="ss-author__username">{viewData.createdName}</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8 0L9.65644 1.81807L12 1.0718L12.5255 3.47452L14.9282 4L14.1819 6.34356L16 8L14.1819 9.65644L14.9282 12L12.5255 12.5255L12 14.9282L9.65644 14.1819L8 16L6.34356 14.1819L4 14.9282L3.47452 12.5255L1.0718 12L1.81807 9.65644L0 8L1.81807 6.34356L1.0718 4L3.47452 3.47452L4 1.0718L6.34356 1.81807L8 0Z"
@@ -95,9 +118,9 @@ const FamilyPost = () => {
                   </clipPath>
                 </defs>
               </svg>
-              <span className="ml-4">경기도 구리시 갈매동</span>
+              <span className="ml-4">{viewData.sido} {viewData.sigungu}</span>
             </div>
-            <div className="summary__header-date">2023.03.20</div>
+            <div className="summary__header-date">{viewData.createdAt}</div>
           </div>
           <div className="summary__slider">
             <Slider images={images} hasButton hasIndicator />
@@ -105,19 +128,19 @@ const FamilyPost = () => {
           <div className="summary__info">
             <div className="summary__info-item">
               <h3>반려동물</h3>
-              <span>강아지</span>
+              <span>{viewData.animalDivision1Category}</span>
             </div>
             <div className="summary__info-item">
               <h3>품종</h3>
-              <span>믹스견</span>
+              <span>{viewData.animalDivision2Category}</span>
             </div>
             <div className="summary__info-item">
               <h3>성별</h3>
-              <span>암컷</span>
+              <span>{viewData.gender === "MAN" ? "남자" : "여자"}</span>
             </div>
             <div className="summary__info-item">
               <h3>나이</h3>
-              <span>6개월</span>
+              <span>{viewData.age}개월</span>
             </div>
           </div>
         </div>
@@ -132,7 +155,7 @@ const FamilyPost = () => {
                   fill="#D9D9D9"
                 />
               </svg>
-              <span>150</span>
+              <span>{viewData.likeCnt}</span>
             </div>
             <div>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +164,7 @@ const FamilyPost = () => {
                   fill="#D9D9D9"
                 />
               </svg>
-              <span>150</span>
+              <span>{viewData.hits}</span>
             </div>
             <div>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,7 +181,7 @@ const FamilyPost = () => {
                 </defs>
               </svg>
 
-              <span>150</span>
+              <span>{viewData.chattingCnt}</span>
             </div>
           </div>
           <p className="content__text mt-20">

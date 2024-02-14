@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import '../../scss/pages/_register.scss';
 import InfoIcon from '../../components/common/infoicon';
 import { AgeInput, Dropdown } from '../../components/common/inputs';
@@ -9,34 +9,37 @@ import Modal from '../../components/common/modal.jsx';
 const Register = () => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
-  const [selectedBreed, setSelectedBreed] = useState('');
+  const [breedOptions, setBreedOptions] = useState([]);
+  const [vaccineList, setVaccineList] = useState([]);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [previewImages, setPreviewImages] = useState([]);
 
   const onInfoIconClickHandler = () => {
     if (isShow) setIsShow(false);
     else setIsShow(true);
   };
 
-  const breedOptions  = [
-    { id : 0, name : '골든 리트리버'},
-    { id : 1, name : '치와와'},
-    { id : 2, name : '불독'},
-    { id : 3, name : '시베리안 허스키'},
-    { id : 4, name : '보더 콜리'},
-    { id : 5, name : '빠삐용'},
-    { id : 6, name : '요크셔 테리어'},
-    { id : 7, name : '닥스훈트'},
-    { id : 8, name : '푸들'},
-    { id : 9, name : '불마스티프'},
-    { id : 1, name : '로트와일러'},
-    { id : 1, name : '프렌치 불도그'},
-    { id : 1, name : '잭 러셀 테리어'},
-    { id : 1, name : '세인트 버나드'},
-    { id : 1, name : '비글'},
-  ];
+  const handleImageChange = (event, index) => {
+    const imageFile = event.target.files[0];
 
-  const handleBreedChange = (event) => {
-    setSelectedBreed(event.target.value);
-  };
+    if (imageFile && imageFile.type.startsWith('image/')) {
+      const updatedSelectedImages = [...selectedImages];
+      const updatedPreviewImages = [...previewImages];
+
+      // Update the selected image at the specified index
+      updatedSelectedImages[index] = imageFile;
+
+      // Display preview image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        updatedPreviewImages[index] = reader.result;
+        setPreviewImages(updatedPreviewImages);
+      };
+      reader.readAsDataURL(imageFile);
+
+      setSelectedImages(updatedSelectedImages);
+    }
+  }
 
   let data = {
     title : '',
@@ -51,14 +54,18 @@ const Register = () => {
     animalDivision2Id : '',
     sido : '',
     sigungu : '',
-    vaccineList :[]
+    vaccineList :[],
+    step : ''
   }
 
   const [inputValues, setInputValues] = useState(data);
 
   const age = ['모르겠어요', '개월', '년'];
 
-  const neuter = ['중성화', '안 함'];
+  const neuter = [
+    {id : "IS_CASTRATED0" , name : '중성화 완료', value : 'Y' },
+    {id : "IS_CASTRATED1" , name : '중성화 미완료', value : 'N' }
+  ];
 
   const goNextStep = (step) => {
     setInsertData(step)
@@ -66,25 +73,79 @@ const Register = () => {
     document.querySelector(`#register-${step}`).style.display = 'flex';
   };
 
-  const setInsertData = (step) =>{
-    if (step == 2){
+  const setInsertData = (step) => {
+    if (step === 2) {
+      const selectedAnimalDivision1Id = document.querySelector('input[name="animalDivision1Id"]:checked').value;
+      if (selectedAnimalDivision1Id) {
+        setInputValues((prevInputValues) => ({
+          ...prevInputValues,
+          animalDivision1Id: selectedAnimalDivision1Id,
+          step : step
+        }));
+        FamilyApi.getBreedOptions(selectedAnimalDivision1Id).then(response => {
+          setBreedOptions(response.data)
+          console.log(response.data);
+        })
+            .catch(error => {
+              // Handle errors here
+              console.error("Error fetching breed options:", error);
+            });
+        FamilyApi.getVaccineList(selectedAnimalDivision1Id).then(response => {
+          setVaccineList(response.data)
+          console.log(response.data);
+        })
+            .catch(error => {
+              // Handle errors here
+              console.error("Error fetching breed options:", error);
+            });
+      }
+    } else if (step === 3) {
+      // Update inputValues for step 3 if needed
+    } else if (step === 4) {
       setInputValues((prevInputValues) => ({
         ...prevInputValues,
-        animalDivision1Id: document.querySelector('input[name="animalDivision1Id"]:checked').value,
-      }));
-    }else if (step == 3){
-
-    }else if (step == 4){
-      setInputValues((prevInputValues) => ({
-        ...prevInputValues,
-        animalDivision1Id: document.querySelector('input[name="animalDivision1Id"]:checked').value,
-
+        animalDivision2Id : document.querySelector('input[name="animalDivision2Id"]').value,
+        gender : document.querySelector('input[name="gender"]').value,
+        age : document.querySelector('input[name="age"]').value,
+        responsibilityCost : document.querySelector('input[name="responsibilityCost"]').value,
+        title : document.querySelector('input[name="title"]').value,
+        content : document.querySelector('textarea[name="content"]').value,
+        sido : document.querySelector('input[name="sido"]').value,
+        sigungu : document.querySelector('input[name="sigungu"]').value,
+        step : step
       }));
     }
-  }
+  };
+
+  useEffect(() => {
+    if(inputValues.step == 5){
+      if(confirm("등록하시겠습니까?")){
+        FamilyApi.insertAdopt(inputValues);
+      }
+    }
+  },[inputValues])
+
+  const renderVaccineList = () => {
+    return vaccineList.map((vaccine) => (
+        <label key={vaccine.name}>
+          <input type="checkbox" value={vaccine.id} name="vaccine"/>
+          <span>
+              {vaccine.name}
+          </span>
+        </label>
+    ));
+  };
 
   const handleInsertAdopt = () => {
-    FamilyApi.insertAdopt();
+    const checkboxes = document.querySelectorAll('input[name=vaccine]:checked');
+    const checkedValues = Array.from(checkboxes).map((checkbox) => checkbox.value);
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      isCastraed : document.querySelector('input[name="isCastraed"]').value,
+      vaccineList: checkedValues,
+      etcContent: document.querySelector('textarea[name="etcContent"]').value,
+      step : 5
+    }));
   };
 
   return (
@@ -125,9 +186,10 @@ const Register = () => {
           <br />
           등록해주세요
         </div>
-        {/* before upload */}
         <div className="ss-form">
-          <label className="ss-upload h-300 mb-60">
+          {previewImages.length === 0 ? (
+                  // Before upload
+          <label className="ss-upload h-300 mb-60" >
             <img src="/src/assets/icons/2424/image.svg" alt="사진 올리기" />
             <span>이미지를 등록해주세요 (최대 6장)</span>
             <p>
@@ -135,12 +197,14 @@ const Register = () => {
               <br />
               가로사이즈가 660pixel을 초과하는 경우 자동으로 660pixel로 조정됩니다.
             </p>
-            <input type="file" accept="image/*" />
+            <input type="file" accept="image/*" onChange={(e) => handleImageChange(e, 0)}/>
           </label>
-          {/* after upload */}
+          ) : (
+              // After upload
+              <>
           <div className="register__upload-progress ss-flex justify-between mb-20">
             <div className="ss-flex align-center">
-              <span className="mr-6">이미지 등록 3/6</span>
+              <span className="mr-6">이미지 등록 {previewImages.length}/6</span>
               <InfoIcon
                 show={isShow}
                 onClick={onInfoIconClickHandler}
@@ -158,35 +222,29 @@ const Register = () => {
             </div>
           </div>
           <div className="ss-grid cols-repeat-3 rows-repeat-2 gap-12 mb-60">
-            <div className="ss-image">
-              <img src="/src/assets/images/samples/sample1.webp" alt="" />
-              <button />
-              <span>대표 이미지</span>
-            </div>
-            <div className="ss-image">
-              <img src="/src/assets/images/samples/sample2.jpg" alt="" />
-              <button />
-            </div>
-            <div className="ss-image">
-              <img src="/src/assets/images/samples/sample3.jpg" alt="" />
-              <button />
-            </div>
-            <label className="ss-upload h-150">
-              <img src="/src/assets/buttons/add.svg" alt="" />
-              <p>이미지를 등록해주세요</p>
-              <input type="file" accept="image/*" />
-            </label>
-            <label className="ss-upload h-150">
-              <img src="/src/assets/buttons/add.svg" alt="" />
-              <p>이미지를 등록해주세요</p>
-              <input type="file" accept="image/*" />
-            </label>
-            <label className="ss-upload h-150">
-              <img src="/src/assets/buttons/add.svg" alt="" />
-              <p>이미지를 등록해주세요</p>
-              <input type="file" accept="image/*" />
-            </label>
+            {[...Array(6)].map((_, index) => (
+                <label className="ss-upload h-150" key={index}>
+                  {previewImages[index] && (
+                      <img
+                          src={previewImages[index]}
+                          alt={`Preview ${index + 1}`}
+                          style={{ maxHeight: '100%' }}
+                      />
+                  )}
+                  {!previewImages[index] ? (
+                  <p>이미지를 등록해주세요</p>
+                  ) : null}
+                  <input
+                      type="file"
+                      accept="image/*"
+                      name={`file_${index + 1}`}
+                      onChange={(e) => handleImageChange(e, index)}
+                  />
+                </label>
+            ))}
           </div>
+              </>
+          )}
           <button className="ss-button --lg --full w-490" onClick={() => goNextStep(3)}>
             다음
           </button>
@@ -210,34 +268,24 @@ const Register = () => {
           <div className="ss-grid col-gap-10 row-gap-30">
             <div>
               <label className="ss-label --required">품종</label>
-              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
+              {/*<select id="breed" value={selectedBreed} onChange={handleBreedChange}>
                 <option value="">품종을 선택하세요</option>
-                {breedOptions.map((breed) => (
-                    <option key={breed.id} value={breed.name}>
-                      {breed.name}
-                    </option>
-                ))}
-              </select>
+                {renderBreedOptions()}
+              </select>*/}
+              <Dropdown options={breedOptions} targetValue="id" targetName="category" placeholder="품종을 선택해주세요" name="animalDivision2Id" required />
             </div>
             <div>
               <label className="ss-label --required">성별</label>
-              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
-                <option value="">품종을 선택하세요</option>
-                {breedOptions.map((breed) => (
-                    <option key={breed.id} value={breed.name}>
-                      {breed.name}
-                    </option>
-                ))}
-              </select>
+              <Dropdown options={[{id:'MAN',name:'남자'},{id:'GIRL',name:'여자'}]} placeholder="성별을 선택해주세요" required name="gender"/>
             </div>
             <div>
               <label className="ss-label --required">나이</label>
-              <AgeInput options={age} placeholder="선택" required />
+              <AgeInput options={age} placeholder="선택" required name="age"/>
             </div>
             <div>
               <label className="ss-label --required">책임비</label>
               <div className="ss-price-input">
-                <input className="ss-input" type="text" placeholder="10,000" maxLength={6} />
+                <input className="ss-input" type="text" name="responsibilityCost" id="responsibilityCost" placeholder="10,000" maxLength={6} />
                 <span>원</span>
                 <div className="ss-price-input__checkbox">
                   <input className="ss-input" type="checkbox" name="" id="freeAdoption" />
@@ -247,36 +295,22 @@ const Register = () => {
             </div>
             <div className="col-span-2">
               <label className="ss-label --required">제목</label>
-              <input className="ss-input --full" type="text" placeholder="제목 입력" />
+              <input className="ss-input --full" name="title" type="text" placeholder="제목 입력" />
             </div>
             <div className="col-span-2">
               <label className="ss-label --required">소개</label>
               <div className="ss-textarea">
-                <textarea cols="30" rows="10" placeholder="내용 입력" required></textarea>
+                <textarea cols="30" rows="10" name="content" placeholder="내용 입력" required></textarea>
                 <div className="pt-10">0/1,000자</div>
               </div>
             </div>
             <div>
               <label className="ss-label --required">분양 희망 지역</label>
-              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
-                <option value="">품종을 선택하세요</option>
-                {breedOptions.map((breed) => (
-                    <option key={breed.id} value={breed.name}>
-                      {breed.name}
-                    </option>
-                ))}
-              </select>
+                <Dropdown options={[{id:'서울',name:'서울'},{id:'경기',name:'경기'}]} placeholder="지역을 선택해주세요" required name="sido"/>
             </div>
             <div>
               <label className="ss-label">&nbsp;</label>
-              <select id="breed" value={selectedBreed} onChange={handleBreedChange}>
-                <option value="">품종을 선택하세요</option>
-                {breedOptions.map((breed) => (
-                    <option key={breed.id} value={breed.name}>
-                      {breed.name}
-                    </option>
-                ))}
-              </select>
+                <Dropdown options={[{id:'마포구',name:'마포구'},{id:'서초구',name:'서초구'}]} placeholder="지역을 선택해주세요" required name="sigungu"/>
             </div>
           </div>
           <button className="current-location">
@@ -306,45 +340,18 @@ const Register = () => {
           <div className="ss-grid cols-repeat-2 col-gap-10 row-gap-30">
             <div>
               <label className="ss-label --required">중성화 여부</label>
-              <Dropdown label="중성화 여부" options={neuter} placeholder="선택해주세요" required />
+              <Dropdown label="중성화 여부" options={neuter} targetValue="value" placeholder="선택해주세요" required name="isCastraed" />
             </div>
             <div className="col-span-2">
               <label className="ss-label">백신 접종 여부</label>
               <div className="vaccine mt-12">
-                <label>
-                  <input type="checkbox" />
-                  <span>
-                    혼합예방주사
-                    <br />
-                    (종합백신)
-                  </span>
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  <span>
-                    기관ㆍ기관지염
-                    <br />
-                    (켄넬코프)
-                  </span>
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  <span>코로나 장염</span>
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  <span>광견병</span>
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  <span>신종플루</span>
-                </label>
+                  {renderVaccineList()}
               </div>
             </div>
             <div className="col-span-2">
               <label className="ss-label">기타 질병 및 특이사항</label>
               <div className="ss-textarea">
-                <textarea cols="30" rows="10" placeholder="내용을 입력해주세요" required></textarea>
+                <textarea cols="30" rows="10" name="etcContent" placeholder="내용을 입력해주세요" required></textarea>
                 <div className="pt-10">0/1,000자</div>
               </div>
             </div>

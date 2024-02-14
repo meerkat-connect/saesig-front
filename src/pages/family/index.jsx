@@ -123,7 +123,7 @@ const Family = () => {
                       fill="currentColor"
                     />
                   </svg>
-                  <span>경기도 구리시 갈매동</span>
+                  <span>{item.sido} {item.sigungu}</span>
                 </div>
                 <FlyoutMenu />
               </header>
@@ -134,7 +134,7 @@ const Family = () => {
                 <div>
                   <div>
                     <span>{item.status.value}</span>
-                    <span>1시간 전</span>
+                    <span>{item.modifiedAt}</span>
                   </div>
                   <button>
                     <img src="/src/assets/icons/2424/like_outline.svg" alt="" />
