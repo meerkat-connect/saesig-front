@@ -13,7 +13,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
     setSelectedChat(null);
   };
 
-  const { socket, updateWebSocket } = useWebSocket();
+  const { socket } = useWebSocket();
 
   useEffect(() => {
     const handleIncomingMessage = (event) => {
@@ -78,7 +78,6 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
   const [chatList, setChatList] = useState(data.chatList);
 
   const handleChatClick = (chatId) => {
-    updateWebSocket(1);
     if (chatId){
       getChatData(chatId);
     }
@@ -122,7 +121,7 @@ const ChatBox = ({ isChatOpen, selectedChat, setIsChatOpen, setSelectedChat, cha
 
       if (chatRef.current && !chatRef.current.contains(e.target)) {
         setIsChatOpen(false);
-        setChatId();
+        // setChatId();
       }
     };
     document.addEventListener('click', handleClickOutside, true);

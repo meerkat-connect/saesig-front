@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export const Dropdown = ({ options, ...rest }) => {
+export const Dropdown = ({ options, targetId = null, targetName = null, targetValue=null,placeholder,...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedName, setSelectedName] = useState('');
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -18,7 +19,10 @@ export const Dropdown = ({ options, ...rest }) => {
   }, []);
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
+    const optionValue = targetValue !== null ? option[targetValue] : option.id;
+    const optionName = targetName !== null ? option[targetName] : option.name
+    setSelectedValue(optionValue);
+    setSelectedName(optionName);
     setIsOpen(false);
   };
 
@@ -28,12 +32,13 @@ export const Dropdown = ({ options, ...rest }) => {
 
   return (
     <div className={`ss-dropdown ${isOpen && '--active'}`} ref={dropdownRef}>
-      <input type="text" value={selectedOption} readOnly onClick={handleInputClick} {...rest} />
+      <input type="text" value={selectedName} readOnly placeholder={placeholder} onClick={handleInputClick} />
+      <input type="hidden" value={selectedValue} {...rest} />
       {isOpen && options && (
         <div className="ss-dropdown__options">
           {options.map((option) => (
-            <div key={option.id} onClick={() => handleOptionClick(option.id)}>
-              {option.name}
+            <div key={targetId !== null ? option[targetId] : option.id} onClick={() => handleOptionClick(option)}>
+              {targetName !== null ? option[targetName] : option.name}
             </div>
           ))}
         </div>
@@ -46,6 +51,7 @@ export const AgeInput = ({ ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [inputValue, setInputValue] = useState('');
+  const [calcValue, setCalcValue] = useState('');
   const dropdownRef = useRef(null);
   const options = ['개월', '년', '모르겠어요'];
 
@@ -78,6 +84,14 @@ export const AgeInput = ({ ...rest }) => {
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+    if (selectedOption == '년'){
+      setCalcValue(e.target.value * 12)
+    }else if (selectedOption == '개월'){
+      setCalcValue(e.target.value)
+    }else{
+      setCalcValue('')
+    }
+
   };
 
   const handleInputClick = () => {
@@ -95,9 +109,11 @@ export const AgeInput = ({ ...rest }) => {
           disabled={selectedOption === ''}
           required
           placeholder="나이 입력"
+          id="ageInput"
         />
+        <input type="hidden" value={calcValue} readOnly {...rest}/>
         <div onClick={handleInputClick}>
-          <input type="text" value={selectedOption} placeholder="선택" readOnly {...rest} />
+          <input type="text" value={selectedOption} placeholder="선택" readOnly id="ageUnit" />
         </div>
         {isOpen && options && (
           <div className="ss-age-input__options">
