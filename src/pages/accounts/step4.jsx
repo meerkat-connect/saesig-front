@@ -2,11 +2,44 @@ import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 
 const NicknameForm = ({onNext, updateFormData}) => {
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {
+        register
+        , handleSubmit
+        , watch
+        , formState: {errors}
+        , setError
+        , clearErrors
+    } = useForm({
+            mode: 'onSubmit'
+        });
+    const [backendResponse, setBackendResponse] = useState({});
+    const nicknamePattern = /^[A-Za-z0-9_ ]+$/;
+    const badWords = ['example1', 'example2', 'example3'];
+    const nickname = watch('nickname');
 
-    const onSubmit = (data) => {
-        // updateFormData({email: data.email});
-        onNext();
+    const validateNickname = (value) => {
+        return !badWords.includes(value.toLowerCase()) || '비속어를 사용할 수 없습니다.'; // 서버단에서 검증 필요
+    }
+
+    const checkNicknameDuplication = async(nickname) => {
+        const response = {isDuplicate: false};
+        setBackendResponse(response);
+        return response;
+    }
+
+    const onSubmit = async (data) => {
+        const response = await checkNicknameDuplication(data.nickname);
+
+        if(response.isDuplicate) {
+            console.log(response.isDuplicate);
+            setError('nickname', {
+                type: 'nicknameDuplicated'
+                , message: '이미 사용중인 닉네임 입니다. 다른 닉네임을 입력해주세요.'
+            })
+        } else{
+            updateFormData({nickname: data.nickname});
+            onNext();
+        }
     };
 
     return (<div id="signup-4" className="signup">
@@ -20,15 +53,25 @@ const NicknameForm = ({onNext, updateFormData}) => {
                 닉네임을 입력해주세요
             </div>
             <div className="ss-form">
-                <input className="ss-input --full --error mb-10" type="text" placeholder="비밀번호 입력"/>
+                <input
+                    className="ss-input --full --error mb-10"
+                    type="text"
+                    placeholder="닉네임을 입력해주세요."
+                    {...register('nickname', {
+                        required: '닉네임을 입력해주세요.'
+                        , pattern: {
+                            value: nicknamePattern
+                            , message: '한글 또는 영문 8자 이내로 입력 (비속어 또는 특수문자는 사용할 수 없습니다)'
+                        },
+                        validate: validateNickname
+                    })}
+                />
                 <div className="notification">한글 또는 영문 8자 이내로 입력 (비속어 또는 특수문자는 사용할 수 없습니다)</div>
-                <div className="notification notification--caution">
-                    이미 사용중인 닉네임 입니다. 다른 닉네임을 입력해주세요
-                </div>
-                <div className="notification notification--caution">
-                    비속어, 특수문자가 포함되어 사용할 수 없는 닉네임 입니다.
-                </div>
-                <div className="notification notification--success">사용 가능한 닉네임 입니다</div>
+
+                {errors.nickname && <div className="notification notification--caution">
+                    {errors.nickname.message}
+                </div>}
+                {/*<div className="notification notification--success">사용 가능한 닉네임 입니다</div>*/}
                 <button className="ss-button --lg --full">
                     다음
                 </button>

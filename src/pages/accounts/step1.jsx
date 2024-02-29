@@ -90,7 +90,7 @@ const TermsForm = ({onNext, formData, updateFormData}) => {
                     <button className="ss-button --md mb-40" type="button" onClick={handleModalClose}>확인</button>
                 </div>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} style={{width: "100%"}}>
                 <div className="signup__title mb-60">
                     새식일기 서비스 이용약관에
                     <br/>

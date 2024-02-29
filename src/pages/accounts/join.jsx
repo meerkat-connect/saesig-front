@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../../scss/pages/_join.scss';
 import * as joinApi from '../../api/accounts/join.js'
 import TermsForm from "./step1.jsx";
@@ -8,10 +8,35 @@ import NicknameForm from "./step4.jsx";
 import SignComplete from "./step5.jsx";
 
 const SignUp = () => {
+    const initialStep = Number(localStorage.getItem('currentStep')) || 1;
     const [currentStep, setCurrentStep] = useState(1);
+
+    useEffect(() => {
+        // localStorage.setItem('currentStep', currentStep);
+    }, [currentStep]);
+
     const nextStep = () => {
-        setCurrentStep(currentStep + 1);
+        const nextStep = currentStep + 1;
+        setCurrentStep(nextStep);
+        window.history.pushState({step: nextStep}, `Step ${nextStep}`, window.location.pathname)
     }
+
+    useEffect(() => {
+        const handlePopState = (e) => {
+            const step = e.state?.step;
+            if (step) {
+                setCurrentStep(step);
+            }
+        };
+
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        }
+    }, []);
+
+
     const [formData, setFormData] = useState({
         email: '',
         nickname: '',
@@ -28,9 +53,8 @@ const SignUp = () => {
     }
 
     const handleSubmit = () => {
-        // 여기에서 formData를 사용하여 최종 제출 로직을 구현합니다.
         alert(formData);
-        // 예: 서버에 데이터 제출
+        setCurrentStep(currentStep + 1); // 성공시 회원가입 완료페이지로 이동
     }
 
     return (
