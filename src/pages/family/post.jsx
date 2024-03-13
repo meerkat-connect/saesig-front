@@ -185,9 +185,7 @@ const FamilyPost = () => {
             </div>
           </div>
           <p className="content__text mt-20">
-            활발하고 장난끼가 많으며, 처음보는 사람한테도 경계심이 없는 아이입니다. 하루 2-3시간 이상은 산책이나 놀이
-            활동을 즐길 수 있는 환경이 갖춰진 곳을 데려가주세요. 사료와 간식을 매우 잘 먹으며 강아지 우유를 좋아하니
-            가끔씩 챙겨주면 좋을것 같습니다!
+            {viewData.content}
           </p>
           <div className="content__tags mt-30">
             <div className="ss-tag --warm">강아지</div>
@@ -223,8 +221,7 @@ const FamilyPost = () => {
                   <span>기타 질병 및 특이사항</span>
                 </div>
                 <p>
-                  떠돌이 생활을 하다 구조되어 약간의 찰과상 및 피부습진이 있습니다. 병원에서 1차 치료는 완료했으나
-                  주기적으로 검진이 필요하니 유의해주세요!
+                  {viewData.etcContent}
                 </p>
               </div>
               <div className="pet-status__breed-info" ref={breedInfoRef} style={{ display: 'none' }}>
