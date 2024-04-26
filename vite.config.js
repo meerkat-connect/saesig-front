@@ -21,9 +21,9 @@ export default defineConfig(({ command, mode }) => {
         '/api': {
           // 프록시 요청을 보낼 서버의 주소
           // .env 파일에 정의되어 있으며 build 시 production 폴더의 변수를 바라봄
-          target: env.VITE_APP_API_BASE_URL
-        }
-      }
-    }
-  }
+          target: env.VITE_APP_API_BASE_URL,
+        },
+      },
+    },
+  };
 });
