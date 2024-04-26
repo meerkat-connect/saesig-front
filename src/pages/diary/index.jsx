@@ -1,75 +1,86 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../scss/pages/_diary.scss';
 import Gallery from './_components/gallery';
 import { useNavigate } from 'react-router';
 import * as diaryApi from '../../api/diary/diary.js';
 import SortSelector from './_components/sort-selector.jsx';
+import { useQuery } from 'react-query';
 
 const Diary = () => {
-  console.log(diaryApi.getDiaries());
-
   const navigate = useNavigate();
-  const [data, setData] = useState(true);
+
+  // 임시데이터
   const galleryData = [
     {
       id: 1,
       image: '/src/assets/images/samples/sample5.jpg',
       title: '새식이와 함께 즐거운 날 :)',
-      date: '2023.05.20',
-      author: '새식이',
+      createdAt: '2023.05.20',
+      nickname: '새식이',
     },
     {
       id: 2,
       image: '/src/assets/images/samples/sample6.jpg',
       title: '새식이와 함께 즐거운 날 :)새식이와 함께 즐거운 날 :)새식이와 함께 즐거운 날 :)',
-      date: '2023.05.20',
-      author: '새식이',
+      createdAt: '2023.05.20',
+      nickname: '새식이',
     },
     {
       id: 3,
       image: '/src/assets/images/samples/sample2.jpg',
       title: '새식이와 함께 즐거운 날 :)',
-      date: '2023.05.20',
-      author: '새식이',
+      createdAt: '2023.05.20',
+      nickname: '새식이',
     },
     {
       id: 4,
       image: '/src/assets/images/samples/sample3.jpg',
       title: '새식이와 함께 즐거운 날 :)',
-      date: '2023.05.20',
-      author: '새식이',
+      createdAt: '2023.05.20',
+      nickname: '새식이',
     },
     {
       id: 5,
       image: '/src/assets/images/samples/sample1.webp',
       title: '새식이와 함께 즐거운 날 :)',
-      date: '2023.05.20',
-      author: '새식이',
+      createdAt: '2023.05.20',
+      nickname: '새식이',
     },
     {
       id: 6,
       image: '/src/assets/images/samples/sample4.webp',
       title: '새식이와 함께 즐거운 날 :)',
-      date: '2023.05.20',
-      author: '새식이',
+      createdAt: '2023.05.20',
+      nickname: '새식이',
     },
     {
       id: 7,
       image: '/src/assets/images/samples/sample7.webp',
       title: '새식이와 함께 즐거운 날 :)',
-      date: '2023.05.20',
-      author: '새식이',
+      createdAt: '2023.05.20',
+      nickname: '새식이',
     },
   ];
 
   const options = ['최신순', '조회수', '좋아요'];
+
+  const { isLoading, data } = useQuery('banners', diaryApi.getDiaries);
+
+  if (isLoading) {
+    return 'Loading...';
+  }
 
   return (
     <div className="diary">
       {!data && (
         <div className="diary__nodata">
           <div>
-            <svg width="94" height="29" viewBox="0 0 94 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="94"
+              height="29"
+              viewBox="0 0 94 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M20.5039 7.61996C20.9015 6.61825 21.1287 5.9481 21.4305 5.30969C22.6551 2.73842 24.888 2.21993 27.1244 3.98349C28.7999 5.30616 30.0104 7.01682 31.047 8.84739C33.5887 13.3304 35.3743 18.1167 36.7445 23.0652C36.8332 23.3827 36.9078 23.7107 36.9184 24.0352C36.9504 24.9134 36.6735 25.2168 35.8002 25.3226C35.637 25.3437 35.4701 25.3437 35.3033 25.3402C29.9891 25.1886 24.6892 25.6435 19.3786 25.6682C15.1259 25.6859 10.8697 25.9963 6.60983 25.9645C4.9982 25.9539 3.41142 25.7176 1.81399 25.5906C0.33015 25.4742 -0.191678 24.8147 0.0639112 23.4003C0.990422 18.2507 2.03053 13.1258 4.73551 8.5229C5.63362 6.99566 6.63468 5.54953 7.95168 4.34679C11.3169 1.27819 15.0443 1.39458 18.2214 4.6219C19.0308 5.44372 19.6662 6.39957 20.5039 7.61643V7.61996ZM21.434 9.52107C21.5831 10.2547 21.7606 10.7732 21.1713 10.9319C20.6353 11.0765 20.4294 10.5686 20.2271 10.1842C19.9182 9.59867 19.6378 9.00259 19.3325 8.41709C18.7432 7.28841 18.0297 6.25143 17.1209 5.34496C14.6431 2.87598 11.6364 2.749 8.99888 5.05926C7.31625 6.5336 6.09865 8.36771 5.10115 10.3499C4.81716 10.9178 4.72131 11.4786 4.9343 12.0959C5.49518 13.7219 6.2016 15.2668 7.3056 16.6035C8.59775 18.1696 10.2733 18.2648 11.7358 16.8187C12.4387 16.1238 13.028 15.3126 13.7024 14.586C14.8668 13.3233 15.8714 13.2845 17.1174 14.4485C17.7599 15.0481 18.3208 15.7429 19.1231 16.1626C20.4081 16.8328 21.4305 16.66 22.396 15.5877C22.6906 15.2597 22.9214 14.8752 23.2231 14.5543C24.0857 13.6337 24.8596 13.5737 25.8216 14.3673C26.2476 14.7165 26.6132 15.1363 27.0215 15.5031C27.7279 16.1344 28.5266 16.6318 29.4567 16.861C30.3299 17.0726 31.0967 16.8787 31.686 16.145C32.2397 15.4572 32.5024 14.78 32.1049 13.8771C31.0612 11.5033 29.8968 9.19658 28.3527 7.09794C27.6675 6.16325 26.883 5.29558 25.9175 4.63954C24.7283 3.83535 23.6917 4.00465 22.9072 5.16508C21.9629 6.56182 21.5973 8.15961 21.4411 9.52107H21.434ZM33.1521 16.6635C30.9831 18.5223 30.1453 18.9985 26.986 17.0233C26.386 16.6494 25.8713 16.1238 25.3601 15.6265C24.7957 15.0763 24.32 15.0763 23.8657 15.7323C23.7414 15.9122 23.6101 16.0921 23.4681 16.2614C22.0268 17.9403 20.1809 18.2331 18.2782 17.0868C17.5576 16.6529 17.0038 16.0463 16.4252 15.4502C15.63 14.6283 15.2679 14.6389 14.5295 15.489C13.7699 16.3602 13.0599 17.2772 12.1902 18.0532C11.04 19.0831 9.74435 19.2277 8.32086 18.7551C7.3908 18.4447 6.72698 17.831 6.14125 17.0585C5.28574 15.9228 4.75326 14.6107 4.12849 13.3727C3.96875 13.4291 3.89065 13.4327 3.87645 13.4679C2.45651 16.5436 1.80334 19.8309 1.21051 23.1287C1.03302 24.1234 1.34541 24.4161 2.38551 24.4725C3.87645 24.5537 5.37094 24.5572 6.86542 24.596C11.4057 24.7124 15.9353 24.3844 20.4684 24.2539C24.8951 24.1269 29.3218 24.1692 33.752 24.1375C34.0289 24.1375 34.3058 24.1304 34.5826 24.1269C35.3388 24.1128 35.5447 23.7319 35.3423 23.0441C34.7211 20.9384 34.146 18.8186 33.1521 16.6706V16.6635Z"
                 fill="#171A19"
@@ -117,21 +128,36 @@ const Diary = () => {
           </h1>
           <div className="content__filter mt-10">
             <div className="filter__selector">
-              <svg width="32" height="27" viewBox="0 0 32 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="32"
+                height="27"
+                viewBox="0 0 32 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M31.2431 1H21.9878C18.4306 1 15.1412 2.88966 13.3492 5.96254L1.37305 26.5"
                   stroke="black"
                   strokeLinecap="round"
                 />
               </svg>
-              <svg width="36" height="35" viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="36"
+                height="35"
+                viewBox="0 0 36 35"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M35.2436 1H25.9883C22.4311 1 19.1417 2.88966 17.3497 5.96254L1 34"
                   stroke="black"
                   strokeLinecap="round"
                 />
               </svg>
-              <svg width="181" height="41" viewBox="0 0 181 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="181"
+                height="41"
+                viewBox="0 0 181 41"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M180.5 40V11C180.5 5.47715 176.023 1 170.5 1H27.5409C23.8262 1 20.4177 3.0591 18.6893 6.34721L1 40"
                   stroke="black"
@@ -149,10 +175,12 @@ const Diary = () => {
           <div className="content__main mt-20">
             <div className="main__count mb-20">
               <span>
-                총 <span>35</span>개의 이야기
+                총 <span>{data.length}</span>개의 이야기
               </span>
             </div>
-            <Gallery galleryData={galleryData} />
+            {/* 임시데이터
+            <Gallery galleryData={galleryData} /> */}
+            <Gallery galleryData={data} />
           </div>
         </div>
       )}

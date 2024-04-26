@@ -13,15 +13,14 @@ export default function Gallery({ galleryData }) {
       align={'stretch'}
       column={2}
       columnSize={0}
-      columnSizeRatio={0}
-    >
+      columnSizeRatio={0}>
       {galleryData?.map((gallery) => (
         <div className={'gallery__item'} key={gallery.id} onClick={() => navigate(`${gallery.id}`)}>
           <img src={gallery.image} alt="" loading="lazy" />
           <h6 className="ml-20">{gallery.title}</h6>
           <div>
-            <span>{gallery.date}</span>
-            <span>by {gallery.author}</span>
+            <span>{gallery.createdAt}</span>
+            <span>by {gallery.nickname}</span>
           </div>
         </div>
       ))}
