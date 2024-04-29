@@ -3,6 +3,7 @@ module.exports = {
   env: {
     browser: true, // 브라우저 환경을 사용한다.
     es2021: true, // ECMAScript 2021 환경을 사용한다.
+    node: true,
   },
   extends: [
     'eslint:recommended', //사용하지 않는 변수와 같은 코드 품질 검사는 ESLint 추천 규칙 사용

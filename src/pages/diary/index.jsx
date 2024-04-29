@@ -2,8 +2,8 @@ import React from 'react';
 import '../../scss/pages/_diary.scss';
 import Gallery from './_components/gallery';
 import { useNavigate } from 'react-router';
-import * as diaryApi from '../../api/diary/diary.js';
-import SortSelector from './_components/sort-selector.jsx';
+import * as diaryApi from '../../api/diary/diary';
+import SortSelector from './_components/sort-selector';
 import { useQuery } from 'react-query';
 
 const Diary = () => {
@@ -64,7 +64,7 @@ const Diary = () => {
 
   const options = ['최신순', '조회수', '좋아요'];
 
-  const { isLoading, data } = useQuery('banners', diaryApi.getDiaries);
+  const { isLoading, data } = useQuery('diary', diaryApi.getDiaries);
 
   if (isLoading) {
     return 'Loading...';

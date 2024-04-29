@@ -1,34 +1,37 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import * as bannerApi from '@/api/banner/banner';
 import '@/scss/pages/_home.scss';
 import '@/scss/pages/_family.scss';
 
 const Home = () => {
   const navigate = useNavigate();
 
+  const { isLoading, data } = useQuery('banner', bannerApi.getBanners);
+
+  if (isLoading) {
+    return 'Loading...';
+  }
+
   return (
     <div className="ss-wrap ss-wrap__home">
       <section className="main-visual">
-        <Swiper modules={[Pagination]} pagination={{ type: 'fraction' }}>
-          <SwiperSlide style={{ backgroundColor: '#ff8f4e' }}>
-            <div className="main-visual__text text-sm mb-10">두두둥탁!!</div>
-            <div className="main-visual__text">
-              드디어 새식일기를
-              <br />
-              소개합니다!
-            </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ backgroundColor: '#f6b34e' }}>
-            <div className="main-visual__text text-sm mb-10">두두둥탁!!</div>
-            <div className="main-visual__text">
-              드디어 새식일기를
-              <br />
-              소개합니다!
-            </div>
-          </SwiperSlide>
-        </Swiper>
+        {data && (
+          <Swiper modules={[Pagination]} pagination={{ type: 'fraction' }}>
+            {data.map((banner) => (
+              <SwiperSlide key={banner.id} style={{ backgroundImage: `url(${banner.image})` }}>
+                {banner.url.includes(import.meta.env.VITE_APP_BASE_URL) ? (
+                  <Link to={banner.url} />
+                ) : (
+                  <a href={banner.url} target="_blank" rel="noreferrer"></a>
+                )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </section>
 
       <section className="main-section family mb-60">
