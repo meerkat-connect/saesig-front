@@ -1,33 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import '../../scss/pages/_family.scss';
 import FlyoutMenu from '../../components/common/flyout';
 import Slider from '../../components/common/slider';
-import * as FamilyApi from '../../api/family/family.js'
+import { getAdoptList } from '../../api/family/family';
 
 const Family = () => {
-  const [listData, setlistData] = useState([]);
+  const navigate = useNavigate();
   const images = [
     '/src/assets/images/samples/sample1.webp',
     '/src/assets/images/samples/sample2.jpg',
     '/src/assets/images/samples/sample3.jpg',
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await FamilyApi.getAdoptList();
-        console.log(result.data)
-        setlistData(result.data);
-        console.log('Updated listData:', listData);
-      } catch (error) {
-        alert('Error fetching data:', error);
-      }
-    };
+  const familyQuery = useQuery({ queryKey: ['family'], queryFn: getAdoptList });
 
-    fetchData(); // fetchData 함수를 호출하여 데이터를 가져옵니다.
-  }, []);
-  const navigate = useNavigate();
+  if (familyQuery.isLoading) {
+    return 'Loading...';
+  }
+
   return (
     <>
       <div className="ss-wrap">
@@ -61,7 +53,12 @@ const Family = () => {
         <section className="family-content__filter mt-20">
           <div>
             <button className="ss-icon-button --primary">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -105,74 +102,73 @@ const Family = () => {
           <div className="pb-16">
             총&nbsp;<span>35</span>마리의 식구
           </div>
-          {listData.length > 0 ? (
-          <div className="family-content__card-grid">
-            {listData.map((item) => (
-            <div className="family-content__card" key={item.id}>
-              <header>
-                <div>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.99992 10C10.9166 10 11.6666 9.25002 11.6666 8.33335C11.6666 7.41669 10.9166 6.66669 9.99992 6.66669C9.08325 6.66669 8.33325 7.41669 8.33325 8.33335C8.33325 9.25002 9.08325 10 9.99992 10ZM9.99992 1.66669C13.4999 1.66669 16.6666 4.35002 16.6666 8.50002C16.6666 11.15 14.6249 14.2667 10.5499 17.8584C10.2333 18.1334 9.75825 18.1334 9.44159 17.8584C5.37492 14.2667 3.33325 11.15 3.33325 8.50002C3.33325 4.35002 6.49992 1.66669 9.99992 1.66669Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>{item.sido} {item.sigungu}</span>
-                </div>
-                <FlyoutMenu />
-              </header>
-              <div>
-                <Slider images={images} hasBadge />
-              </div>
-              <footer onClick={() => navigate('/family/'+item.id)}>
-                <div>
+          {familyQuery.data.length > 0 ? (
+            <div className="family-content__card-grid">
+              {familyQuery.data.map((item) => (
+                <div className="family-content__card" key={item.id}>
+                  <header>
+                    <div>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M9.99992 10C10.9166 10 11.6666 9.25002 11.6666 8.33335C11.6666 7.41669 10.9166 6.66669 9.99992 6.66669C9.08325 6.66669 8.33325 7.41669 8.33325 8.33335C8.33325 9.25002 9.08325 10 9.99992 10ZM9.99992 1.66669C13.4999 1.66669 16.6666 4.35002 16.6666 8.50002C16.6666 11.15 14.6249 14.2667 10.5499 17.8584C10.2333 18.1334 9.75825 18.1334 9.44159 17.8584C5.37492 14.2667 3.33325 11.15 3.33325 8.50002C3.33325 4.35002 6.49992 1.66669 9.99992 1.66669Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                      <span>
+                        {item.sido} {item.sigungu}
+                      </span>
+                    </div>
+                    <FlyoutMenu />
+                  </header>
                   <div>
-                    <span>{item.status.value}</span>
-                    <span>{item.modifiedAt}</span>
+                    <Slider images={images} hasBadge />
                   </div>
-                  <button>
-                    <img src="/src/assets/icons/2424/like_outline.svg" alt="" />
-                  </button>
+                  <footer onClick={() => navigate(`/family/${item.id}`)}>
+                    <div>
+                      <div>
+                        <span>{item.status.value}</span>
+                        <span>{item.modifiedAt}</span>
+                      </div>
+                      <button>
+                        <img src="/src/assets/icons/2424/like_outline.svg" alt="" />
+                      </button>
+                    </div>
+                    <div>
+                      <p>{item.title}</p>
+                    </div>
+                    <div>
+                      <button className="ss-tag --warm">
+                        <span>#강아지</span>
+                      </button>
+                      <button className="ss-tag --warm">
+                        <span>#2살</span>
+                      </button>
+                      <button className="ss-tag --warm">
+                        <span>#암컷</span>
+                      </button>
+                    </div>
+                  </footer>
                 </div>
-                <div>
-                  <p>
-                    {item.title}
-                  </p>
-                </div>
-                <div>
-                  <button className="ss-tag --warm">
-                    <span>#강아지</span>
-                  </button>
-                  <button className="ss-tag --warm">
-                    <span>#2살</span>
-                  </button>
-                  <button className="ss-tag --warm">
-                    <span>#암컷</span>
-                  </button>
-                </div>
-              </footer>
+              ))}
             </div>
-                ))}
-          </div>
-              ) : (
-              <div className="family-content--empty">
+          ) : (
+            <div className="family-content--empty">
               <img src="/src/assets/pictograms/logo_pictogram.svg" alt="" />
               <p className="mt-20 mb-40">
-              등록된 식구가 없습니다
-              <br />
-              새로운 식구를 저희에게 소개시켜주세요
+                등록된 식구가 없습니다
+                <br />
+                새로운 식구를 저희에게 소개시켜주세요
               </p>
               <button className="ss-button --lg" onClick={() => navigate('/register')}>
-              식구 등록하기
+                식구 등록하기
               </button>
             </div>
-              )}
+          )}
           <button className="family-content__floating-button" onClick={() => navigate('/register')}>
             <img src="/src/assets/images/buttons/Floating.png" alt="" />
           </button>
