@@ -17,7 +17,9 @@ const EventBanner = ({ data, onClickFn }) => {
         {data.map((event) => (
           <SwiperSlide
             key={event.id}
-            style={{ backgroundImage: `url(${event.image})` }}
+            style={{
+              backgroundImage: `url(${import.meta.env.VITE_APP_BASE_URL}/image/${event.savedFileName})`,
+            }}
             onClick={() => onClickFn(event.url)}
           />
         ))}

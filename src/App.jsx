@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // Publish Temporary
 import Components from './pages/temp/components';
@@ -62,6 +63,7 @@ function App() {
           <Route path="/landing" element={<Landing />} />
         </Routes>
       </WebSocketProvider>
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </React.Fragment>
   );
 }

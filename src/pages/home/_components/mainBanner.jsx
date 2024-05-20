@@ -5,17 +5,26 @@ import { Pagination } from 'swiper/modules';
 const MainBanner = ({ data, onClickFn }) => {
   return (
     <section className="main-visual">
-      {data && (
-        <Swiper modules={[Pagination]} pagination={{ type: 'fraction' }}>
-          {data.map((banner) => (
+      <Swiper modules={[Pagination]} pagination={{ type: 'fraction' }}>
+        {data?.length > 0 ? (
+          data.map((banner) => (
             <SwiperSlide
               key={banner.id}
-              style={{ backgroundImage: `url(${banner.image})` }}
+              style={{
+                backgroundImage: `url(${import.meta.env.VITE_APP_BASE_URL}/image/${banner.savedFileName})`,
+              }}
               onClick={() => onClickFn(banner.url)}
             />
-          ))}
-        </Swiper>
-      )}
+          ))
+        ) : (
+          <SwiperSlide
+            style={{
+              backgroundImage: 'url(/src/assets/images/samples/main_banner1.png)',
+              cursor: 'default',
+            }}
+          />
+        )}
+      </Swiper>
     </section>
   );
 };

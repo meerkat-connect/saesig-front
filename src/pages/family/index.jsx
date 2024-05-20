@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import '../../scss/pages/_family.scss';
 import FlyoutMenu from '../../components/common/flyout';
 import Slider from '../../components/common/slider';

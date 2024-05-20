@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import MainBanner from './_components/mainBanner';
 import HotAdoptList from './_components/hotAdoptList';
 import EventBanner from './_components/eventBanner';
 import BestDiary from './_components/bestDiary';
 import { getDiaries } from '../../api/diary/diary';
-import { getBanners } from '@/api/banner/banner';
+import { BANNER_LOCATION, getBanners } from '@/api/banner/banner';
 import { getAdoptList } from '@/api/family/family';
 import '@/scss/pages/_home.scss';
 import '@/scss/pages/_family.scss';
@@ -14,7 +14,14 @@ import '@/scss/pages/_family.scss';
 const Home = () => {
   const navigate = useNavigate();
 
-  const bannerQuery = useQuery({ queryKey: ['banner'], queryFn: getBanners });
+  const bannerQuery = useQuery({
+    queryKey: ['banner', BANNER_LOCATION.MAIN],
+    queryFn: () => getBanners(BANNER_LOCATION.MAIN),
+  });
+  const eventBannerQuery = useQuery({
+    queryKey: ['banner', BANNER_LOCATION.EVENT],
+    queryFn: () => getBanners(BANNER_LOCATION.EVENT),
+  });
   const familyQuery = useQuery({ queryKey: ['family'], queryFn: getAdoptList });
   const diaryQuery = useQuery({ queryKey: ['diary'], queryFn: getDiaries });
 
@@ -38,7 +45,9 @@ const Home = () => {
 
       {familyQuery.data && <HotAdoptList data={familyQuery.data} />}
 
-      {bannerQuery.data && <EventBanner data={bannerQuery.data} onClickFn={handleBannerClick} />}
+      {eventBannerQuery.data?.length > 0 && (
+        <EventBanner data={eventBannerQuery.data} onClickFn={handleBannerClick} />
+      )}
 
       {diaryQuery.data && <BestDiary data={diaryQuery.data} />}
 
