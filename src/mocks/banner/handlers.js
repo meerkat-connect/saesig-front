@@ -3,7 +3,7 @@ import { http, HttpResponse } from 'msw';
 const sampleImgPath = '/src/assets/images/samples/';
 
 export const handlers = [
-  http.get('/api/v1/banners', () => {
+  http.get(`${import.meta.env.VITE_API_BASE_PATH}/banners'`, () => {
     return HttpResponse.json({
       data: {
         banners: [

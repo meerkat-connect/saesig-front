@@ -1,6 +1,6 @@
 import { backendApi } from '@/api/http';
 
-const api_path = '/api/v1';
+const api_path = `${import.meta.env.VITE_API_BASE_PATH}/banner`;
 
 /**
  * @enum {{ MAIN: '메인 배너', EVENT: '이벤트 배너' }} BANNER_LOCATION
@@ -18,7 +18,7 @@ Object.freeze(BANNER_LOCATION);
  */
 const getBanners = (location = BANNER_LOCATION.MAIN) =>
   backendApi
-    .get(api_path + '/banner', {
+    .get(api_path, {
       params: {
         exposureLocation: location,
       },
